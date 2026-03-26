@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find the best AI-verified med spas near you. Browse treatments, read verified reviews, and book instantly with GlowRanked.">
+<title>Find a Med Spa Near You | GlowRanked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;--bg2:#0a0a12;--bg3:#0f0f1a;--card:#12121e;--border:#1e1e30;
+  --teal:#00d4b4;--teal2:#00b89c;--gold:#c9a84c;--text:#f0f0f8;--muted:#6b7280;--soft:#94a3b8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:white}
+.logo-text{font-weight:800;font-size:1.15rem;color:var(--text);letter-spacing:-0.5px}
+.logo-text span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-link{color:var(--soft);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+.nav-link:hover{color:var(--text)}
+.nav-spa{background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.25);color:var(--teal);padding:9px 20px;border-radius:8px;font-weight:700;font-size:0.85rem;text-decoration:none;transition:all 0.2s}
+.nav-spa:hover{background:rgba(0,212,180,0.18)}
+
+/* HERO */
+.hero{padding:120px 40px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 90% 60% at 50% -5%,rgba(0,212,180,0.1),transparent),radial-gradient(ellipse 50% 40% at 90% 60%,rgba(124,58,237,0.06),transparent);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.18);border-radius:20px;padding:7px 16px;font-size:0.78rem;font-weight:700;color:var(--teal);margin-bottom:24px;letter-spacing:0.5px;text-transform:uppercase}
+.live-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.12;margin-bottom:16px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--teal),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--soft);max-width:500px;margin:0 auto 40px;line-height:1.7}
+
+/* SEARCH BAR */
+.search-container{max-width:760px;margin:0 auto}
+.search-box{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:6px 6px 6px 20px;gap:0;transition:border-color 0.2s;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
+.search-box:focus-within{border-color:var(--teal);box-shadow:0 24px 80px rgba(0,0,0,0.5),0 0 0 3px rgba(0,212,180,0.06)}
+.si{color:var(--teal);font-size:1.15rem;margin-right:12px;flex-shrink:0}
+.search-input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:1rem;font-family:'Inter',sans-serif;min-width:0}
+.search-input::placeholder{color:var(--muted)}
+.search-divider{width:1px;height:32px;background:var(--border);margin:0 16px;flex-shrink:0}
+.location-input{background:none;border:none;outline:none;color:var(--soft);font-size:0.9rem;font-family:'Inter',sans-serif;width:160px}
+.location-input::placeholder{color:var(--muted)}
+.loc-icon{color:var(--teal);font-size:0.9rem;margin-right:6px}
+.search-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:12px;padding:14px 28px;font-weight:800;font-size:0.95rem;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
+.search-btn:hover{opacity:0.9;transform:translateY(-1px)}
+
+/* QUICK FILTERS */
+.quick-filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.qf{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:24px;padding:7px 16px;font-size:0.82rem;color:var(--soft);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.qf:hover,.qf.active{border-color:var(--teal);color:var(--teal);background:rgba(0,212,180,0.06)}
+
+/* STATS STRIP */
+.stats-strip{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;padding:28px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+.stat{text-align:center}
+.stat-n{font-size:1.7rem;font-weight:900;color:var(--teal);letter-spacing:-1px}
+.stat-l{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px}
+
+/* TREATMENT CATEGORIES */
+.categories{padding:64px 40px;max-width:1200px;margin:0 auto}
+.sec-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:10px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:8px;letter-spacing:-0.5px}
+.sec-sub{color:var(--soft);font-size:0.92rem;margin-bottom:36px;line-height:1.6}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;cursor:pointer;transition:all 0.25s;text-decoration:none;display:block}
+.cat-card:hover{border-color:rgba(0,212,180,0.35);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.35)}
+.cat-icon{font-size:2rem;margin-bottom:10px;display:block}
+.cat-name{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.cat-count{font-size:0.72rem;color:var(--muted)}
+
+/* VERIFIED BADGE EXPLAINER */
+.verify-band{background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(0,212,180,0.04));border-top:1px solid rgba(201,168,76,0.12);border-bottom:1px solid rgba(201,168,76,0.12);padding:48px 40px}
+.verify-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:center}
+.verify-badge-big{display:flex;align-items:center;gap:16px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:28px;margin-bottom:20px}
+.vb-icon{font-size:2.4rem;flex-shrink:0}
+.vb-text h3{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:4px}
+.vb-text p{font-size:0.84rem;color:var(--soft);line-height:1.6}
+.verify-tagline{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;line-height:1.2;margin-bottom:16px}
+.verify-tagline span{color:var(--gold)}
+.verify-desc{color:var(--soft);font-size:0.92rem;line-height:1.7;margin-bottom:28px}
+.verify-steps{display:flex;flex-direction:column;gap:14px}
+.vstep{display:flex;align-items:flex-start;gap:14px}
+.vstep-num{width:30px;height:30px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:var(--teal);flex-shrink:0;margin-top:1px}
+.vstep-text h4{font-size:0.88rem;font-weight:700;margin-bottom:2px}
+.vstep-text p{font-size:0.81rem;color:var(--soft);line-height:1.5}
+
+/* LISTINGS */
+.listings{padding:64px 40px;max-width:1200px;margin:0 auto}
+.listings-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+.filter-pills{display:flex;gap:8px;flex-wrap:wrap}
+.fp{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:0.82rem;color:var(--soft);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.fp.active,.fp:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,180,0.05)}
+.result-count{font-size:0.84rem;color:var(--muted)}
+.listings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px}
+
+/* LISTING CARD */
+.lcard{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.28s;cursor:pointer;position:relative;display:flex;flex-direction:column}
+.lcard:hover{border-color:rgba(0,212,180,0.28);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,0.45),0 0 0 1px rgba(0,212,180,0.08)}
+.lcard.featured{border-color:rgba(201,168,76,0.22)}
+.lcard.featured::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.3),transparent)}
+.card-img-wrap{position:relative;height:195px;background:linear-gradient(135deg,#141428,#1a1040);display:flex;align-items:center;justify-content:center;font-size:3.5rem;overflow:hidden}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover}
+.card-distance{position:absolute;top:12px;right:12px;background:rgba(5,5,8,0.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:4px 10px;font-size:0.72rem;color:var(--soft)}
+.card-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.card-badges{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:0.7rem;font-weight:700;letter-spacing:0.3px}
+.b-verified{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.2)}
+.b-top{background:rgba(0,212,180,0.08);color:var(--teal);border:1px solid rgba(0,212,180,0.18)}
+.b-new{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.card-name{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:4px;line-height:1.2}
+.card-loc{font-size:0.8rem;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:10px}
+.card-desc{font-size:0.83rem;color:var(--soft);line-height:1.6;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.card-services{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.svc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:3px 8px;font-size:0.72rem;color:var(--muted)}
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.rating{display:flex;align-items:center;gap:5px}
+.stars{color:var(--gold);font-size:0.82rem;letter-spacing:1px}
+.rnum{font-weight:800;font-size:0.9rem}
+.rcnt{font-size:0.75rem;color:var(--muted);margin-left:2px}
+.card-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:8px;padding:9px 18px;font-size:0.82rem;font-weight:800;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap}
+.card-btn:hover{opacity:0.88;transform:translateY(-1px)}
+
+/* FEATURED SPOTLIGHT */
+.spotlight{background:linear-gradient(135deg,rgba(201,168,76,0.05),rgba(0,212,180,0.03));border:1px solid rgba(201,168,76,0.14);border-radius:20px;padding:32px;margin-bottom:24px;display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:center}
+.spot-img{height:200px;background:linear-gradient(135deg,#1a1428,#0f1a28);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.spot-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);border-radius:20px;padding:5px 14px;font-size:0.72rem;font-weight:800;color:var(--gold);margin-bottom:14px;letter-spacing:0.5px;text-transform:uppercase}
+.spot-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;margin-bottom:6px}
+.spot-loc{font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:5px;margin-bottom:12px}
+.spot-desc{font-size:0.88rem;color:var(--soft);line-height:1.7;margin-bottom:18px}
+.spot-stats{display:flex;gap:24px;margin-bottom:20px}
+.spot-stat{text-align:center}
+.spot-stat-n{font-size:1.3rem;font-weight:800;color:var(--teal)}
+.spot-stat-l{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.spot-btns{display:flex;gap:10px}
+.spot-primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:10px;padding:12px 24px;font-weight:800;font-size:0.9rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.spot-primary:hover{opacity:0.9}
+.spot-secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.spot-secondary:hover{border-color:var(--teal);color:var(--teal)}
+
+/* HOW VERIFICATION WORKS */
+.how-verify{padding:72px 40px;background:var(--bg2);border-top:1px solid var(--border)}
+.how-inner{max-width:1100px;margin:0 auto}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.how-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden}
+.how-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent)}
+.how-step{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.how-num{width:36px;height:36px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:0.85rem}
+.how-icon{font-size:1.6rem}
+.how-card h3{font-size:0.92rem;font-weight:800;margin-bottom:8px}
+.how-card p{font-size:0.82rem;color:var(--soft);line-height:1.6}
+.how-card .check-list{margin-top:12px;display:flex;flex-direction:column;gap:5px}
+.how-card .check-list li{font-size:0.78rem;color:var(--soft);display:flex;align-items:center;gap:7px;list-style:none}
+.how-card .check-list li::before{content:'â';color:var(--teal);font-weight:700;font-size:0.72rem}
+
+/* CITY BROWSE */
+.cities{padding:64px 40px;max-width:1200px;margin:0 auto}
+.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:36px}
+.city-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.22s;text-decoration:none;display:flex;align-items:center;justify-content:space-between}
+.city-card:hover{border-color:rgba(0,212,180,0.3);transform:translateY(-2px)}
+.city-info{}
+.city-name{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:2px}
+.city-count{font-size:0.75rem;color:var(--muted)}
+.city-arrow{color:var(--teal);font-size:0.8rem}
+
+/* TRUST SIGNALS */
+.trust{padding:48px 40px;border-top:1px solid var(--border);background:var(--bg2)}
+.trust-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.ti{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:0.85rem;font-weight:500}
+.ti-icon{font-size:1.3rem}
+.ti strong{color:var(--text)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 40px 28px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{color:var(--muted);font-size:0.83rem;line-height:1.7;margin-top:10px;max-width:260px}
+.footer-col h4{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--soft);margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.83rem;margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);flex-wrap:wrap;gap:12px}
+.footer-bottom a{color:var(--muted);text-decoration:none}
+.footer-bottom a:hover{color:var(--text)}
+.ai-badge{background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.15);border-radius:6px;padding:3px 10px;font-size:0.7rem;color:var(--teal);font-weight:600}
+
+/* CHAT WIDGET */
+.chat-widget{position:fixed;bottom:28px;right:28px;z-index:99}
+.chat-btn{width:54px;height:54px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 8px 32px rgba(0,212,180,0.28);transition:transform 0.2s}
+.chat-btn:hover{transform:scale(1.08)}
+
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .hero{padding:100px 20px 48px}
+  .search-box{flex-wrap:wrap;gap:8px;padding:12px}
+  .search-divider{display:none}
+  .location-input{width:100%}
+  .search-btn{width:100%;justify-content:center}
+  .verify-inner{grid-template-columns:1fr}
+  .spotlight{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .categories,.listings,.cities{padding:48px 20px}
+}
+@media(max-width:600px){
+  .stats-strip{gap:24px}
+  .how-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-mark">G</div>
+    <span class="logo-text">Glow<span>Ranked</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="#browse" class="nav-link">Browse</a>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#cities" class="nav-link">Cities</a>
+    <a href="/for-spas" class="nav-spa">Are you a Med Spa? â</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="live-dot"></div>
+    2,400+ AI-Verified Spas Â· Updated Daily
+  </div>
+  <h1>Find Your Perfect<br><em>Med Spa</em> Experience</h1>
+  <p class="hero-sub">Every spa on GlowRanked is independently verified â credentials checked, reviews authenticated, results confirmed. No guessing. No regrets.</p>
+
+  <div class="search-container">
+    <div class="search-box">
+      <span class="si">ð</span>
+      <input class="search-input" type="text" placeholder="Botox, filler, laser, body sculptingâ¦">
+      <div class="search-divider"></div>
+      <span class="loc-icon">ð</span>
+      <input class="location-input" type="text" placeholder="City or zip code">
+      <button class="search-btn">Search Spas</button>
+    </div>
+    <div class="quick-filters">
+      <div class="qf active">â¨ All Treatments</div>
+      <div class="qf">ð Injectables</div>
+      <div class="qf">â¦ Laser</div>
+      <div class="qf">â Body Sculpting</div>
+      <div class="qf">ð¿ Skin Rejuvenation</div>
+      <div class="qf">â­ Top Rated</div>
+      <div class="qf">ð Open Now</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-n">2,400+</div><div class="stat-l">Verified Spas</div></div>
+  <div class="stat"><div class="stat-n">98%</div><div class="stat-l">Satisfaction Rate</div></div>
+  <div class="stat"><div class="stat-n">187k</div><div class="stat-l">Verified Reviews</div></div>
+  <div class="stat"><div class="stat-n">50+</div><div class="stat-l">Cities Covered</div></div>
+  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Verification Checks</div></div>
+</div>
+
+<!-- TREATMENT CATEGORIES -->
+<section class="categories" id="browse">
+  <div class="sec-label">Browse by Treatment</div>
+  <div class="sec-title">What Are You Looking For?</div>
+  <p class="sec-sub">Every category features only licensed, credentialed providers â verified by our AI before they ever appear in results.</p>
+  <div class="cat-grid">
+    <a href="#" class="cat-card"><span class="cat-icon">ð</span><div class="cat-name">Botox & Dysport</div><div class="cat-count">612 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">â¦</span><div class="cat-name">Dermal Fillers</div><div class="cat-count">589 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">ð¬</span><div class="cat-name">Laser Resurfacing</div><div class="cat-count">441 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">â</span><div class="cat-name">Body Sculpting</div><div class="cat-count">378 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">ð¿</span><div class="cat-name">Microneedling</div><div class="cat-count">356 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">âï¸</span><div class="cat-name">Chemical Peels</div><div class="cat-count">302 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">ð«</span><div class="cat-name">PRP Therapy</div><div class="cat-count">198 spas</div></a>
+    <a href="#" class="cat-card"><span class="cat-icon">ð©º</span><div class="cat-name">IV Therapy</div><div class="cat-count">175 spas</div></a>
+  </div>
+</section>
+
+<!-- VERIFIED BAND -->
+<section class="verify-band">
+  <div class="verify-inner">
+    <div>
+      <div class="verify-badge-big">
+        <div class="vb-icon">ð</div>
+        <div class="vb-text">
+          <h3>GlowRanked Verifiedâ¢</h3>
+          <p>This badge means we've personally checked every credential, every license, and every review â so you don't have to.</p>
+        </div>
+      </div>
+      <div class="verify-badge-big" style="background:rgba(0,212,180,0.06);border-color:rgba(0,212,180,0.15);">
+        <div class="vb-icon">ð¤</div>
+        <div class="vb-text">
+          <h3 style="color:var(--teal)">AI-Scored Quality</h3>
+          <p>Our AI analyzes hundreds of data points per spa â from practitioner experience to patient outcomes â and generates a quality score you can trust.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-label">The GlowRanked Standard</div>
+      <h2 class="verify-tagline">We Do the Hard Work<br><span>So You Never Regret</span> Your Choice</h2>
+      <p class="verify-desc">Other directories let anyone pay to be listed. We don't. Every spa on GlowRanked passes a rigorous 12-point verification before earning a spot â and we re-verify every 90 days.</p>
+      <div class="verify-steps">
+        <div class="vstep">
+          <div class="vstep-num">1</div>
+          <div class="vstep-text"><h4>License & Credential Verification</h4><p>We cross-check every practitioner's medical license with state boards in real time.</p></div>
+        </div>
+        <div class="vstep">
+          <div class="vstep-num">2</div>
+          <div class="vstep-text"><h4>Review Authenticity Check</h4><p>Our AI detects and removes fake or incentivized reviews â every rating you see is real.</p></div>
+        </div>
+        <div class="vstep">
+          <div class="vstep-num">3</div>
+          <div class="vstep-text"><h4>Safety Record Scan</h4><p>We screen for malpractice history, complaints, and any regulatory actions before listing.</p></div>
+        </div>
+        <div class="vstep">
+          <div class="vstep-num">4</div>
+          <div class="vstep-text"><h4>Ongoing Re-Verification</h4><p>Verification isn't one-and-done. Every spa is re-checked every 90 days to stay listed.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings" id="listings">
+  <div class="listings-header">
+    <div>
+      <div class="sec-label">Top Picks Near You</div>
+      <div class="sec-title" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700">Featured Verified Spas</div>
+    </div>
+    <div class="filter-pills">
+      <button class="fp active">All</button>
+      <button class="fp">Highest Rated</button>
+      <button class="fp">Nearest</button>
+      <button class="fp">New Listings</button>
+      <button class="fp">Open Now</button>
+    </div>
+  </div>
+
+  <!-- SPOTLIGHT FEATURED -->
+  <div class="spotlight">
+    <div class="spot-img">â¨</div>
+    <div>
+      <div class="spot-tag">â­ Spa of the Month</div>
+      <div class="spot-name">LumiÃ¨re Aesthetics</div>
+      <div class="spot-loc">ð Beverly Hills, CA Â· 1.2 mi away</div>
+      <p class="spot-desc">Led by board-certified physician Dr. Sarah Chen, LumiÃ¨re is renowned for natural-looking results and a deeply personalized approach to aesthetics. Specializing in advanced injectables, laser skin rejuvenation, and non-surgical facial contouring.</p>
+      <div class="spot-stats">
+        <div class="spot-stat"><div class="spot-stat-n">4.98</div><div class="spot-stat-l">Rating</div></div>
+        <div class="spot-stat"><div class="spot-stat-n">847</div><div class="spot-stat-l">Reviews</div></div>
+        <div class="spot-stat"><div class="spot-stat-n">12 yrs</div><div class="spot-stat-l">Experience</div></div>
+        <div class="spot-stat"><div class="spot-stat-n">98%</div><div class="spot-stat-l">Recommend</div></div>
+      </div>
+      <div class="spot-btns">
+        <button class="spot-primary">View Full Profile â</button>
+        <button class="spot-secondary">Request Consultation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID LISTINGS -->
+  <div class="listings-grid">
+
+    <div class="lcard featured">
+      <div class="card-img-wrap">ð<div class="card-distance">0.8 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+          <span class="badge b-top">â­ Top 10</span>
+        </div>
+        <div class="card-name">Glow & Co Medspa</div>
+        <div class="card-loc">ð Scottsdale, AZ</div>
+        <p class="card-desc">Award-winning team of RNs and NPs specializing in Botox, Juvederm, and Sculptra with a focus on natural, refreshed results.</p>
+        <div class="card-services">
+          <span class="svc">Botox</span><span class="svc">Fillers</span><span class="svc">Sculptra</span><span class="svc">Kybella</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.96</span><span class="rcnt">(312)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lcard">
+      <div class="card-img-wrap">ð¿<div class="card-distance">1.4 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+          <span class="badge b-new">â¦ New</span>
+        </div>
+        <div class="card-name">Revive Skin Studio</div>
+        <div class="card-loc">ð Miami, FL</div>
+        <p class="card-desc">A boutique medspa specializing in advanced skin treatments, microneedling, and medical-grade chemical peels by board-certified dermatologists.</p>
+        <div class="card-services">
+          <span class="svc">Microneedling</span><span class="svc">Chemical Peels</span><span class="svc">PRP</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.92</span><span class="rcnt">(178)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lcard featured">
+      <div class="card-img-wrap">â¡<div class="card-distance">2.1 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+          <span class="badge b-top">â­ Top Rated</span>
+        </div>
+        <div class="card-name">Precision Laser & Aesthetics</div>
+        <div class="card-loc">ð Austin, TX</div>
+        <p class="card-desc">Texas's most advanced laser clinic with 14 FDA-cleared devices. Specialists in pigmentation, hair removal, and complete skin rejuvenation.</p>
+        <div class="card-services">
+          <span class="svc">Laser Hair Removal</span><span class="svc">IPL</span><span class="svc">Fraxel</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.94</span><span class="rcnt">(521)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lcard">
+      <div class="card-img-wrap">ð©º<div class="card-distance">3.2 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+        </div>
+        <div class="card-name">Elite Body Contouring</div>
+        <div class="card-loc">ð Chicago, IL</div>
+        <p class="card-desc">The Midwest's leading non-surgical body sculpting center. Emsculpt, CoolSculpting, and truSculpt specialists with medically supervised programs.</p>
+        <div class="card-services">
+          <span class="svc">Emsculpt</span><span class="svc">CoolSculpting</span><span class="svc">truSculpt</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.89</span><span class="rcnt">(264)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lcard">
+      <div class="card-img-wrap">ð¸<div class="card-distance">4.0 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+        </div>
+        <div class="card-name">The Radiance Collective</div>
+        <div class="card-loc">ð New York, NY</div>
+        <p class="card-desc">NYC's premier holistic medspa blending evidence-based aesthetics with wellness. Known for their signature "glass skin" treatment protocols.</p>
+        <div class="card-services">
+          <span class="svc">HydraFacial</span><span class="svc">Botox</span><span class="svc">IV Drips</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.91</span><span class="rcnt">(433)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lcard featured">
+      <div class="card-img-wrap">ð«<div class="card-distance">5.5 mi</div></div>
+      <div class="card-body">
+        <div class="card-badges">
+          <span class="badge b-verified">ð Verified</span>
+          <span class="badge b-top">â­ Top 10</span>
+        </div>
+        <div class="card-name">Aurore Medical Aesthetics</div>
+        <div class="card-loc">ð Dallas, TX</div>
+        <p class="card-desc">Physician-owned and operated clinic renowned for precise, conservative aesthetics. Voted Best Medspa in Dallas three years running.</p>
+        <div class="card-services">
+          <span class="svc">Injectables</span><span class="svc">Skin Tightening</span><span class="svc">PDO Threads</span>
+        </div>
+        <div class="card-footer">
+          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.97</span><span class="rcnt">(689)</span></div>
+          <a href="#" class="card-btn">View Spa</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:36px">
+    <button style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 36px;color:var(--text);font-weight:700;font-size:0.92rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s" onmouseover="this.style.borderColor='var(--teal)';this.style.color='var(--teal)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">Load More Results â</button>
+  </div>
+</section>
+
+<!-- HOW VERIFICATION WORKS -->
+<section class="how-verify" id="how-it-works">
+  <div class="how-inner">
+    <div style="text-align:center;margin-bottom:0">
+      <div class="sec-label">Our Verification Process</div>
+      <div class="sec-title" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:10px">12 Checks. No Exceptions.</div>
+      <p class="sec-sub" style="max-width:560px;margin:0 auto;color:var(--soft);line-height:1.7">Every spa earns its place. Our AI-powered verification process runs 12 independent checks across four categories â before any spa appears in search results.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-step"><div class="how-num">1</div><div class="how-icon">ð</div></div>
+        <h3>License Verification</h3>
+        <p>We confirm every practitioner's medical license directly with state licensing boards.</p>
+        <ul class="check-list">
+          <li>MD / NP / RN credentials</li>
+          <li>State board standing</li>
+          <li>DEA registration (where applicable)</li>
+        </ul>
+      </div>
+      <div class="how-card">
+        <div class="how-step"><div class="how-num">2</div><div class="how-icon">ð</div></div>
+        <h3>Review Authentication</h3>
+        <p>Our AI runs every review through a multi-signal authenticity test before it counts.</p>
+        <ul class="check-list">
+          <li>AI bot & fake review detection</li>
+          <li>Incentivized review removal</li>
+          <li>Verified-patient tagging</li>
+        </ul>
+      </div>
+      <div class="how-card">
+        <div class="how-step"><div class="how-num">3</div><div class="how-icon">ð¡ï¸</div></div>
+        <h3>Safety & Compliance</h3>
+        <p>We run background and regulatory checks to surface any red flags before they matter.</p>
+        <ul class="check-list">
+          <li>Malpractice history scan</li>
+          <li>Health dept. inspection records</li>
+          <li>Complaint & sanction check</li>
+        </ul>
+      </div>
+      <div class="how-card">
+        <div class="how-step"><div class="how-num">4</div><div class="how-icon">ð</div></div>
+        <h3>Ongoing Monitoring</h3>
+        <p>Verification isn't one-time. We re-check every 90 days and monitor in real time.</p>
+        <ul class="check-list">
+          <li>90-day re-verification cycle</li>
+          <li>Complaint alert monitoring</li>
+          <li>License expiry tracking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BROWSE BY CITY -->
+<section class="cities" id="cities">
+  <div class="sec-label">Browse by Location</div>
+  <div class="sec-title">Top Cities on GlowRanked</div>
+  <p class="sec-sub">Verified med spas in every major market. New cities added weekly.</p>
+  <div class="city-grid">
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">287 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">New York City</div><div class="city-count">241 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Miami</div><div class="city-count">198 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Dallas</div><div class="city-count">176 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Houston</div><div class="city-count">163 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Scottsdale</div><div class="city-count">154 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">142 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Austin</div><div class="city-count">138 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Atlanta</div><div class="city-count">127 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Nashville</div><div class="city-count">119 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Denver</div><div class="city-count">112 spas</div></div><span class="city-arrow">â</span></a>
+    <a href="#" class="city-card"><div class="city-info"><div class="city-name">San Diego</div><div class="city-count">108 spas</div></div><span class="city-arrow">â</span></a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="ti"><span class="ti-icon">ð</span><span><strong>Zero paid placements</strong> â rankings are earned, not bought</span></div>
+    <div class="ti"><span class="ti-icon">ð</span><span><strong>12-point verification</strong> on every listing</span></div>
+    <div class="ti"><span class="ti-icon">ð¤</span><span><strong>AI-authenticated</strong> reviews only</span></div>
+    <div class="ti"><span class="ti-icon">ð</span><span><strong>Re-verified every 90 days</strong> â no stale data</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo"><div class="logo-mark">G</div><span class="logo-text">Glow<span>Ranked</span></span></a>
+        <p>The most trusted directory for AI-verified med spas and aesthetic clinics. Your results, your confidence, your choice.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Find Treatments</h4>
+        <a href="#">Botox & Dysport</a>
+        <a href="#">Dermal Fillers</a>
+        <a href="#">Laser Treatments</a>
+        <a href="#">Body Sculpting</a>
+        <a href="#">Skin Rejuvenation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Browse Cities</h4>
+        <a href="#">Los Angeles</a>
+        <a href="#">New York</a>
+        <a href="#">Miami</a>
+        <a href="#">Dallas</a>
+        <a href="#">All Cities â</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">How It Works</a>
+        <a href="#">Verification Standards</a>
+        <a href="/for-spas">List Your Spa</a>
+        <a href="#">About GlowRanked</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Â© 2025 GlowRanked. All rights reserved. Â· <a href="/privacy">Privacy Policy</a> Â· <a href="/terms">Terms of Service</a></span>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span>Powered by</span>
+        <span class="ai-badge">AI Verification Engine</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="chat-widget">
+  <button class="chat-btn" title="Ask GlowRanked AI">ð¬</button>
+</div>
+
+<script>
+document.querySelectorAll('.qf').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.qf').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+document.querySelectorAll('.fp').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.fp').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
