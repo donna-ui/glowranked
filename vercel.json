@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [{"src": "*.html", "use": "@vercel/static"}],
+  "routes": [
+    {"src": "/privacy", "dest": "/privacy.html"},
+    {"src": "/terms", "dest": "/terms.html"},
+    {"src": "/find", "dest": "/find.html"},
+    {"src": "/for-spas", "dest": "/for-spas.html"},
+    {"src": "/", "dest": "/index.html"}
+  ]
+}
