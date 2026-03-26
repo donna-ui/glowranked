@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get your med spa verified and listed on GlowRanked. Reach thousands of ready-to-book clients actively searching for aesthetic treatments near them.">
+<title>Grow Your Med Spa | Get Verified on GlowRanked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;--bg2:#0a0a12;--bg3:#0f0f1a;--card:#12121e;--border:#1e1e30;
+  --teal:#00d4b4;--teal2:#00b89c;--gold:#c9a84c;--text:#f0f0f8;--muted:#6b7280;--soft:#94a3b8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:white}
+.logo-text{font-weight:800;font-size:1.15rem;color:var(--text);letter-spacing:-0.5px}
+.logo-text span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-link{color:var(--soft);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;padding:10px 22px;border-radius:8px;font-weight:800;font-size:0.88rem;text-decoration:none;transition:all 0.2s}
+.nav-cta:hover{opacity:0.9;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:140px 40px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 0%,rgba(0,212,180,0.09),transparent),radial-gradient(ellipse 60% 50% at 100% 60%,rgba(124,58,237,0.07),transparent),radial-gradient(ellipse 40% 40% at 0% 80%,rgba(201,168,76,0.05),transparent);pointer-events:none}
+.urgency-bar{background:linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.06));border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 20px;display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:700;color:var(--gold);margin-bottom:28px;letter-spacing:0.3px}
+.urgency-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:gpulse 1.5s infinite}
+@keyframes gpulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-1.5px}
+.hero h1 .accent{background:linear-gradient(90deg,var(--teal),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .gold{background:linear-gradient(90deg,var(--gold),#e6c06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--soft);max-width:580px;margin:0 auto 40px;line-height:1.75}
+.hero-btns{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;padding:16px 36px;border-radius:12px;font-weight:800;font-size:1rem;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-primary:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,212,180,0.25)}
+.btn-ghost{background:rgba(255,255,255,0.05);color:var(--text);padding:16px 28px;border-radius:12px;font-weight:700;font-size:1rem;text-decoration:none;border:1px solid var(--border);transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.hero-proof{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:0.82rem;justify-content:center}
+.avatars{display:flex}
+.av{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);background:linear-gradient(135deg,var(--teal),#7c3aed);display:flex;align-items:center;justify-content:center;font-size:0.65rem;margin-left:-8px}
+.av:first-child{margin-left:0}
+
+/* PAIN SECTION */
+.pain{padding:72px 40px;max-width:1100px;margin:0 auto}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.pain-left h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.2;margin-bottom:20px}
+.pain-left h2 span{color:var(--teal)}
+.pain-left p{color:var(--soft);line-height:1.8;font-size:0.95rem;margin-bottom:16px}
+.pain-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.pain-stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+.pain-stat-n{font-size:2rem;font-weight:900;color:var(--teal);letter-spacing:-1px}
+.pain-stat-l{font-size:0.78rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.pain-right{background:var(--card);border:1px solid rgba(255,80,80,0.15);border-radius:18px;padding:28px;position:relative}
+.pain-right::before{content:'WITHOUT GLOWRANKED';position:absolute;top:-12px;left:24px;background:rgba(255,80,80,0.12);border:1px solid rgba(255,80,80,0.2);border-radius:20px;padding:4px 14px;font-size:0.68rem;font-weight:800;color:#ff6b6b;letter-spacing:1px}
+.pain-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.pain-item:last-child{border-bottom:none}
+.pain-x{width:24px;height:24px;background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#ff6b6b;flex-shrink:0;margin-top:1px}
+.pain-item h4{font-size:0.88rem;font-weight:700;margin-bottom:2px;color:var(--text)}
+.pain-item p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* HOW IT WORKS */
+.how{padding:72px 40px;background:var(--bg2);border-top:1px solid var(--border)}
+.how-inner{max-width:1000px;margin:0 auto}
+.sec-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:10px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;margin-bottom:12px;letter-spacing:-0.5px}
+.sec-sub{color:var(--soft);font-size:0.92rem;max-width:520px;line-height:1.7;margin-bottom:48px}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.how-step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.how-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent)}
+.step-num{width:40px;height:40px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:1rem;margin-bottom:16px}
+.step-icon{font-size:1.8rem;margin-bottom:12px}
+.how-step h3{font-size:0.95rem;font-weight:800;margin-bottom:8px}
+.how-step p{font-size:0.83rem;color:var(--soft);line-height:1.6}
+
+/* VERIFICATION PROCESS */
+.verify-process{padding:72px 40px;max-width:1100px;margin:0 auto}
+.verify-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start}
+.verify-checklist{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.vc-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;transition:border-color 0.2s}
+.vc-item:hover{border-color:rgba(0,212,180,0.25)}
+.vc-check{width:32px;height:32px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:0.85rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.vc-text h4{font-size:0.88rem;font-weight:700;margin-bottom:3px}
+.vc-text p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+.verify-right{position:sticky;top:100px}
+.verify-badge-card{background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(0,212,180,0.04));border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:32px;text-align:center;margin-bottom:20px}
+.badge-preview{width:100px;height:100px;background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(0,212,180,0.1));border:2px solid rgba(201,168,76,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3rem;margin:0 auto 16px}
+.badge-card-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.badge-card-sub{font-size:0.83rem;color:var(--soft);line-height:1.6;margin-bottom:20px}
+.badge-features{display:flex;flex-direction:column;gap:8px;text-align:left}
+.bf{display:flex;align-items:center;gap:10px;font-size:0.82rem;color:var(--soft)}
+.bf::before{content:'✓';color:var(--teal);font-weight:800;font-size:0.75rem;flex-shrink:0}
+
+/* PRICING */
+.pricing{padding:80px 40px;background:var(--bg2);border-top:1px solid var(--border)}
+.pricing-inner{max-width:1000px;margin:0 auto}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px;flex-wrap:wrap}
+.toggle-label{font-size:0.9rem;color:var(--soft);font-weight:600}
+.toggle-track{width:48px;height:26px;background:var(--teal);border-radius:13px;position:relative;cursor:pointer;flex-shrink:0}
+.toggle-thumb{width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:3px;right:3px;transition:transform 0.2s}
+.save-pill{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);border-radius:20px;padding:4px 12px;font-size:0.72rem;font-weight:800;color:var(--gold)}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;position:relative;transition:border-color 0.2s}
+.plan:hover{border-color:rgba(0,212,180,0.2)}
+.plan.popular{border-color:var(--teal);background:linear-gradient(160deg,#081815,var(--card))}
+.popular-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;padding:5px 20px;border-radius:20px;font-size:0.72rem;font-weight:900;white-space:nowrap;letter-spacing:0.5px}
+.plan-name{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px}
+.plan-price{margin-bottom:4px}
+.plan-price .amount{font-size:2.8rem;font-weight:900;color:var(--text);letter-spacing:-2px}
+.plan-price .per{font-size:1rem;color:var(--muted);font-weight:500}
+.plan-tagline{font-size:0.82rem;color:var(--soft);margin-bottom:24px;line-height:1.5}
+.plan-divider{height:1px;background:var(--border);margin-bottom:20px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:var(--soft)}
+.plan-features li .check{color:var(--teal);font-weight:800;flex-shrink:0;margin-top:1px}
+.plan-features li .x{color:var(--muted);flex-shrink:0;margin-top:1px}
+.plan-btn{width:100%;padding:14px;border-radius:10px;font-weight:800;font-size:0.92rem;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all 0.2s}
+.plan-btn.primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000}
+.plan-btn.primary:hover{opacity:0.9;transform:translateY(-1px)}
+.plan-btn.outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.plan-btn.outline:hover{border-color:var(--teal);color:var(--teal)}
+.plan-note{font-size:0.75rem;color:var(--muted);text-align:center;margin-top:12px}
+
+/* ROI CALC */
+.roi{padding:72px 40px;max-width:900px;margin:0 auto}
+.roi-card{background:linear-gradient(135deg,rgba(0,212,180,0.05),rgba(124,58,237,0.03));border:1px solid rgba(0,212,180,0.15);border-radius:20px;padding:48px;text-align:center}
+.roi h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:12px}
+.roi p{color:var(--soft);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 36px}
+.roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:36px}
+.roi-stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.roi-n{font-size:2.2rem;font-weight:900;color:var(--teal);letter-spacing:-1px}
+.roi-l{font-size:0.78rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.roi-example{background:rgba(0,212,180,0.06);border:1px solid rgba(0,212,180,0.12);border-radius:12px;padding:20px;font-size:0.88rem;color:var(--soft);line-height:1.7;margin-bottom:28px}
+.roi-example strong{color:var(--teal)}
+
+/* TESTIMONIALS */
+.testi{padding:72px 40px;background:var(--bg2);border-top:1px solid var(--border)}
+.testi-inner{max-width:1100px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.tq{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative}
+.tq::before{content:'"';position:absolute;top:16px;right:24px;font-family:'Playfair Display',serif;font-size:4rem;color:rgba(0,212,180,0.1);line-height:1}
+.tq-text{font-size:0.9rem;color:var(--soft);line-height:1.7;margin-bottom:20px;font-style:italic}
+.tq-author{display:flex;align-items:center;gap:12px}
+.tq-av{width:40px;height:40px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.tq-name{font-weight:700;font-size:0.88rem}
+.tq-spa{font-size:0.77rem;color:var(--muted)}
+.tq-stars{color:var(--gold);font-size:0.78rem;margin-top:2px}
+
+/* CTA FORM */
+.cta-form{padding:80px 40px;max-width:700px;margin:0 auto;text-align:center}
+.cta-form h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;margin-bottom:14px;letter-spacing:-0.5px}
+.cta-form p{color:var(--soft);font-size:0.95rem;line-height:1.7;margin-bottom:40px}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.fg label{font-size:0.8rem;font-weight:700;color:var(--soft)}
+.fg input,.fg select{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:12px 14px;color:var(--text);font-size:0.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;width:100%}
+.fg input:focus,.fg select:focus{border-color:var(--teal)}
+.fg input::placeholder{color:var(--muted)}
+.fg select option{background:var(--bg3)}
+.form-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:12px;font-weight:900;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;margin-top:8px;letter-spacing:0.3px}
+.form-submit:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 12px 40px rgba(0,212,180,0.2)}
+.form-footer{font-size:0.77rem;color:var(--muted);text-align:center;margin-top:14px;line-height:1.6}
+.form-trust{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
+.ft{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted)}
+.ft span:first-child{color:var(--teal)}
+
+/* FAQ */
+.faq{padding:64px 40px;max-width:760px;margin:0 auto}
+.faq-list{margin-top:36px}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-weight:700;font-size:0.92rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.faq-q::after{content:'+';color:var(--teal);font-size:1.2rem;font-weight:300;flex-shrink:0}
+.faq-a{font-size:0.85rem;color:var(--soft);line-height:1.7;margin-top:12px;display:none}
+.faq-item.open .faq-q::after{content:'−'}
+.faq-item.open .faq-a{display:block}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 40px 28px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{color:var(--muted);font-size:0.83rem;line-height:1.7;margin-top:10px;max-width:260px}
+.footer-col h4{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--soft);margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.83rem;margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);flex-wrap:wrap;gap:12px}
+.footer-bottom a{color:var(--muted);text-decoration:none}
+.footer-bottom a:hover{color:var(--text)}
+.ai-badge{background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.15);border-radius:6px;padding:3px 10px;font-size:0.7rem;color:var(--teal);font-weight:600}
+
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .hero{padding:110px 20px 64px}
+  .pain-grid{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr}
+  .verify-grid{grid-template-columns:1fr}
+  .verify-right{position:static}
+  .plans-grid{grid-template-columns:1fr}
+  .roi-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .pain,.how,.verify-process,.pricing,.roi,.testi,.cta-form,.faq{padding:48px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-mark">G</div>
+    <span class="logo-text">Glow<span>Ranked</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#verification" class="nav-link">Verification</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="/find" class="nav-link">Browse Directory</a>
+    <a href="#get-verified" class="nav-cta">Get Verified →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="urgency-bar">
+    <div class="urgency-dot"></div>
+    Spots filling fast — only 12 verified slots remaining in your area
+  </div>
+  <h1>Your Next Client Is<br>Searching for You<br><span class="gold">Right Now.</span></h1>
+  <p class="hero-sub">GlowRanked connects 187,000 monthly beauty seekers directly with verified med spas. Get listed, get verified, and start seeing new clients within days — not months.</p>
+  <div class="hero-btns">
+    <a href="#get-verified" class="btn-primary">🏅 Get Verified Free →</a>
+    <a href="#pricing" class="btn-ghost">See Pricing Plans</a>
+  </div>
+  <div class="hero-proof">
+    <div class="avatars">
+      <div class="av">💆</div><div class="av">💅</div><div class="av">✨</div><div class="av">💉</div>
+    </div>
+    &nbsp; Joined by 2,400+ med spas across 50+ cities
+  </div>
+</section>
+
+<!-- PAIN SECTION -->
+<section class="pain">
+  <div class="pain-grid">
+    <div class="pain-left">
+      <div class="sec-label">The Problem</div>
+      <h2>Great Spas Get Lost Online.<br><span>We Fix That.</span></h2>
+      <p>The med spa market is booming — but most spas are invisible online. Google buries small practices under ads. Yelp rewards whoever pays most. Patients can't tell a skilled practitioner from a weekend injector.</p>
+      <p>Meanwhile, your ideal clients are actively searching for exactly what you offer — and finding your competitors instead.</p>
+      <div class="pain-stats">
+        <div class="pain-stat"><div class="pain-stat-n">74%</div><div class="pain-stat-l">of clients research online before booking any aesthetic procedure</div></div>
+        <div class="pain-stat"><div class="pain-stat-n">3x</div><div class="pain-stat-l">more bookings for verified spas vs. unverified on directories</div></div>
+        <div class="pain-stat"><div class="pain-stat-n">$2.4B</div><div class="pain-stat-l">in med spa revenue lost to poor online discoverability annually</div></div>
+        <div class="pain-stat"><div class="pain-stat-n">89%</div><div class="pain-stat-l">of consumers trust verified directories more than Google search</div></div>
+      </div>
+    </div>
+    <div class="pain-right">
+      <div class="pain-item">
+        <div class="pain-x">✕</div>
+        <div><h4>Invisible on Google</h4><p>Without a GlowRanked listing, you're competing with national ad budgets you can't match.</p></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-x">✕</div>
+        <div><h4>Fake Reviews Hurt You</h4><p>Competitors with 4.2-star ratings from fake reviews outrank your legitimate 4.9.</p></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-x">✕</div>
+        <div><h4>No Trust Signal</h4><p>Patients can't distinguish your medical expertise from a weekend injector with a nice Instagram.</p></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-x">✕</div>
+        <div><h4>Wasted Ad Spend</h4><p>Facebook and Instagram ads eat budgets and attract browsers — not buyers ready to book.</p></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-x">✕</div>
+        <div><h4>Slow Word-of-Mouth Growth</h4><p>Referrals alone can't scale your practice to the revenue it deserves.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="how-inner">
+    <div class="sec-label">Getting Started</div>
+    <div class="sec-title">From Application to Client<br>in 3 Simple Steps</div>
+    <p class="sec-sub">We've made joining GlowRanked as easy as possible. Most spas are live on the directory within 72 hours of applying.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📋</div>
+        <h3>Apply & Submit Credentials</h3>
+        <p>Fill out our simple application — your business info, practitioner credentials, license numbers, and the treatments you offer. Takes about 10 minutes.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-icon">🤖</div>
+        <h3>We Run Our 12-Point Verification</h3>
+        <p>Our AI verification engine cross-checks your credentials with state licensing boards, scans your review history, and runs a safety and compliance check. Results in 24–72 hours.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-icon">🚀</div>
+        <h3>Go Live & Start Getting Clients</h3>
+        <p>Your verified profile goes live in front of thousands of ready-to-book clients actively searching in your area. Upgrade anytime to unlock premium placement and priority features.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFICATION PROCESS -->
+<section class="verify-process" id="verification">
+  <div class="verify-grid">
+    <div>
+      <div class="sec-label">The Verification Standard</div>
+      <div class="sec-title">What We Check<br>Before You're Listed</div>
+      <p style="color:var(--soft);font-size:0.92rem;line-height:1.7;margin-bottom:28px">Getting GlowRanked Verified™ means passing 12 independent checks across four categories. This isn't just a badge — it's a commitment to your clients that you meet the highest standard.</p>
+      <div class="verify-checklist">
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>State License Verification</h4><p>Every practitioner's license confirmed with the relevant state medical or nursing board in real time.</p></div>
+        </div>
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>Board Certification Confirmation</h4><p>Where applicable, we verify board certifications in dermatology, plastic surgery, and aesthetic medicine.</p></div>
+        </div>
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>Business Registration & Insurance</h4><p>Business entity verification and confirmation of active professional liability coverage.</p></div>
+        </div>
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>Malpractice & Complaint History Scan</h4><p>We check for any regulatory actions, complaints, or sanctions that could affect patient safety.</p></div>
+        </div>
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>Review Authenticity Audit</h4><p>All existing reviews are run through our AI authenticity engine. Fake, bot, or incentivized reviews are flagged and excluded from your rating.</p></div>
+        </div>
+        <div class="vc-item">
+          <div class="vc-check">✓</div>
+          <div class="vc-text"><h4>90-Day Re-Verification</h4><p>Verification isn't one-time. Every listed spa is automatically re-checked every 90 days to maintain the GlowRanked standard.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="verify-right">
+      <div class="verify-badge-card">
+        <div class="badge-preview">🏅</div>
+        <div class="badge-card-title">GlowRanked Verified™</div>
+        <p class="badge-card-sub">This badge tells every visitor that your credentials have been independently confirmed, your reviews are authentic, and your practice meets our full 12-point standard.</p>
+        <div class="badge-features">
+          <div class="bf">Displayed prominently on your profile</div>
+          <div class="bf">Shows in all search results</div>
+          <div class="bf">Boosts placement in rankings</div>
+          <div class="bf">Shareable on your website & social</div>
+          <div class="bf">Renewed automatically every 90 days</div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-size:1.8rem;font-weight:900;color:var(--teal);letter-spacing:-1px">3.1x</div>
+        <div style="font-size:0.82rem;color:var(--soft);margin-top:4px;line-height:1.5">average increase in profile clicks for Verified listings vs. standard listings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div style="text-align:center">
+      <div class="sec-label">Transparent Pricing</div>
+      <div class="sec-title" style="text-align:center">Choose Your Growth Plan</div>
+      <p style="color:var(--soft);font-size:0.92rem;text-align:center;max-width:480px;margin:0 auto 16px;line-height:1.7">No hidden fees. No long-term contracts. Cancel any time. Every plan includes the GlowRanked Verified™ badge.</p>
+      <div class="pricing-toggle">
+        <span class="toggle-label">Monthly</span>
+        <div class="toggle-track"><div class="toggle-thumb"></div></div>
+        <span class="toggle-label">Annual</span>
+        <span class="save-pill">Save 25%</span>
+      </div>
+    </div>
+    <div class="plans-grid">
+
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><span class="amount">$99</span><span class="per">/mo</span></div>
+        <p class="plan-tagline">Get discovered. Get verified. Start building your presence on GlowRanked.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> GlowRanked Verified™ badge</li>
+          <li><span class="check">✓</span> Standard directory listing</li>
+          <li><span class="check">✓</span> 5-photo profile gallery</li>
+          <li><span class="check">✓</span> Treatment menu display</li>
+          <li><span class="check">✓</span> Contact form & booking link</li>
+          <li><span class="check">✓</span> Basic analytics dashboard</li>
+          <li><span class="x">—</span> Featured placement in search</li>
+          <li><span class="x">—</span> Priority city homepage placement</li>
+          <li><span class="x">—</span> AI-match client recommendations</li>
+        </ul>
+        <button class="plan-btn outline">Get Started Free</button>
+        <div class="plan-note">14-day free trial · No card required</div>
+      </div>
+
+      <div class="plan popular">
+        <div class="popular-tag">⭐ MOST POPULAR</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><span class="amount">$199</span><span class="per">/mo</span></div>
+        <p class="plan-tagline">Maximum visibility. First-page placement. Clients who are ready to book.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Everything in Starter</li>
+          <li><span class="check">✓</span> <strong>Featured placement in search results</strong></li>
+          <li><span class="check">✓</span> City homepage spotlight (rotating)</li>
+          <li><span class="check">✓</span> Unlimited photo gallery</li>
+          <li><span class="check">✓</span> Video profile embed</li>
+          <li><span class="check">✓</span> AI-matched client recommendations</li>
+          <li><span class="check">✓</span> Advanced analytics + lead tracking</li>
+          <li><span class="check">✓</span> Priority customer support</li>
+        </ul>
+        <button class="plan-btn primary">Start Pro Trial →</button>
+        <div class="plan-note">14-day free trial · No card required</div>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Elite</div>
+        <div class="plan-price"><span class="amount">$399</span><span class="per">/mo</span></div>
+        <p class="plan-tagline">Own your market. Dominate search. Become the go-to spa in your city.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Everything in Pro</li>
+          <li><span class="check">✓</span> <strong>Exclusive city homepage placement</strong></li>
+          <li><span class="check">✓</span> "Spa of the Month" eligibility</li>
+          <li><span class="check">✓</span> Dedicated account manager</li>
+          <li><span class="check">✓</span> Co-branded email campaigns</li>
+          <li><span class="check">✓</span> Custom landing page on GlowRanked</li>
+          <li><span class="check">✓</span> Lead gen & ROI reporting</li>
+          <li><span class="check">✓</span> Early access to new features</li>
+        </ul>
+        <button class="plan-btn outline">Talk to Sales</button>
+        <div class="plan-note">Custom plans for multi-location groups</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ROI SECTION -->
+<section class="roi">
+  <div class="roi-card">
+    <div class="sec-label" style="text-align:center">The Math</div>
+    <h2>One New Client Pays<br>for an Entire Month</h2>
+    <p>The average med spa client spends $487 per visit and returns 3.2 times per year. A single GlowRanked referral pays for your monthly plan — and then some.</p>
+    <div class="roi-grid">
+      <div class="roi-stat"><div class="roi-n">$487</div><div class="roi-l">Average client spend per visit</div></div>
+      <div class="roi-stat"><div class="roi-n">3.2x</div><div class="roi-l">Average return visits per client per year</div></div>
+      <div class="roi-stat"><div class="roi-n">$1,558</div><div class="roi-l">Average annual value per GlowRanked client</div></div>
+    </div>
+    <div class="roi-example">
+      <strong>Pro Plan Example:</strong> At $199/month, you need just <strong>2 new clients per month</strong> from GlowRanked to break even. Our Pro members average <strong>14–22 new client inquiries per month</strong> from the directory.
+    </div>
+    <a href="#get-verified" class="btn-primary" style="display:inline-flex">Start Your Free Trial →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div style="text-align:center">
+      <div class="sec-label">What Spas Are Saying</div>
+      <div class="sec-title" style="text-align:center">Real Results From<br>Real Med Spas</div>
+    </div>
+    <div class="testi-grid">
+      <div class="tq">
+        <p class="tq-text">"We went from averaging 8 new clients a month from online channels to 31 within 60 days of getting our GlowRanked Verified badge. The quality of leads is incredible — these people come in already trusting us."</p>
+        <div class="tq-author">
+          <div class="tq-av">👩</div>
+          <div><div class="tq-name">Dr. Sarah Chen, MD</div><div class="tq-spa">Lumière Aesthetics · Beverly Hills, CA</div><div class="tq-stars">★★★★★</div></div>
+        </div>
+      </div>
+      <div class="tq">
+        <p class="tq-text">"I was skeptical at first — we'd tried Yelp ads and they were a waste. GlowRanked is completely different. The clients coming in have done their research, they're serious, and they book higher-ticket treatments."</p>
+        <div class="tq-author">
+          <div class="tq-av">👨</div>
+          <div><div class="tq-name">Marcus Williams, NP</div><div class="tq-spa">Glow & Co Medspa · Scottsdale, AZ</div><div class="tq-stars">★★★★★</div></div>
+        </div>
+      </div>
+      <div class="tq">
+        <p class="tq-text">"The verified badge alone changed how patients perceive us. We've had people come in and say 'I picked you because you were GlowRanked Verified.' That trust is worth more than any ad we've ever run."</p>
+        <div class="tq-author">
+          <div class="tq-av">👩</div>
+          <div><div class="tq-name">Dr. Amanda Rivera</div><div class="tq-spa">Precision Laser & Aesthetics · Austin, TX</div><div class="tq-stars">★★★★★</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FORM -->
+<section class="cta-form" id="get-verified">
+  <div class="sec-label" style="text-align:center">Apply Now</div>
+  <h2>Get Your Spa Verified<br>in 72 Hours</h2>
+  <p>Fill out the form below and our team will reach out within one business day. The initial verification is completely free — no credit card required to start.</p>
+
+  <div class="form-card">
+    <div class="form-row">
+      <div class="fg"><label>Spa Name *</label><input type="text" placeholder="Your med spa name"></div>
+      <div class="fg"><label>Your Name *</label><input type="text" placeholder="Owner or manager name"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Email Address *</label><input type="email" placeholder="hello@yourspa.com"></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>City *</label><input type="text" placeholder="e.g. Miami, FL"></div>
+      <div class="fg"><label>Plan Interest</label>
+        <select>
+          <option value="">Select a plan...</option>
+          <option>Starter — $99/mo</option>
+          <option>Pro — $199/mo (Most Popular)</option>
+          <option>Elite — $399/mo</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg"><label>Primary Treatments Offered</label><input type="text" placeholder="e.g. Botox, fillers, laser resurfacing, body sculpting…"></div>
+    <button class="form-submit">🏅 Apply for GlowRanked Verified — It's Free →</button>
+    <p class="form-footer">By submitting, you agree to our Terms of Service and Privacy Policy.<br>We'll never share your information. No spam, ever.</p>
+    <div class="form-trust">
+      <div class="ft"><span>🔒</span><span>Secure submission</span></div>
+      <div class="ft"><span>⚡</span><span>Response within 24 hrs</span></div>
+      <div class="ft"><span>🎯</span><span>No commitment required</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div style="text-align:center;margin-bottom:0">
+    <div class="sec-label" style="text-align:center">Common Questions</div>
+    <div class="sec-title" style="text-align:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:0">Frequently Asked Questions</div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Can you list my spa without my permission?</div>
+      <div class="faq-a">We list public business information (name, address, phone, website) which is publicly available — the same way Google Maps or Yelp do. However, to earn the GlowRanked Verified™ badge and access premium features, you need to apply and pass our verification process. You can also claim your listing at any time to manage and update it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does verification take?</div>
+      <div class="faq-a">Our AI verification engine typically completes within 24–72 hours. For complex cases or additional credential checks, it may take up to 5 business days. You'll be notified at every step.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens if we don't pass verification?</div>
+      <div class="faq-a">We'll let you know exactly what flagged and give you the opportunity to resolve it. Common issues include expired licenses or incomplete documentation — most are resolved quickly. You can still have a basic listing while verification is pending.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is there a contract or lock-in period?</div>
+      <div class="faq-a">No contracts, no lock-ins. All plans are month-to-month. You can upgrade, downgrade, or cancel at any time. Annual plans are pre-paid and non-refundable, but save you 25%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What makes GlowRanked different from Yelp or RealSelf?</div>
+      <div class="faq-a">GlowRanked is exclusively focused on med spas and aesthetic clinics — not restaurants, plumbers, or general doctors. Our verification is active (we check credentials ourselves) not passive (we just let anyone pay to list). And our audience is specifically searching for aesthetic treatments, making every lead far more qualified than general platforms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do you handle my reviews?</div>
+      <div class="faq-a">We import your existing verified reviews from Google and other platforms, run them through our AI authenticity engine, and only display reviews that pass our legitimacy checks. You can also collect new reviews directly through GlowRanked — all authenticated and tied to real client visits.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo"><div class="logo-mark">G</div><span class="logo-text">Glow<span>Ranked</span></span></a>
+        <p>The premier verified directory for med spas and aesthetic clinics. Connecting great practices with clients who are ready to invest in themselves.</p>
+      </div>
+      <div class="footer-col">
+        <h4>For Spas</h4>
+        <a href="#get-verified">Get Verified</a>
+        <a href="#pricing">Pricing Plans</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#verification">Verification Process</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Marketing Guide</a>
+        <a href="#">Success Stories</a>
+        <a href="#">Partner Blog</a>
+        <a href="#">Help Center</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/find">Browse Directory</a>
+        <a href="#">About GlowRanked</a>
+        <a href="#">Contact Sales</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GlowRanked. All rights reserved.</span>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span>Powered by</span>
+        <span class="ai-badge">AI Verification Engine</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',function(){
+    const item=this.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
