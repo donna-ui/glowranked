@@ -3,692 +3,347 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GlowRanked — The #1 Directory of Verified Med Spas & Aesthetic Clinics. Find the best Botox, fillers, laser treatments, and body contouring near you. AI-powered matching and instant booking.">
+<title>GlowRanked — The Gold Standard in Med Spa Discovery</title>
+<meta name="description" content="GlowRanked is the gold standard in med spa discovery. Every spa credential-checked, every review authenticated, every 90 days re-verified.">
 <meta name="robots" content="index, follow">
-<title>GlowRanked — Find the Best Med Spas Near You | AI-Verified Aesthetic Clinics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050508;
-  --bg2:#0a0a12;
-  --bg3:#0f0f1a;
-  --card:#12121e;
-  --border:#1e1e30;
-  --teal:#00d4b4;
-  --teal2:#00b89c;
-  --gold:#c9a84c;
-  --text:#f0f0f8;
-  --muted:#6b7280;
-  --soft:#94a3b8;
-}
+:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.06);--glass-h:rgba(255,255,255,0.08);--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w15:rgba(248,248,246,0.15);--w08:rgba(248,248,246,0.08);--w04:rgba(248,248,246,0.04);--glow:#D4F0E7;--gr:212,240,231;--mint:#7EDCBA;--rose:#E8A0BF;--peach:#F2C4A0;--gold:#C9A84C;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--white);background:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+[data-r]{opacity:0;transform:translateY(40px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease)}
+[data-r].v{opacity:1;transform:none}
+/* Shimmer on CTAs */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:skewX(-20deg)}
+.shimmer:hover::after{animation:shimmer-slide 0.6s ease-out forwards}
+@keyframes shimmer-slide{0%{left:-100%}100%{left:150%}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;color:white}
-.logo-text{font-weight:800;font-size:1.2rem;color:var(--text);letter-spacing:-0.5px}
-.logo-text span{color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{color:var(--soft);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s}
-.nav-links a:hover{color:var(--text)}
-.nav-cta{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;padding:10px 22px;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.9}
+/* Floating ambient orb */
+@keyframes float{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-15px)}50%{transform:translate(-5px,10px)}75%{transform:translate(8px,5px)}}
+.hero::before{animation:float 20s ease-in-out infinite}
+
+/* Spring feel on buttons */
+.btn-primary,.btn-ghost,.nav-cta,.path-cta{transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1)}
+
+/* Sparkline draw */
+.trend-spark path:not(.area){stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.2s var(--ease)}
+.trend.v .trend-spark path:not(.area){stroke-dashoffset:0}
+
+@media(prefers-reduced-motion:reduce){
+  [data-r]{opacity:1;transform:none;transition:none}
+  .shimmer::after{display:none}
+  .hero::before{animation:none}
+  .trend-spark path{stroke-dasharray:none;stroke-dashoffset:0}
+}
+
+/* NAV — identical to find.html */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,11,13,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--w04);transition:background 0.4s}
+nav.scrolled{background:rgba(11,11,13,0.9)}
+.logo{font-family:var(--serif);font-size:24px;color:var(--white);letter-spacing:-0.02em}
+.logo em{font-style:italic;color:var(--mint)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--w50);transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{font-size:13px;font-weight:600;color:var(--black);background:var(--mint);padding:10px 24px;border-radius:100px;transition:all 0.25s var(--ease)}
+.nav-cta:hover{background:var(--glow);transform:translateY(-1px);box-shadow:0 4px 20px rgba(var(--gr),0.25)}
+@media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,212,180,0.12),transparent),radial-gradient(ellipse 60% 40% at 80% 50%,rgba(124,58,237,0.08),transparent);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:20px;padding:8px 16px;font-size:0.8rem;font-weight:600;color:var(--teal);margin-bottom:28px;letter-spacing:0.5px}
-.hero-badge::before{content:'●';animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-1px}
-.hero h1 .line2{background:linear-gradient(90deg,var(--teal),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1.15rem;color:var(--soft);max-width:560px;margin:0 auto 44px;line-height:1.7}
-
-/* SEARCH */
-.search-wrap{width:100%;max-width:680px;margin:0 auto 16px;position:relative}
-.search-box{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:8px 8px 8px 20px;gap:12px;transition:border-color 0.2s;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
-.search-box:focus-within{border-color:var(--teal)}
-.search-icon{color:var(--teal);font-size:1.2rem;flex-shrink:0}
-.search-input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:1rem;font-family:'Inter',sans-serif}
-.search-input::placeholder{color:var(--muted)}
-.search-location{display:flex;align-items:center;gap:6px;color:var(--soft);font-size:0.88rem;padding:0 12px;border-left:1px solid var(--border)}
-.search-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:10px;padding:14px 24px;font-weight:700;font-size:0.95rem;cursor:pointer;white-space:nowrap;transition:opacity 0.2s}
-.search-btn:hover{opacity:0.9}
-.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.search-tag{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:0.82rem;color:var(--soft);cursor:pointer;transition:all 0.2s}
-.search-tag:hover{border-color:var(--teal);color:var(--teal)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:20%;width:120%;height:80%;background:radial-gradient(ellipse 50% 50% at 50% 30%,rgba(201,168,76,0.08),transparent 70%),radial-gradient(ellipse 40% 40% at 80% 60%,rgba(126,220,186,0.06),transparent 60%);pointer-events:none}
+.hero-shield{width:56px;height:56px;color:var(--gold);margin-bottom:32px;position:relative;z-index:1}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,7vw,5.6rem);line-height:1.0;letter-spacing:-0.04em;max-width:900px;margin-bottom:28px;position:relative;z-index:1}
+.hero h1 i{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--w50);line-height:1.7;max-width:540px;margin-bottom:48px;position:relative;z-index:1}
+.hero-ctas{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center;margin-bottom:64px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--mint);color:var(--black);font-weight:600;font-size:15px;border-radius:14px;transition:all 0.25s var(--ease)}
+.btn-primary:hover{background:var(--glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--gr),0.2)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:transparent;color:var(--w70);font-weight:600;font-size:15px;border-radius:14px;border:1px solid var(--w15);transition:all 0.25s var(--ease)}
+.btn-ghost:hover{color:var(--white);border-color:var(--w30);background:var(--w04);transform:translateY(-2px)}
 
 /* STATS */
-.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 40px;display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-size:1.6rem;font-weight:800;color:var(--teal)}
-.stat-label{font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.stats{display:flex;justify-content:center;gap:64px;padding:48px 24px;border-top:1px solid var(--w04);border-bottom:1px solid var(--w04);flex-wrap:wrap}
+.stat-n{font-family:var(--serif);font-size:28px;color:var(--white);letter-spacing:-0.02em}
+.stat-l{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--w30);margin-top:4px}
 
-/* SECTION HEADERS */
-.section-header{text-align:center;margin-bottom:48px}
-.section-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:12px}
-.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-bottom:14px;letter-spacing:-0.5px}
-.section-header p{color:var(--soft);max-width:520px;margin:0 auto;line-height:1.7}
+/* TWO-PATH SECTION */
+.paths{padding:96px 48px;max-width:1080px;margin:0 auto}
+.paths-head{text-align:center;margin-bottom:56px}
+.paths-head h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-0.03em;margin-bottom:12px}
+.paths-head p{font-size:15px;color:var(--w30)}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.path-card{background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:24px;padding:48px 40px;position:relative;overflow:hidden;transition:transform 0.4s var(--ease),border-color 0.3s,box-shadow 0.4s var(--ease)}
+.path-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(126,220,186,0.04),transparent 50%);opacity:0;transition:opacity 0.4s}
+.path-card:hover::before{opacity:1}
+.path-card:hover{transform:translateY(-6px);border-color:rgba(126,220,186,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.2),0 0 0 1px rgba(126,220,186,0.05)}
+.path-card.spa-card::before{background:linear-gradient(135deg,rgba(201,168,76,0.04),transparent 50%)}
+.path-card.spa-card:hover{border-color:rgba(201,168,76,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.2),0 0 0 1px rgba(201,168,76,0.05)}
+.path-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid var(--glass-b);border-radius:14px;margin-bottom:24px;color:var(--mint)}
+.spa-card .path-icon{color:var(--gold)}
+.path-icon svg{width:22px;height:22px}
+.path-card h3{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:-0.02em;margin-bottom:12px}
+.path-card .path-desc{font-size:15px;color:var(--w50);line-height:1.7;margin-bottom:24px}
+.path-features{list-style:none;margin-bottom:32px}
+.path-features li{font-size:14px;color:var(--w30);padding:8px 0;border-bottom:1px solid var(--w04);display:flex;align-items:center;gap:10px}
+.path-features li:last-child{border-bottom:none}
+.path-features svg{width:14px;height:14px;color:var(--mint);flex-shrink:0}
+.spa-card .path-features svg{color:var(--gold)}
+.path-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--mint);color:var(--black);font-weight:600;font-size:14px;border-radius:14px;transition:all 0.25s var(--ease)}
+.path-cta:hover{background:var(--glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--gr),0.2)}
+.spa-card .path-cta{background:var(--gold);color:var(--black)}
+.spa-card .path-cta:hover{background:#d4b65e;box-shadow:0 8px 32px rgba(201,168,76,0.2)}
+@media(max-width:768px){.paths{padding:64px 20px}.path-grid{grid-template-columns:1fr}.path-card{padding:36px 28px}}
 
-/* LISTINGS */
-.listings-section{padding:80px 40px;max-width:1200px;margin:0 auto}
-.filter-row{display:flex;align-items:center;gap:12px;margin-bottom:36px;flex-wrap:wrap}
-.filter-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:0.85rem;color:var(--soft);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
-.filter-btn.active,.filter-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,180,0.05)}
-.filter-spacer{flex:1}
-.result-count{font-size:0.85rem;color:var(--muted)}
+/* VERIFY STRIP */
+.verify{margin:0 48px 96px;padding:48px 56px;background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:24px;text-align:center;position:relative;overflow:hidden}
+.verify::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:400px;height:300px;background:radial-gradient(ellipse,rgba(var(--gr),0.06),transparent);pointer-events:none}
+.verify h3{font-family:var(--serif);font-size:22px;margin-bottom:12px;position:relative}
+.verify p{font-size:15px;color:var(--w50);line-height:1.7;max-width:600px;margin:0 auto;position:relative}
+.verify a{color:var(--mint);font-weight:600}
+.verify a:hover{text-decoration:underline}
+@media(max-width:600px){.verify{margin:0 20px 64px;padding:32px 24px}}
 
-.listings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-
-.listing-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer;position:relative}
-.listing-card:hover{border-color:rgba(0,212,180,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(0,212,180,0.1)}
-.listing-card.featured{border-color:rgba(201,168,76,0.25)}
-.listing-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-
-.card-img{width:100%;height:200px;object-fit:cover;background:var(--bg3)}
-.card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:3rem}
-
-.card-body{padding:20px}
-.card-badges{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.3px}
-.badge-verified{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.2)}
-.badge-featured{background:rgba(0,212,180,0.1);color:var(--teal);border:1px solid rgba(0,212,180,0.2)}
-.badge-ai{background:rgba(124,58,237,0.12);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
-
-.card-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px}
-.card-location{font-size:0.83rem;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:4px}
-.card-desc{font-size:0.85rem;color:var(--soft);line-height:1.6;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-services{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.service-tag{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:3px 8px;font-size:0.75rem;color:var(--muted)}
-.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
-.card-rating{display:flex;align-items:center;gap:5px}
-.stars{color:var(--gold);font-size:0.85rem}
-.rating-num{font-weight:700;font-size:0.9rem;color:var(--text)}
-.rating-count{font-size:0.78rem;color:var(--muted)}
-.card-cta{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:8px;padding:8px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s}
-.card-cta:hover{opacity:0.85}
-
-/* AI RECEPTIONIST FEATURE */
-.ai-section{background:linear-gradient(135deg,#0a0a1a,#0f0a1f);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 40px}
-.ai-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.ai-chat-demo{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:0 40px 100px rgba(0,0,0,0.5)}
-.chat-header{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:16px}
-.chat-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.chat-name{font-weight:700;font-size:0.95rem}
-.chat-status{font-size:0.75rem;color:var(--teal)}
-.chat-bubble{border-radius:12px;padding:12px 16px;font-size:0.88rem;line-height:1.5;margin-bottom:10px;max-width:85%}
-.chat-bubble.bot{background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.12);color:var(--soft);border-bottom-left-radius:4px}
-.chat-bubble.user{background:var(--bg3);border:1px solid var(--border);color:var(--text);margin-left:auto;border-bottom-right-radius:4px}
-.chat-quick-replies{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.quick-reply{background:rgba(0,212,180,0.06);border:1px solid rgba(0,212,180,0.15);border-radius:20px;padding:6px 12px;font-size:0.78rem;color:var(--teal);cursor:pointer}
-
-/* HOW IT WORKS */
-.how-section{padding:80px 40px;max-width:1100px;margin:0 auto}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
-.step-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden}
-.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent)}
-.step-num{width:44px;height:44px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--teal);font-size:1rem;margin-bottom:20px}
-.step-icon{font-size:1.6rem;margin-bottom:16px}
-.step-card h3{font-weight:700;font-size:1rem;margin-bottom:10px}
-.step-card p{color:var(--soft);font-size:0.88rem;line-height:1.6}
-
-/* PRICING */
-.pricing-section{padding:80px 40px;background:var(--bg2);border-top:1px solid var(--border)}
-.pricing-inner{max-width:900px;margin:0 auto}
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:48px}
-.price-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;position:relative}
-.price-card.popular{border-color:var(--teal);background:linear-gradient(135deg,#0a1a18,var(--card))}
-.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;padding:5px 18px;border-radius:20px;font-size:0.75rem;font-weight:800;white-space:nowrap}
-.price-name{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px}
-.price-amount{font-size:2.4rem;font-weight:800;color:var(--text);margin-bottom:4px}
-.price-amount span{font-size:1rem;color:var(--muted)}
-.price-period{font-size:0.8rem;color:var(--muted);margin-bottom:24px}
-.price-features{list-style:none;text-align:left;margin-bottom:28px}
-.price-features li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.87rem;color:var(--soft)}
-.price-features li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
-.price-btn{width:100%;padding:14px;border-radius:10px;font-weight:700;font-size:0.95rem;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity 0.2s}
-.price-btn.primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000}
-.price-btn.secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border)}
-.price-btn:hover{opacity:0.85}
-
-/* CLAIM CTA */
-.claim-section{padding:80px 40px;max-width:700px;margin:0 auto;text-align:center}
-.claim-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;margin-top:40px;text-align:left}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-.form-label{font-size:0.82rem;font-weight:600;color:var(--soft)}
-.form-input,.form-select{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--text);font-size:0.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;width:100%}
-.form-input:focus,.form-select:focus{border-color:var(--teal)}
-.form-input::placeholder{color:var(--muted)}
-.form-select option{background:var(--bg3)}
-.form-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s;margin-top:8px}
-.form-submit:hover{opacity:0.9}
-.form-note{font-size:0.78rem;color:var(--muted);text-align:center;margin-top:12px}
+/* TRENDING */
+.trending{padding:96px 48px 80px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:16px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-0.03em}
+.sec-head a{font-size:13px;color:var(--mint);font-weight:600;transition:color 0.2s}
+.sec-head a:hover{color:var(--glow);text-decoration:underline}
+.trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.trend{background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:transform 0.4s var(--ease),border-color 0.3s,box-shadow 0.4s var(--ease)}
+.trend::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(126,220,186,0.04),transparent 50%);opacity:0;transition:opacity 0.4s}
+.trend:hover::before{opacity:1}
+.trend:hover{transform:translateY(-6px);border-color:rgba(126,220,186,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.2),0 0 0 1px rgba(126,220,186,0.05)}
+.trend-pct{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--mint);margin-bottom:4px}
+.trend-name{font-weight:600;font-size:15px;margin-bottom:8px}
+.trend-hook{font-size:13px;color:var(--w30);line-height:1.5}
+.trend-spark{margin-bottom:16px;height:28px}
+.trend-spark svg{width:100%;height:100%}
+.trend-spark path{fill:none;stroke:var(--mint);stroke-width:1.5;stroke-linecap:round;opacity:0.25}
+.trend-spark .area{fill:rgba(var(--gr),0.06);stroke:none}
+@media(max-width:900px){.trend-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.trending{padding:64px 20px}.trend-grid{grid-template-columns:1fr}}
 
 /* TRUST BAR */
-.trust-bar{background:var(--bg2);border-top:1px solid var(--border);padding:32px 40px}
-.trust-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:0.88rem;font-weight:500}
-.trust-icon{font-size:1.2rem}
+.trust-bar{padding:48px;border-top:1px solid var(--w04);display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.t-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--w50)}
+.t-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid var(--glass-b);border-radius:8px;color:var(--mint);flex-shrink:0}
+.t-icon svg{width:14px;height:14px}
 
-/* FOOTER */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 40px 32px}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-brand p{color:var(--muted);font-size:0.85rem;line-height:1.7;margin-top:12px;max-width:280px}
-.footer-col h4{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--soft);margin-bottom:16px}
-.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:10px;transition:color 0.2s}
-.footer-col a:hover{color:var(--teal)}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.8rem;color:var(--muted)}
-.footer-bottom a{color:var(--muted);text-decoration:none}
-.footer-bottom a:hover{color:var(--text)}
-.powered{display:flex;align-items:center;gap:6px}
-.powered-badge{background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.15);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--teal);font-weight:600}
-
-/* AI CHAT WIDGET */
-.chat-widget{position:fixed;bottom:28px;right:28px;z-index:99}
-.chat-widget-btn{width:56px;height:56px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 8px 32px rgba(0,212,180,0.3);transition:transform 0.2s}
-.chat-widget-btn:hover{transform:scale(1.08)}
-.chat-widget-popup{display:none;position:absolute;bottom:70px;right:0;width:320px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.chat-widget-popup.open{display:block}
-.cwp-header{background:linear-gradient(135deg,rgba(0,212,180,0.15),rgba(124,58,237,0.1));padding:16px;display:flex;align-items:center;gap:10px}
-.cwp-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem}
-.cwp-title{font-weight:700;font-size:0.92rem}
-.cwp-sub{font-size:0.75rem;color:var(--teal)}
-.cwp-body{padding:16px;min-height:160px}
-.cwp-message{background:rgba(0,212,180,0.06);border:1px solid rgba(0,212,180,0.1);border-radius:10px;padding:12px;font-size:0.85rem;color:var(--soft);line-height:1.5;margin-bottom:12px}
-.cwp-options{display:flex;flex-direction:column;gap:8px}
-.cwp-option{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:0.83rem;color:var(--text);cursor:pointer;transition:border-color 0.2s;text-align:left}
-.cwp-option:hover{border-color:var(--teal);color:var(--teal)}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  nav{padding:16px 20px}
-  .nav-links{display:none}
-  .hero{padding:100px 20px 60px}
-  .stats-bar{gap:24px;padding:20px}
-  .listings-section,.how-section,.claim-section{padding:60px 20px}
-  .steps-grid,.pricing-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .ai-inner{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-}
+/* FOOTER — identical to find.html */
+footer{background:var(--dark);padding:80px 48px 0;border-top:1px solid var(--w04);position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--mint),var(--gold),transparent 60%)}
+.f-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px}
+.f-brand{font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:12px}
+.f-brand em{font-style:italic;color:var(--mint)}
+.f-tagline{font-size:14px;color:var(--w30);line-height:1.7;max-width:260px}
+.f-title{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--w15);margin-bottom:16px}
+.f-links a{display:block;font-size:14px;color:var(--w30);margin-bottom:10px;transition:color 0.2s}
+.f-links a:hover{color:var(--white)}
+.f-bottom{max-width:1100px;margin:0 auto;border-top:1px solid var(--w04);padding:24px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;font-size:12px;color:var(--w15)}
+.f-bottom a{color:var(--w15);transition:color 0.2s}
+.f-bottom a:hover{color:var(--w50)}
+.f-final{max-width:1100px;margin:0 auto;text-align:center;padding:24px 0}
+.f-final a{color:var(--gold);font-weight:500;font-size:14px;transition:color 0.2s}
+.f-final a:hover{color:var(--mint)}
+.f-disc{text-align:center;padding:0 0 32px;font-size:11px;color:var(--w15);max-width:560px;margin:0 auto}
+@media(max-width:800px){footer{padding:48px 20px 0}.f-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:500px){.f-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-mark">G</div>
-    <span class="logo-text">Glow<span>Ranked</span></span>
-  </a>
+  <a href="/" class="logo">Glow<em>Ranked</em></a>
   <div class="nav-links">
-    <a href="#listings">Find a Spa</a>
-    <a href="#how-it-works">How It Works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#claim">For Businesses</a>
-    <a href="#claim" class="nav-cta">Claim Your Listing →</a>
+    <a href="/find.html">Find a Med Spa</a>
+    <a href="/for-spas.html">For Med Spas</a>
+    <a href="/for-spas.html" class="nav-cta">Get Verified</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🌟 Aura Verified — The Gold Standard in Aesthetic Care</div>
-  <h1>Find the Best<br><span class="line2">Med Spa Near You</span></h1>
-  <p class="hero-sub">Every clinic on GlowRanked is verified, reviewed, and rated by real patients. AI-powered matching connects you to the right provider in seconds.</p>
-
-  <div class="search-wrap">
-    <div class="search-box">
-      <span class="search-icon">✦</span>
-      <input class="search-input" type="text" placeholder="Botox, fillers, laser, weight loss...">
-      <div class="search-location">📍 Your City</div>
-      <button class="search-btn">Find Spas</button>
-    </div>
-  </div>
-  <div class="search-tags">
-    <span class="search-tag">💉 Botox</span>
-    <span class="search-tag">✨ Fillers</span>
-    <span class="search-tag">⚡ Laser</span>
-    <span class="search-tag">🔥 Morpheus8</span>
-    <span class="search-tag">💊 Weight Loss</span>
-    <span class="search-tag">🧖 HydraFacial</span>
+  <svg class="hero-shield" data-r viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+  <h1 data-r style="transition-delay:100ms">The gold standard<br>in med spa <i>discovery.</i></h1>
+  <p class="hero-sub" data-r style="transition-delay:180ms">Every listing credential-checked. Every review authenticated. Every ranking earned&nbsp;&mdash;&nbsp;never&nbsp;bought.</p>
+  <div class="hero-ctas" data-r style="transition-delay:260ms">
+    <a href="/find.html" class="btn-primary shimmer">Find a Med Spa &rarr;</a>
+    <a href="/for-spas.html" class="btn-ghost">List Your Practice</a>
   </div>
 </section>
 
 <!-- STATS -->
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">2,400+</div><div class="stat-label">Verified Clinics</div></div>
-  <div class="stat"><div class="stat-num">98K+</div><div class="stat-label">Patient Reviews</div></div>
-  <div class="stat"><div class="stat-num">60 sec</div><div class="stat-label">Avg Response Time</div></div>
-  <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
-  <div class="stat"><div class="stat-num">50 States</div><div class="stat-label">Coverage</div></div>
+<div class="stats">
+  <div class="stat" data-r><div class="stat-n">4</div><div class="stat-l">IE Cities at Launch</div></div>
+  <div class="stat" data-r style="transition-delay:60ms"><div class="stat-n">12</div><div class="stat-l">Verification Checks</div></div>
+  <div class="stat" data-r style="transition-delay:120ms"><div class="stat-n">90</div><div class="stat-l">Day Re-Verification</div></div>
+  <div class="stat" data-r style="transition-delay:180ms"><div class="stat-n">$0</div><div class="stat-l">Paid Placements. Ever.</div></div>
 </div>
 
-<!-- LISTINGS -->
-<section class="listings-section" id="listings">
-  <div class="section-header">
-    <div class="section-label">Featured Clinics</div>
-    <h2>Aura Verified Med Spas</h2>
-    <p>Handpicked and verified. Every listing includes AI-powered booking, real patient reviews, and instant response.</p>
+<!-- TWO-PATH SECTION -->
+<section class="paths">
+  <div class="paths-head" data-r>
+    <h2>Who are you?</h2>
+    <p>Two paths. One standard.</p>
   </div>
-
-  <div class="filter-row">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Botox & Fillers</button>
-    <button class="filter-btn">Laser Treatments</button>
-    <button class="filter-btn">Weight Loss</button>
-    <button class="filter-btn">Body Contouring</button>
-    <button class="filter-btn">IV Therapy</button>
-    <div class="filter-spacer"></div>
-    <span class="result-count">Showing 4 of 2,400+ clinics</span>
-  </div>
-
-  <div class="listings-grid">
-
-    <div class="listing-card featured" onclick="openListing('pure-glow-medspa')">
-      <img class="card-img" src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&auto=format&fit=crop" alt="Pure Glow Med Spa" loading="lazy">
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-verified">⭐ Aura Verified</span>
-          <span class="badge badge-featured">★ Featured</span>
-          <span class="badge badge-ai">🤖 AI Receptionist</span>
-        </div>
-        <div class="card-name">Pure Glow Med Spa</div>
-        <div class="card-location">📍 Austin, TX</div>
-        <div class="card-desc">Austin's premier medical aesthetic destination. Specializing in advanced skin rejuvenation, body contouring, and anti-aging treatments with cutting-edge technology.</div>
-        <div class="card-services">
-          <span class="service-tag">Botox</span>
-          <span class="service-tag">Fillers</span>
-          <span class="service-tag">Laser</span>
-          <span class="service-tag">Morpheus8</span>
-        </div>
-        <div class="card-footer">
-          <div class="card-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-num">4.9</span>
-            <span class="rating-count">(312 reviews)</span>
-          </div>
-          <a href="#claim" class="card-cta">Book Now →</a>
-        </div>
+  <div class="path-grid">
+    <!-- Consumer path -->
+    <div class="path-card" data-r>
+      <div class="path-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </div>
+      <h3>I&rsquo;m looking for a med spa</h3>
+      <p class="path-desc">Search 2,400+ verified providers. Every listing is credential-checked, every review is real, and rankings are never paid for.</p>
+      <ul class="path-features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>12-point verification on every spa</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>AI-authenticated patient reviews</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Search by treatment, city, or rating</li>
+      </ul>
+      <a href="/find.html" class="path-cta">Search verified spas &rarr;</a>
     </div>
-
-    <div class="listing-card featured" onclick="openListing('luminance-aesthetics')">
-      <img class="card-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop" alt="Luminance Aesthetics" loading="lazy">
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-verified">⭐ Aura Verified</span>
-          <span class="badge badge-featured">★ Featured</span>
-          <span class="badge badge-ai">🤖 AI Receptionist</span>
-        </div>
-        <div class="card-name">Luminance Aesthetics</div>
-        <div class="card-location">📍 Dallas, TX</div>
-        <div class="card-desc">A luxury medical spa experience offering the latest in non-surgical aesthetic treatments. Our board-certified physicians deliver natural-looking results.</div>
-        <div class="card-services">
-          <span class="service-tag">Botox</span>
-          <span class="service-tag">Lip Fillers</span>
-          <span class="service-tag">PRF</span>
-          <span class="service-tag">CoolSculpting</span>
-        </div>
-        <div class="card-footer">
-          <div class="card-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-num">4.8</span>
-            <span class="rating-count">(247 reviews)</span>
-          </div>
-          <a href="#claim" class="card-cta">Book Now →</a>
-        </div>
+    <!-- Spa owner path -->
+    <div class="path-card spa-card" data-r style="transition-delay:80ms">
+      <div class="path-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-    </div>
-
-    <div class="listing-card featured">
-      <img class="card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop" alt="Radiance Wellness" loading="lazy">
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-verified">⭐ Aura Verified</span>
-          <span class="badge badge-featured">★ Featured</span>
-          <span class="badge badge-ai">🤖 AI Receptionist</span>
-        </div>
-        <div class="card-name">Radiance Wellness & Aesthetics</div>
-        <div class="card-location">📍 Miami, FL</div>
-        <div class="card-desc">Where science meets luxury. We combine the latest aesthetic medicine with a bespoke wellness approach for transformative results.</div>
-        <div class="card-services">
-          <span class="service-tag">Semaglutide</span>
-          <span class="service-tag">Botox</span>
-          <span class="service-tag">Laser</span>
-          <span class="service-tag">PRP</span>
-        </div>
-        <div class="card-footer">
-          <div class="card-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-num">5.0</span>
-            <span class="rating-count">(189 reviews)</span>
-          </div>
-          <a href="#claim" class="card-cta">Book Now →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="listing-card featured">
-      <img class="card-img" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&auto=format&fit=crop" alt="Glow Studio Scottsdale" loading="lazy">
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-verified">⭐ Aura Verified</span>
-          <span class="badge badge-ai">🤖 AI Receptionist</span>
-        </div>
-        <div class="card-name">Glow Studio Scottsdale</div>
-        <div class="card-location">📍 Scottsdale, AZ</div>
-        <div class="card-desc">Boutique med spa focused on natural enhancement and skin health. Every treatment plan is customized to your unique goals and lifestyle.</div>
-        <div class="card-services">
-          <span class="service-tag">Botox</span>
-          <span class="service-tag">Kybella</span>
-          <span class="service-tag">HydraFacial</span>
-          <span class="service-tag">Weight Loss</span>
-        </div>
-        <div class="card-footer">
-          <div class="card-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-num">4.7</span>
-            <span class="rating-count">(156 reviews)</span>
-          </div>
-          <a href="#claim" class="card-cta">Book Now →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- AI RECEPTIONIST FEATURE -->
-<section class="ai-section">
-  <div class="ai-inner">
-    <div>
-      <div class="section-label">AI Receptionist</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:20px;letter-spacing:-0.5px">Every Listing Has Its Own<br><span style="color:var(--teal)">24/7 AI Concierge</span></h2>
-      <p style="color:var(--soft);line-height:1.8;margin-bottom:28px">Unlike other directories that just show a phone number, every GlowRanked featured listing comes with a dedicated AI receptionist. It answers questions, qualifies patients, and books appointments — even at 2am on a Sunday.</p>
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="display:flex;align-items:flex-start;gap:14px">
-          <div style="width:36px;height:36px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">⚡</div>
-          <div><strong>60-Second Response</strong><p style="font-size:0.88rem;color:var(--soft);margin-top:2px">Every inquiry gets an instant response. No missed leads.</p></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:14px">
-          <div style="width:36px;height:36px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">📅</div>
-          <div><strong>Direct Appointment Booking</strong><p style="font-size:0.88rem;color:var(--soft);margin-top:2px">Patients book straight into the clinic's calendar.</p></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:14px">
-          <div style="width:36px;height:36px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">🔗</div>
-          <div><strong>Shareable Receptionist Link</strong><p style="font-size:0.88rem;color:var(--soft);margin-top:2px">Put it in your Instagram bio, email signature, anywhere.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="ai-chat-demo">
-      <div class="chat-header">
-        <div class="chat-avatar">✦</div>
-        <div>
-          <div class="chat-name">Pure Glow AI Concierge</div>
-          <div class="chat-status">● Online now</div>
-        </div>
-      </div>
-      <div class="chat-bubble bot">Hi! I'm the AI concierge for Pure Glow Med Spa. I can answer questions, check availability, and book your appointment. What brings you in today? ✨</div>
-      <div class="chat-bubble user">I'm interested in Botox. How much does it cost?</div>
-      <div class="chat-bubble bot">Great question! Our Botox pricing starts at $12/unit with a typical treatment using 20–40 units. Most patients invest $240–$480 for natural, refreshed results lasting 3–4 months. Would you like to book a complimentary consultation?</div>
-      <div class="chat-quick-replies">
-        <span class="quick-reply">📅 Book a consult</span>
-        <span class="quick-reply">💰 See all pricing</span>
-        <span class="quick-reply">📍 Get directions</span>
-      </div>
+      <h3>I own a med spa</h3>
+      <p class="path-desc">Join the most trusted directory in aesthetics. Verification is rigorous, but the patients who find you here are already pre-qualified and ready to book.</p>
+      <ul class="path-features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>First-mover advantage in the Inland Empire</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>GlowRanked Score builds trust instantly</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Verified badge across all listings</li>
+      </ul>
+      <a href="/for-spas.html" class="path-cta">Get verified &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-section" id="how-it-works">
-  <div class="section-header">
-    <div class="section-label">How It Works</div>
-    <h2>For Patients</h2>
-    <p>Finding the right med spa has never been easier — or smarter.</p>
-  </div>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-icon">🔍</div>
-      <h3>Search Your Area</h3>
-      <p>Tell us what you're looking for — Botox, fillers, weight loss, laser — and where. Our AI finds the best-matched verified clinics near you.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <div class="step-icon">⭐</div>
-      <h3>Compare Verified Clinics</h3>
-      <p>Every listing shows real patient reviews, photos, pricing, and certifications. No fake reviews. No hidden fees. All Aura Verified.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-icon">📅</div>
-      <h3>Book Instantly</h3>
-      <p>Chat with the clinic's AI concierge, get your questions answered, and book your appointment — all from the listing page.</p>
-    </div>
-  </div>
+<!-- VERIFY STRIP -->
+<section class="verify" data-r>
+  <h3>We reject more spas than we list.</h3>
+  <p>Every provider passes 12 independent checks&nbsp;&mdash;&nbsp;license verification, review authentication, safety screening, and re-verification every 90&nbsp;days. <a href="/for-spas.html#verification">Learn how &rarr;</a></p>
 </section>
 
-<!-- PRICING -->
-<section class="pricing-section" id="pricing">
-  <div class="pricing-inner">
-    <div class="section-header">
-      <div class="section-label">For Med Spa Owners</div>
-      <h2>Start Getting More Patients Today</h2>
-      <p>Join 2,400+ clinics already growing with GlowRanked. No long-term contracts. Cancel anytime.</p>
+<!-- TRENDING PREVIEW -->
+<section class="trending">
+  <div class="sec-head"><h2 data-r>What&rsquo;s surging right now</h2><a href="/find.html" data-r>Explore all treatments &rarr;</a></div>
+  <div class="trend-grid">
+    <div class="trend" data-r>
+      <div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,22 Q20,24 40,18 T80,6 T120,2 L120,28Z"/><path d="M0,22 Q20,24 40,18 T80,6 T120,2"/></svg></div>
+      <div class="trend-pct">+340%</div>
+      <div class="trend-name">Morpheus8</div>
+      <div class="trend-hook">The collagen reboot everyone&rsquo;s booking</div>
     </div>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-name">Basic Listing</div>
-        <div class="price-amount"><span>$</span>0</div>
-        <div class="price-period">forever free</div>
-        <ul class="price-features">
-          <li>Listed in directory</li>
-          <li>Basic business profile</li>
-          <li>Patient reviews</li>
-          <li>Contact info display</li>
-        </ul>
-        <button class="price-btn secondary" onclick="document.getElementById('claim').scrollIntoView()">Get Listed Free</button>
-      </div>
-      <div class="price-card popular">
-        <div class="popular-badge">⭐ Most Popular</div>
-        <div class="price-name">Featured Pro</div>
-        <div class="price-amount"><span>$</span>397<span>/mo</span></div>
-        <div class="price-period">or $2,997/year — save $876</div>
-        <ul class="price-features">
-          <li>Top placement in search results</li>
-          <li>Aura Verified gold badge</li>
-          <li>AI Receptionist (24/7)</li>
-          <li>Instant lead notifications</li>
-          <li>Appointment booking calendar</li>
-          <li>Review automation</li>
-          <li>Monthly performance report</li>
-          <li>Shareable AI link</li>
-        </ul>
-        <button class="price-btn primary" onclick="document.getElementById('claim').scrollIntoView()">Claim Founding Rate →</button>
-      </div>
-      <div class="price-card">
-        <div class="price-name">Premium Elite</div>
-        <div class="price-amount"><span>$</span>597<span>/mo</span></div>
-        <div class="price-period">guaranteed leads included</div>
-        <ul class="price-features">
-          <li>Everything in Featured Pro</li>
-          <li>10 guaranteed leads/month</li>
-          <li>Priority #1 placement</li>
-          <li>Featured in email newsletter</li>
-          <li>Dedicated account manager</li>
-          <li>Custom AI receptionist script</li>
-        </ul>
-        <button class="price-btn secondary" onclick="document.getElementById('claim').scrollIntoView()">Apply for Elite</button>
-      </div>
+    <div class="trend" data-r style="transition-delay:60ms">
+      <div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,24 Q30,20 50,14 T90,4 T120,2 L120,28Z"/><path d="M0,24 Q30,20 50,14 T90,4 T120,2"/></svg></div>
+      <div class="trend-pct">+280%</div>
+      <div class="trend-name">Semaglutide</div>
+      <div class="trend-hook">Weight management meets med spa</div>
     </div>
-    <p style="text-align:center;margin-top:24px;font-size:0.82rem;color:var(--muted)">🔒 Founding Member Pricing — locked in for life as long as you remain subscribed. Limited spots remaining.</p>
-  </div>
-</section>
-
-<!-- CLAIM YOUR LISTING -->
-<section class="claim-section" id="claim">
-  <div class="section-label" style="text-align:center">For Med Spa Owners</div>
-  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);text-align:center;margin-bottom:12px">Claim Your Listing</h2>
-  <p style="color:var(--soft);text-align:center">Tell us about your practice. We'll set up your full AI-powered profile — including your AI receptionist — within 48 hours.</p>
-
-  <div class="claim-form">
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Med Spa / Clinic Name *</label>
-        <input class="form-input" type="text" placeholder="Pure Glow Med Spa">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Your Name *</label>
-        <input class="form-input" type="text" placeholder="Dr. Sarah Chen">
-      </div>
+    <div class="trend" data-r style="transition-delay:120ms">
+      <div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,22 Q25,20 50,16 T100,6 T120,4 L120,28Z"/><path d="M0,22 Q25,20 50,16 T100,6 T120,4"/></svg></div>
+      <div class="trend-pct">+195%</div>
+      <div class="trend-name">PRF Under-Eyes</div>
+      <div class="trend-hook">The natural filler alternative</div>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Email Address *</label>
-        <input class="form-input" type="email" placeholder="you@yourmedspa.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Phone Number</label>
-        <input class="form-input" type="tel" placeholder="(555) 000-0000">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">City *</label>
-        <input class="form-input" type="text" placeholder="Austin">
-      </div>
-      <div class="form-group">
-        <label class="form-label">State *</label>
-        <input class="form-input" type="text" placeholder="TX">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Website (optional)</label>
-      <input class="form-input" type="url" placeholder="https://yourmedspa.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Interested In</label>
-      <select class="form-select">
-        <option value="featured">Featured Pro — $397/month</option>
-        <option value="annual">Founding Member Annual — $2,997/year</option>
-        <option value="elite">Premium Elite — $597/month</option>
-        <option value="free">Free Basic Listing</option>
-      </select>
-    </div>
-    <button class="form-submit" onclick="submitClaim(event)">Claim My Listing — Get Set Up in 48 Hours →</button>
-    <p class="form-note">🔒 Your information is never sold or shared. By submitting, you agree to our <a href="/terms.html" style="color:var(--teal)">Terms of Service</a> and <a href="/privacy.html" style="color:var(--teal)">Privacy Policy</a>.</p>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item"><span class="trust-icon">🔒</span> SSL Secured</div>
-    <div class="trust-item"><span class="trust-icon">✅</span> HIPAA Aware</div>
-    <div class="trust-item"><span class="trust-icon">⭐</span> Aura Verified Clinics Only</div>
-    <div class="trust-item"><span class="trust-icon">🤖</span> AI-Powered Matching</div>
-    <div class="trust-item"><span class="trust-icon">📍</span> All 50 States</div>
-  </div>
+  <div class="t-item" data-r><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>Rankings earned, never bought</div>
+  <div class="t-item" data-r style="transition-delay:60ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>12-point verification</div>
+  <div class="t-item" data-r style="transition-delay:120ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/><path d="M9 12l2 2 4-4"/></svg></div>AI-authenticated reviews</div>
+  <div class="t-item" data-r style="transition-delay:180ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>Re-verified every 90 days</div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="logo">
-          <div class="logo-mark">G</div>
-          <span class="logo-text">Glow<span>Ranked</span></span>
-        </div>
-        <p>The #1 AI-verified directory of med spas and aesthetic clinics. Every listing is verified, every lead is delivered instantly.</p>
-      </div>
-      <div class="footer-col">
-        <h4>For Patients</h4>
-        <a href="#listings">Find a Spa</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#">Browse by City</a>
-        <a href="#">Browse by Treatment</a>
-      </div>
-      <div class="footer-col">
-        <h4>For Businesses</h4>
-        <a href="#pricing">Pricing</a>
-        <a href="#claim">Claim Your Listing</a>
-        <a href="#">AI Receptionist</a>
-        <a href="#">Success Stories</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="mailto:hello@glowranked.com">Contact Us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 GlowRanked. All rights reserved.</span>
-      <div class="powered">
-        <span style="color:var(--muted)">Powered by</span>
-        <span class="powered-badge">Aura Directories</span>
-        <span style="color:var(--muted)">· A BizGuru Company</span>
-      </div>
-      <div>
-        <a href="/privacy.html">Privacy</a> ·
-        <a href="/terms.html">Terms</a>
-      </div>
-    </div>
+  <div class="f-grid">
+    <div><div class="f-brand">Glow<em>Ranked</em></div><p class="f-tagline">The most trusted directory for verified med spas.</p></div>
+    <div><div class="f-title">Treatments</div><nav class="f-links"><a href="/find.html">Botox &amp; Fillers</a><a href="/find.html">Laser</a><a href="/find.html">Body Sculpting</a><a href="/find.html">Skin</a><a href="/find.html">Weight Loss</a></nav></div>
+    <div><div class="f-title">Cities</div><nav class="f-links"><a href="/find.html">Los Angeles</a><a href="/find.html">New York</a><a href="/find.html">Miami</a><a href="/find.html">Dallas</a><a href="/find.html">All Cities</a></nav></div>
+    <div><div class="f-title">Company</div><nav class="f-links"><a href="/for-spas.html">For Med Spas</a><a href="#">About</a><a href="#">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav></div>
   </div>
+  <div class="f-bottom"><span>&copy; 2026 GlowRanked</span><span>Powered by AI Verification</span><div><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></div></div>
+  <div class="f-final"><a href="/for-spas.html">Own a med spa that belongs here? Get verified &rarr;</a></div>
+  <p class="f-disc">GlowRanked is an informational directory and does not provide medical advice. Always consult a qualified healthcare provider.</p>
 </footer>
 
-<!-- AI CHAT WIDGET -->
-<div class="chat-widget" id="chatWidget">
-  <div class="chat-widget-popup" id="chatPopup">
-    <div class="cwp-header">
-      <div class="cwp-avatar">✦</div>
-      <div>
-        <div class="cwp-title">GlowRanked Assistant</div>
-        <div class="cwp-sub">● Replies instantly</div>
-      </div>
-    </div>
-    <div class="cwp-body">
-      <div class="cwp-message">Hi! Looking for a med spa near you? I can help you find verified clinics for Botox, fillers, laser treatments, weight loss, and more. 🌟</div>
-      <div class="cwp-options">
-        <button class="cwp-option" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">🔍 Find clinics near me</button>
-        <button class="cwp-option" onclick="document.getElementById('claim').scrollIntoView({behavior:'smooth'})">💼 I own a med spa</button>
-        <button class="cwp-option">❓ Ask a question</button>
-      </div>
-    </div>
-  </div>
-  <button class="chat-widget-btn" onclick="toggleChat()">✦</button>
-</div>
-
 <script>
-function toggleChat(){
-  const p=document.getElementById('chatPopup');
-  p.classList.toggle('open');
-}
-function submitClaim(e){
-  e.preventDefault();
-  const btn=e.target;
-  btn.textContent='✓ Received! We\'ll be in touch within 24 hours.';
-  btn.style.background='linear-gradient(135deg,#059669,#047857)';
-  btn.disabled=true;
-}
-function openListing(slug){
-  // placeholder for individual listing pages
-}
-// Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    this.classList.add('active');
+(function(){
+  var noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // Scroll reveal
+  var els=document.querySelectorAll('[data-r]');
+  if(!noMotion&&'IntersectionObserver' in window){
+    var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');o.unobserve(en.target);}});},{threshold:0.06,rootMargin:'-20px'});
+    els.forEach(function(el){o.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('v');}); }
+
+  // Nav
+  var nav=document.querySelector('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+
+  // Counter animation on stats
+  document.querySelectorAll('.stat-n').forEach(function(el){
+    var text=el.textContent;
+    var match=text.match(/([\d,]+)/);
+    if(!match||noMotion) return;
+    var target=parseInt(match[1].replace(/,/g,''));
+    var suffix=text.replace(match[1],'');
+    var prefix=text.substring(0,text.indexOf(match[1]));
+    var co=new IntersectionObserver(function(e){e.forEach(function(en){
+      if(en.isIntersecting){
+        var t0=null;
+        function step(ts){
+          if(!t0)t0=ts;
+          var p=Math.min((ts-t0)/1200,1);
+          var ep=1-Math.pow(1-p,3);
+          el.textContent=prefix+Math.round(target*ep).toLocaleString()+suffix;
+          if(p<1)requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        co.unobserve(en.target);
+      }
+    });},{threshold:0.5});
+    co.observe(el);
   });
-});
+
+  // Hero parallax
+  var hero=document.querySelector('.hero');
+  if(hero&&!noMotion){
+    window.addEventListener('scroll',function(){
+      var s=window.scrollY;
+      if(s<window.innerHeight){
+        var h1=hero.querySelector('h1');
+        if(h1)h1.style.transform='translateY('+s*0.1+'px)';
+        var sub=hero.querySelector('.hero-sub');
+        if(sub)sub.style.transform='translateY('+s*0.06+'px)';
+      }
+    },{passive:true});
+  }
+
+  // Magnetic hover on CTAs
+  if(!noMotion){
+    document.querySelectorAll('.btn-primary,.path-cta,.nav-cta').forEach(function(btn){
+      btn.addEventListener('mousemove',function(e){
+        var r=btn.getBoundingClientRect();
+        var x=(e.clientX-r.left-r.width/2)*0.12;
+        var y=(e.clientY-r.top-r.height/2)*0.12;
+        btn.style.transform='translate('+x+'px,'+y+'px)';
+      });
+      btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+    });
+  }
+})();
 </script>
 </body>
 </html>

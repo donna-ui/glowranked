@@ -3,641 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Find the best AI-verified med spas near you. Browse treatments, read verified reviews, and book instantly with GlowRanked.">
-<title>Find a Med Spa Near You | GlowRanked</title>
+<title>GlowRanked — Find Verified Med Spas</title>
+<meta name="description" content="The only med spa directory where every listing is credential-checked, every review is real, and every rating is earned.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050508;--bg2:#0a0a12;--bg3:#0f0f1a;--card:#12121e;--border:#1e1e30;
-  --teal:#00d4b4;--teal2:#00b89c;--gold:#c9a84c;--text:#f0f0f8;--muted:#6b7280;--soft:#94a3b8;
-}
+:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.06);--glass-h:rgba(255,255,255,0.08);--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w15:rgba(248,248,246,0.15);--w08:rgba(248,248,246,0.08);--w04:rgba(248,248,246,0.04);--glow:#D4F0E7;--gr:212,240,231;--mint:#7EDCBA;--rose:#E8A0BF;--peach:#F2C4A0;--gold:#C9A84C;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--white);background:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+/* grain removed for performance */
+[data-r]{opacity:0;transform:translateY(40px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease)}
+[data-r].v{opacity:1;transform:none}
+/* Staggered line reveal for headlines */
+.line-reveal{display:block;overflow:hidden}
+.line-reveal span{display:inline-block;transform:translateY(110%);transition:transform 0.8s var(--ease);transition-delay:var(--d,0ms)}
+.line-reveal.v span{transform:translateY(0)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:white}
-.logo-text{font-weight:800;font-size:1.15rem;color:var(--text);letter-spacing:-0.5px}
-.logo-text span{color:var(--teal)}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-link{color:var(--soft);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
-.nav-link:hover{color:var(--text)}
-.nav-spa{background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.25);color:var(--teal);padding:9px 20px;border-radius:8px;font-weight:700;font-size:0.85rem;text-decoration:none;transition:all 0.2s}
-.nav-spa:hover{background:rgba(0,212,180,0.18)}
+/* Shimmer animation for CTA buttons */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:skewX(-20deg);transition:none;animation:none}
+.shimmer:hover::after{animation:shimmer-slide 0.6s ease-out forwards}
+@keyframes shimmer-slide{0%{left:-100%}100%{left:150%}}
 
-/* HERO */
-.hero{padding:120px 40px 60px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 90% 60% at 50% -5%,rgba(0,212,180,0.1),transparent),radial-gradient(ellipse 50% 40% at 90% 60%,rgba(124,58,237,0.06),transparent);pointer-events:none}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.18);border-radius:20px;padding:7px 16px;font-size:0.78rem;font-weight:700;color:var(--teal);margin-bottom:24px;letter-spacing:0.5px;text-transform:uppercase}
-.live-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.12;margin-bottom:16px;letter-spacing:-1px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--teal),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1.05rem;color:var(--soft);max-width:500px;margin:0 auto 40px;line-height:1.7}
+/* Smooth counter animation handled in JS */
+.counter{font-variant-numeric:tabular-nums}
 
-/* SEARCH BAR */
-.search-container{max-width:760px;margin:0 auto}
-.search-box{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:6px 6px 6px 20px;gap:0;transition:border-color 0.2s;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
-.search-box:focus-within{border-color:var(--teal);box-shadow:0 24px 80px rgba(0,0,0,0.5),0 0 0 3px rgba(0,212,180,0.06)}
-.si{color:var(--teal);font-size:1.15rem;margin-right:12px;flex-shrink:0}
-.search-input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:1rem;font-family:'Inter',sans-serif;min-width:0}
-.search-input::placeholder{color:var(--muted)}
-.search-divider{width:1px;height:32px;background:var(--border);margin:0 16px;flex-shrink:0}
-.location-input{background:none;border:none;outline:none;color:var(--soft);font-size:0.9rem;font-family:'Inter',sans-serif;width:160px}
-.location-input::placeholder{color:var(--muted)}
-.loc-icon{color:var(--teal);font-size:0.9rem;margin-right:6px}
-.search-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:12px;padding:14px 28px;font-weight:800;font-size:0.95rem;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
-.search-btn:hover{opacity:0.9;transform:translateY(-1px)}
+/* Sparkline draw animation */
+.trend-spark path:not(.area){stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.2s var(--ease)}
+.trend.v .trend-spark path:not(.area){stroke-dashoffset:0}
 
-/* QUICK FILTERS */
-.quick-filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px}
-.qf{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:24px;padding:7px 16px;font-size:0.82rem;color:var(--soft);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
-.qf:hover,.qf.active{border-color:var(--teal);color:var(--teal);background:rgba(0,212,180,0.06)}
+/* Image reveal clip */
+.img-reveal{clip-path:inset(0 100% 0 0);transition:clip-path 1s var(--ease)}
+.img-reveal.v{clip-path:inset(0 0 0 0)}
 
-/* STATS STRIP */
-.stats-strip{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;padding:28px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
-.stat{text-align:center}
-.stat-n{font-size:1.7rem;font-weight:900;color:var(--teal);letter-spacing:-1px}
-.stat-l{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px}
+/* Glow pulse on score rings */
+@keyframes ring-glow{0%,100%{filter:drop-shadow(0 0 4px rgba(var(--gr),0.15))}50%{filter:drop-shadow(0 0 12px rgba(var(--gr),0.35))}}
+.ring-fill.glow{animation:ring-glow 3s ease-in-out infinite}
 
-/* TREATMENT CATEGORIES */
-.categories{padding:64px 40px;max-width:1200px;margin:0 auto}
-.sec-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:10px}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:8px;letter-spacing:-0.5px}
-.sec-sub{color:var(--soft);font-size:0.92rem;margin-bottom:36px;line-height:1.6}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.cat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;cursor:pointer;transition:all 0.25s;text-decoration:none;display:block}
-.cat-card:hover{border-color:rgba(0,212,180,0.35);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.35)}
-.cat-icon{font-size:2rem;margin-bottom:10px;display:block}
-.cat-name{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:3px}
-.cat-count{font-size:0.72rem;color:var(--muted)}
+/* Floating ambient orb - subtle continuous motion */
+@keyframes float{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-15px)}50%{transform:translate(-5px,10px)}75%{transform:translate(8px,5px)}}
+.hero::before{animation:float 20s ease-in-out infinite}
 
-/* VERIFIED BADGE EXPLAINER */
-.verify-band{background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(0,212,180,0.04));border-top:1px solid rgba(201,168,76,0.12);border-bottom:1px solid rgba(201,168,76,0.12);padding:48px 40px}
-.verify-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:center}
-.verify-badge-big{display:flex;align-items:center;gap:16px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:28px;margin-bottom:20px}
-.vb-icon{font-size:2.4rem;flex-shrink:0}
-.vb-text h3{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:4px}
-.vb-text p{font-size:0.84rem;color:var(--soft);line-height:1.6}
-.verify-tagline{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;line-height:1.2;margin-bottom:16px}
-.verify-tagline span{color:var(--gold)}
-.verify-desc{color:var(--soft);font-size:0.92rem;line-height:1.7;margin-bottom:28px}
-.verify-steps{display:flex;flex-direction:column;gap:14px}
-.vstep{display:flex;align-items:flex-start;gap:14px}
-.vstep-num{width:30px;height:30px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:var(--teal);flex-shrink:0;margin-top:1px}
-.vstep-text h4{font-size:0.88rem;font-weight:700;margin-bottom:2px}
-.vstep-text p{font-size:0.81rem;color:var(--soft);line-height:1.5}
+/* Button hover lift with spring feel */
+.s-btn,.spot-cta,.nav-cta,.pill.on{transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1)}
 
-/* LISTINGS */
-.listings{padding:64px 40px;max-width:1200px;margin:0 auto}
-.listings-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
-.filter-pills{display:flex;gap:8px;flex-wrap:wrap}
-.fp{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:0.82rem;color:var(--soft);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
-.fp.active,.fp:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,180,0.05)}
-.result-count{font-size:0.84rem;color:var(--muted)}
-.listings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px}
+/* Smooth border glow transition on cards */
+.l-card,.trend,.c-card{will-change:transform}
 
-/* LISTING CARD */
-.lcard{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.28s;cursor:pointer;position:relative;display:flex;flex-direction:column}
-.lcard:hover{border-color:rgba(0,212,180,0.28);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,0.45),0 0 0 1px rgba(0,212,180,0.08)}
-.lcard.featured{border-color:rgba(201,168,76,0.22)}
-.lcard.featured::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.3),transparent)}
-.card-img-wrap{position:relative;height:195px;background:linear-gradient(135deg,#141428,#1a1040);display:flex;align-items:center;justify-content:center;font-size:3.5rem;overflow:hidden}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover}
-.card-distance{position:absolute;top:12px;right:12px;background:rgba(5,5,8,0.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:4px 10px;font-size:0.72rem;color:var(--soft)}
-.card-body{padding:20px;flex:1;display:flex;flex-direction:column}
-.card-badges{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:0.7rem;font-weight:700;letter-spacing:0.3px}
-.b-verified{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.2)}
-.b-top{background:rgba(0,212,180,0.08);color:var(--teal);border:1px solid rgba(0,212,180,0.18)}
-.b-new{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
-.card-name{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:4px;line-height:1.2}
-.card-loc{font-size:0.8rem;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:10px}
-.card-desc{font-size:0.83rem;color:var(--soft);line-height:1.6;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
-.card-services{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.svc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:3px 8px;font-size:0.72rem;color:var(--muted)}
-.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
-.rating{display:flex;align-items:center;gap:5px}
-.stars{color:var(--gold);font-size:0.82rem;letter-spacing:1px}
-.rnum{font-weight:800;font-size:0.9rem}
-.rcnt{font-size:0.75rem;color:var(--muted);margin-left:2px}
-.card-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:8px;padding:9px 18px;font-size:0.82rem;font-weight:800;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap}
-.card-btn:hover{opacity:0.88;transform:translateY(-1px)}
-
-/* FEATURED SPOTLIGHT */
-.spotlight{background:linear-gradient(135deg,rgba(201,168,76,0.05),rgba(0,212,180,0.03));border:1px solid rgba(201,168,76,0.14);border-radius:20px;padding:32px;margin-bottom:24px;display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:center}
-.spot-img{height:200px;background:linear-gradient(135deg,#1a1428,#0f1a28);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:4rem}
-.spot-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);border-radius:20px;padding:5px 14px;font-size:0.72rem;font-weight:800;color:var(--gold);margin-bottom:14px;letter-spacing:0.5px;text-transform:uppercase}
-.spot-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;margin-bottom:6px}
-.spot-loc{font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:5px;margin-bottom:12px}
-.spot-desc{font-size:0.88rem;color:var(--soft);line-height:1.7;margin-bottom:18px}
-.spot-stats{display:flex;gap:24px;margin-bottom:20px}
-.spot-stat{text-align:center}
-.spot-stat-n{font-size:1.3rem;font-weight:800;color:var(--teal)}
-.spot-stat-l{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
-.spot-btns{display:flex;gap:10px}
-.spot-primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;border:none;border-radius:10px;padding:12px 24px;font-weight:800;font-size:0.9rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
-.spot-primary:hover{opacity:0.9}
-.spot-secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
-.spot-secondary:hover{border-color:var(--teal);color:var(--teal)}
-
-/* HOW VERIFICATION WORKS */
-.how-verify{padding:72px 40px;background:var(--bg2);border-top:1px solid var(--border)}
-.how-inner{max-width:1100px;margin:0 auto}
-.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
-.how-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden}
-.how-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent)}
-.how-step{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.how-num{width:36px;height:36px;background:rgba(0,212,180,0.1);border:1px solid rgba(0,212,180,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:0.85rem}
-.how-icon{font-size:1.6rem}
-.how-card h3{font-size:0.92rem;font-weight:800;margin-bottom:8px}
-.how-card p{font-size:0.82rem;color:var(--soft);line-height:1.6}
-.how-card .check-list{margin-top:12px;display:flex;flex-direction:column;gap:5px}
-.how-card .check-list li{font-size:0.78rem;color:var(--soft);display:flex;align-items:center;gap:7px;list-style:none}
-.how-card .check-list li::before{content:'â';color:var(--teal);font-weight:700;font-size:0.72rem}
-
-/* CITY BROWSE */
-.cities{padding:64px 40px;max-width:1200px;margin:0 auto}
-.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:36px}
-.city-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.22s;text-decoration:none;display:flex;align-items:center;justify-content:space-between}
-.city-card:hover{border-color:rgba(0,212,180,0.3);transform:translateY(-2px)}
-.city-info{}
-.city-name{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:2px}
-.city-count{font-size:0.75rem;color:var(--muted)}
-.city-arrow{color:var(--teal);font-size:0.8rem}
-
-/* TRUST SIGNALS */
-.trust{padding:48px 40px;border-top:1px solid var(--border);background:var(--bg2)}
-.trust-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.ti{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:0.85rem;font-weight:500}
-.ti-icon{font-size:1.3rem}
-.ti strong{color:var(--text)}
-
-/* FOOTER */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 40px 28px}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-brand p{color:var(--muted);font-size:0.83rem;line-height:1.7;margin-top:10px;max-width:260px}
-.footer-col h4{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--soft);margin-bottom:14px}
-.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.83rem;margin-bottom:10px;transition:color 0.2s}
-.footer-col a:hover{color:var(--teal)}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);flex-wrap:wrap;gap:12px}
-.footer-bottom a{color:var(--muted);text-decoration:none}
-.footer-bottom a:hover{color:var(--text)}
-.ai-badge{background:rgba(0,212,180,0.08);border:1px solid rgba(0,212,180,0.15);border-radius:6px;padding:3px 10px;font-size:0.7rem;color:var(--teal);font-weight:600}
-
-/* CHAT WIDGET */
-.chat-widget{position:fixed;bottom:28px;right:28px;z-index:99}
-.chat-btn{width:54px;height:54px;background:linear-gradient(135deg,var(--teal),#7c3aed);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 8px 32px rgba(0,212,180,0.28);transition:transform 0.2s}
-.chat-btn:hover{transform:scale(1.08)}
-
-@media(max-width:900px){
-  nav{padding:14px 20px}
-  .hero{padding:100px 20px 48px}
-  .search-box{flex-wrap:wrap;gap:8px;padding:12px}
-  .search-divider{display:none}
-  .location-input{width:100%}
-  .search-btn{width:100%;justify-content:center}
-  .verify-inner{grid-template-columns:1fr}
-  .spotlight{grid-template-columns:1fr}
-  .how-grid{grid-template-columns:1fr 1fr}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .categories,.listings,.cities{padding:48px 20px}
+@media(prefers-reduced-motion:reduce){
+  [data-r],.line-reveal span{opacity:1;transform:none;transition:none}
+  .shimmer::after{display:none}
+  .hero::before{animation:none}
+  .ring-fill.glow{animation:none}
+  .trend-spark path{stroke-dasharray:none;stroke-dashoffset:0}
+  .img-reveal{clip-path:none}
 }
-@media(max-width:600px){
-  .stats-strip{gap:24px}
-  .how-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,11,13,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--w04);transition:background 0.4s}
+nav.scrolled{background:rgba(11,11,13,0.9)}
+.logo{font-family:var(--serif);font-size:24px;color:var(--white);letter-spacing:-0.02em}
+.logo em{font-style:italic;color:var(--mint)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--w50);transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{font-size:13px;font-weight:600;color:var(--black);background:var(--mint);padding:10px 24px;border-radius:100px;transition:all 0.25s var(--ease)}
+.nav-cta:hover{background:var(--glow);transform:translateY(-1px);box-shadow:0 4px 20px rgba(var(--gr),0.25)}
+@media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:20%;width:120%;height:80%;background:radial-gradient(ellipse 50% 50% at 50% 30%,rgba(126,220,186,0.1),transparent 70%),radial-gradient(ellipse 40% 40% at 80% 60%,rgba(232,160,191,0.06),transparent 60%);pointer-events:none}
+.hero-tag{font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--mint);margin-bottom:32px;display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.dot{width:6px;height:6px;background:var(--mint);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px rgba(var(--gr),0.5)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,7vw,6rem);line-height:1.0;letter-spacing:-0.04em;max-width:900px;margin-bottom:28px;position:relative;z-index:1}
+.hero h1 i{font-style:italic;background:linear-gradient(135deg,var(--mint),var(--glow),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--w50);line-height:1.7;max-width:540px;margin-bottom:56px;position:relative;z-index:1}
+.search-wrap{width:100%;max-width:640px;position:relative;z-index:1;margin-bottom:24px}
+.search-box{display:flex;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--glass-b);border-radius:20px;padding:8px 8px 8px 24px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color 0.3s,box-shadow 0.4s var(--ease),background 0.3s;box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.search-box:focus-within{border-color:rgba(126,220,186,0.3);box-shadow:0 8px 40px rgba(0,0,0,0.3),0 0 0 1px rgba(126,220,186,0.1),0 0 80px rgba(var(--gr),0.06);background:rgba(255,255,255,0.06)}
+.s-icon{color:var(--w30);flex-shrink:0;width:20px;height:20px;transition:color 0.2s}
+.search-box:focus-within .s-icon{color:var(--mint)}
+.s-input{flex:1;background:none;border:none;outline:none;color:var(--white);font-family:var(--sans);font-size:15px;padding:12px;min-width:0}
+.s-input::placeholder{color:var(--w30)}
+.s-sep{width:1px;height:24px;background:var(--w08);flex-shrink:0}
+.s-btn{padding:14px 28px;background:var(--mint);color:var(--black);font-weight:600;font-size:14px;border-radius:14px;flex-shrink:0;transition:all 0.25s var(--ease)}
+.s-btn:hover{background:var(--glow);box-shadow:0 4px 24px rgba(var(--gr),0.2);transform:translateY(-1px)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:1}
+.pill{padding:8px 18px;font-size:13px;font-weight:500;color:var(--w50);border:1px solid var(--w08);border-radius:100px;/* no blur for perf */;transition:all 0.25s var(--ease)}
+.pill:hover{color:var(--white);border-color:var(--w15);background:var(--w04)}
+.pill.on{color:var(--black);background:var(--mint);border-color:var(--mint)}
+@media(max-width:600px){.search-box{flex-wrap:wrap;border-radius:16px}.s-sep{display:none}.s-btn{width:100%;text-align:center;border-radius:12px}.hero h1{font-size:clamp(2.4rem,9vw,3.5rem)}}
+.stats{display:flex;justify-content:center;gap:64px;padding:48px 24px;border-top:1px solid var(--w04);border-bottom:1px solid var(--w04);flex-wrap:wrap}
+.stat-n{font-family:var(--serif);font-size:28px;color:var(--white);letter-spacing:-0.02em}
+.stat-l{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--w30);margin-top:4px}
+.trending{padding:96px 48px 80px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:16px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-0.03em}
+.sec-head span{font-size:13px;color:var(--w30)}
+.trend-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.trend{background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:transform 0.4s var(--ease),border-color 0.3s,box-shadow 0.4s var(--ease)}
+.trend::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(126,220,186,0.04),transparent 50%);opacity:0;transition:opacity 0.4s}
+.trend:hover::before{opacity:1}
+.trend:hover{transform:translateY(-6px);border-color:rgba(126,220,186,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.2),0 0 0 1px rgba(126,220,186,0.05)}
+.trend-pct{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--mint);margin-bottom:4px}
+.trend-name{font-weight:600;font-size:15px;margin-bottom:8px}
+.trend-hook{font-size:13px;color:var(--w30);line-height:1.5}
+.trend-spark{margin-bottom:16px;height:28px}
+.trend-spark svg{width:100%;height:100%}
+.trend-spark path{fill:none;stroke:var(--mint);stroke-width:1.5;stroke-linecap:round;opacity:0.25}
+.trend-spark .area{fill:rgba(var(--gr),0.06);stroke:none}
+@media(max-width:1000px){.trend-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.trending{padding:64px 20px}.trend-grid{grid-template-columns:1fr 1fr}}
+.spot{position:relative;margin:0 48px;border-radius:32px;overflow:hidden;min-height:560px;display:grid;grid-template-columns:1.2fr 1fr}
+.spot-img{position:relative;overflow:hidden}
+.spot-img img{width:100%;height:100%;object-fit:cover;display:block}
+.spot-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 30%,var(--card) 100%)}
+.spot-body{background:var(--card);padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.spot-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.spot-eyebrow::before{content:'';width:16px;height:1px;background:var(--gold)}
+.spot-body h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:6px}
+.spot-loc{font-size:14px;color:var(--w30);margin-bottom:28px}
+.spot-quote{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.7;color:var(--w70);padding-left:20px;border-left:2px solid var(--gold);margin-bottom:32px}
+.spot-metrics{display:flex;gap:28px;margin-bottom:32px}
+.spot-metrics .val{font-family:var(--serif);font-size:24px;color:var(--white)}
+.spot-metrics .lbl{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--w30);margin-top:2px}
+.ring{position:relative;width:64px;height:64px;flex-shrink:0}
+.ring svg{width:64px;height:64px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--w08);stroke-width:3}
+.ring-fill{fill:none;stroke:var(--mint);stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1.5s var(--ease);/* lightweight glow */}
+.ring-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;color:var(--white)}
+.spot-score{display:flex;align-items:center;gap:16px;margin-bottom:36px}
+.spot-score-label{font-size:11px;color:var(--w30);text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
+.spot-cta{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--mint);color:var(--black);font-weight:600;font-size:14px;border-radius:14px;align-self:flex-start;transition:all 0.25s var(--ease)}
+.spot-cta:hover{background:var(--glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--gr),0.2)}
+@media(max-width:900px){.spot{grid-template-columns:1fr;margin:0 20px;border-radius:24px}.spot-img{min-height:280px}.spot-img::after{background:linear-gradient(to bottom,transparent 40%,var(--card) 100%)}.spot-body{padding:40px 28px}}
+.listings{padding:96px 48px;max-width:1280px;margin:0 auto}
+.listings-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px}
+.listings-head h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-0.03em}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{padding:8px 18px;font-size:12px;font-weight:600;color:var(--w50);border:1px solid var(--w08);border-radius:100px;transition:all 0.2s}
+.filters button:hover,.filters button.on{color:var(--mint);border-color:rgba(126,220,186,0.25);background:rgba(126,220,186,0.06)}
+.l-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.l-card{background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:24px;overflow:hidden;transition:transform 0.5s var(--ease),border-color 0.3s,box-shadow 0.5s var(--ease);position:relative}
+.l-card::before{content:'';position:absolute;inset:0;border-radius:24px;background:linear-gradient(160deg,rgba(126,220,186,0.04),transparent 40%,rgba(232,160,191,0.03));opacity:0;transition:opacity 0.5s;pointer-events:none;z-index:1}
+.l-card:hover::before{opacity:1}
+.l-card:hover{transform:translateY(-8px);border-color:rgba(126,220,186,0.12);box-shadow:0 20px 60px rgba(0,0,0,0.3),0 0 0 1px rgba(126,220,186,0.05)}
+.l-img{position:relative;height:220px;overflow:hidden}
+.l-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease)}
+.l-card:hover .l-img img{transform:scale(1.06)}
+.l-img .dist{position:absolute;top:14px;right:14px;padding:5px 12px;background:rgba(11,11,13,0.6);/* no blur for perf */;border:1px solid var(--w04);color:var(--w70);font-size:11px;font-weight:600;border-radius:100px;z-index:2}
+.l-body{padding:24px;position:relative;z-index:2}
+.l-badges{display:flex;gap:6px;margin-bottom:14px}
+.l-badge{padding:4px 10px;font-size:10px;font-weight:600;border-radius:6px;letter-spacing:0.03em}
+.l-badge.gold{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.15)}
+.l-badge.mint{background:rgba(126,220,186,0.08);color:var(--mint);border:1px solid rgba(126,220,186,0.12)}
+.l-badge.muted{background:var(--w04);color:var(--w30);border:1px solid var(--w08)}
+.l-name{font-family:var(--serif);font-size:20px;margin-bottom:4px;letter-spacing:-0.01em}
+.l-loc{font-size:12px;color:var(--w30);margin-bottom:14px}
+.l-desc{font-size:14px;color:var(--w50);line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.l-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.l-tag{padding:4px 10px;font-size:11px;color:var(--w30);background:var(--w04);border-radius:6px}
+.l-foot{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--w04)}
+.l-stars{color:var(--gold);font-size:12px;letter-spacing:1px}
+.l-reviews{font-size:12px;color:var(--w30);margin-left:6px}
+.l-pending{font-size:12px;color:var(--w30);font-weight:500}.claim-link{font-size:13px;color:var(--mint);font-weight:600;transition:color 0.2s}.claim-link:hover{color:var(--glow);text-decoration:underline}
+.l-ring{position:relative;width:44px;height:44px;flex-shrink:0}
+.l-ring svg{width:44px;height:44px;transform:rotate(-90deg)}
+.l-ring .ring-bg{stroke-width:2.5}
+.l-ring .ring-fill{stroke-width:2.5;/* lightweight glow */}
+.l-ring .ring-num{font-size:13px;font-weight:700}
+@media(max-width:1000px){.l-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.listings{padding:64px 20px}.l-grid{grid-template-columns:1fr}}
+.verify{margin:0 48px 96px;padding:48px 56px;background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:24px;text-align:center;position:relative;overflow:hidden}
+.verify::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:400px;height:300px;background:radial-gradient(ellipse,rgba(var(--gr),0.06),transparent);pointer-events:none}
+.verify h3{font-family:var(--serif);font-size:22px;margin-bottom:12px;position:relative}
+.verify p{font-size:15px;color:var(--w50);line-height:1.7;max-width:600px;margin:0 auto;position:relative}
+.verify a{color:var(--mint);font-weight:600}
+.verify a:hover{text-decoration:underline}
+@media(max-width:600px){.verify{margin:0 20px 64px;padding:32px 24px}}
+.cities{padding:0 48px 96px;max-width:1280px;margin:0 auto}
+.cities h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;letter-spacing:-0.03em;margin-bottom:8px}
+.cities-sub{font-size:15px;color:var(--w30);margin-bottom:40px}
+.c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.c-card{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);border-radius:14px;transition:transform 0.35s var(--ease),border-color 0.3s,box-shadow 0.35s var(--ease),background 0.3s}
+.c-card:hover{border-color:rgba(126,220,186,0.12);background:var(--glass-h);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.c-name{font-weight:600;font-size:14px}
+.c-count{font-size:11px;color:var(--w30);margin-top:2px}
+.c-hook{font-size:10px;color:var(--w15);margin-top:2px}
+.c-arr{color:var(--w15);font-size:14px;transition:all 0.2s}
+.c-card:hover .c-arr{color:var(--mint);transform:translateX(3px)}
+@media(max-width:900px){.c-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.cities{padding:0 20px 64px}.c-grid{grid-template-columns:1fr 1fr}}
+.trust-bar{padding:48px;border-top:1px solid var(--w04);display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.t-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--w50)}
+.t-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid var(--glass-b);border-radius:8px;color:var(--mint);flex-shrink:0}
+.t-icon svg{width:14px;height:14px}
+footer{background:var(--dark);padding:80px 48px 0;border-top:1px solid var(--w04);position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--mint),var(--gold),transparent 60%)}
+.f-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px}
+.f-brand{font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:12px}
+.f-brand em{font-style:italic;color:var(--mint)}
+.f-tagline{font-size:14px;color:var(--w30);line-height:1.7;max-width:260px}
+.f-title{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--w15);margin-bottom:16px}
+.f-links a{display:block;font-size:14px;color:var(--w30);margin-bottom:10px;transition:color 0.2s}
+.f-links a:hover{color:var(--white)}
+.f-bottom{max-width:1100px;margin:0 auto;border-top:1px solid var(--w04);padding:24px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;font-size:12px;color:var(--w15)}
+.f-bottom a{color:var(--w15);transition:color 0.2s}
+.f-bottom a:hover{color:var(--w50)}
+.f-final{max-width:1100px;margin:0 auto;text-align:center;padding:24px 0}
+.f-final a{color:var(--gold);font-weight:500;font-size:14px;transition:color 0.2s}
+.f-final a:hover{color:var(--mint)}
+.f-disc{text-align:center;padding:0 0 32px;font-size:11px;color:var(--w15);max-width:560px;margin:0 auto}
+@media(max-width:800px){footer{padding:48px 20px 0}.f-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:500px){.f-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-mark">G</div>
-    <span class="logo-text">Glow<span>Ranked</span></span>
-  </a>
-  <div class="nav-right">
-    <a href="#browse" class="nav-link">Browse</a>
-    <a href="#how-it-works" class="nav-link">How It Works</a>
-    <a href="#cities" class="nav-link">Cities</a>
-    <a href="/for-spas" class="nav-spa">Are you a Med Spa? â</a>
+  <a href="/" class="logo">Glow<em>Ranked</em></a>
+  <div class="nav-links">
+    <a href="#listings">Browse</a>
+    <a href="#cities">Cities</a>
+    <a href="/for-spas.html">For Med Spas</a>
+    <a href="/for-spas.html" class="nav-cta">Get Verified</a>
   </div>
 </nav>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">
-    <div class="live-dot"></div>
-    2,400+ AI-Verified Spas Â· Updated Daily
-  </div>
-  <h1>Find Your Perfect<br><em>Med Spa</em> Experience</h1>
-  <p class="hero-sub">Every spa on GlowRanked is independently verified â credentials checked, reviews authenticated, results confirmed. No guessing. No regrets.</p>
-
-  <div class="search-container">
+  <div class="hero-tag" data-r><span class="dot"></span> Inland Empire launch &middot; Now accepting charter listings</div>
+  <h1 data-r style="transition-delay:100ms">Your skin deserves<br>more than a <i>Google search.</i></h1>
+  <p class="hero-sub" data-r style="transition-delay:180ms">Every listing credential-checked. Every review real.<br>Every rating earned&nbsp;&mdash;&nbsp;never&nbsp;bought.</p>
+  <div class="search-wrap" data-r style="transition-delay:260ms">
     <div class="search-box">
-      <span class="si">ð</span>
-      <input class="search-input" type="text" placeholder="Botox, filler, laser, body sculptingâ¦">
-      <div class="search-divider"></div>
-      <span class="loc-icon">ð</span>
-      <input class="location-input" type="text" placeholder="City or zip code">
-      <button class="search-btn">Search Spas</button>
-    </div>
-    <div class="quick-filters">
-      <div class="qf active">â¨ All Treatments</div>
-      <div class="qf">ð Injectables</div>
-      <div class="qf">â¦ Laser</div>
-      <div class="qf">â Body Sculpting</div>
-      <div class="qf">ð¿ Skin Rejuvenation</div>
-      <div class="qf">â­ Top Rated</div>
-      <div class="qf">ð Open Now</div>
+      <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="s-input" type="text" placeholder="Botox, filler, laser, sculpting&hellip;" aria-label="Search treatments">
+      <div class="s-sep"></div>
+      <input class="s-input" type="text" placeholder="City or zip" aria-label="Location" style="flex:0.5">
+      <button class="s-btn shimmer">Search</button>
     </div>
   </div>
+  <div class="pills" data-r style="transition-delay:340ms">
+    <button class="pill on">All</button><button class="pill">Injectables</button><button class="pill">Laser</button><button class="pill">Body Sculpting</button><button class="pill">Skin</button><button class="pill">Weight Loss</button>
+  </div>
 </section>
-
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat"><div class="stat-n">2,400+</div><div class="stat-l">Verified Spas</div></div>
-  <div class="stat"><div class="stat-n">98%</div><div class="stat-l">Satisfaction Rate</div></div>
-  <div class="stat"><div class="stat-n">187k</div><div class="stat-l">Verified Reviews</div></div>
-  <div class="stat"><div class="stat-n">50+</div><div class="stat-l">Cities Covered</div></div>
-  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Verification Checks</div></div>
+<div class="stats">
+  <div class="stat" data-r><div class="stat-n">4</div><div class="stat-l">IE Cities at Launch</div></div>
+  <div class="stat" data-r style="transition-delay:60ms"><div class="stat-n">12</div><div class="stat-l">Verification Checks</div></div>
+  <div class="stat" data-r style="transition-delay:120ms"><div class="stat-n">90</div><div class="stat-l">Day Re-Verification</div></div>
+  <div class="stat" data-r style="transition-delay:180ms"><div class="stat-n">$0</div><div class="stat-l">Paid Placements. Ever.</div></div>
 </div>
-
-<!-- TREATMENT CATEGORIES -->
-<section class="categories" id="browse">
-  <div class="sec-label">Browse by Treatment</div>
-  <div class="sec-title">What Are You Looking For?</div>
-  <p class="sec-sub">Every category features only licensed, credentialed providers â verified by our AI before they ever appear in results.</p>
-  <div class="cat-grid">
-    <a href="#" class="cat-card"><span class="cat-icon">ð</span><div class="cat-name">Botox & Dysport</div><div class="cat-count">612 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">â¦</span><div class="cat-name">Dermal Fillers</div><div class="cat-count">589 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">ð¬</span><div class="cat-name">Laser Resurfacing</div><div class="cat-count">441 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">â</span><div class="cat-name">Body Sculpting</div><div class="cat-count">378 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">ð¿</span><div class="cat-name">Microneedling</div><div class="cat-count">356 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">âï¸</span><div class="cat-name">Chemical Peels</div><div class="cat-count">302 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">ð«</span><div class="cat-name">PRP Therapy</div><div class="cat-count">198 spas</div></a>
-    <a href="#" class="cat-card"><span class="cat-icon">ð©º</span><div class="cat-name">IV Therapy</div><div class="cat-count">175 spas</div></a>
+<section class="trending">
+  <div class="sec-head"><h2 data-r>What's surging right now</h2><span data-r>Q1 2026</span></div>
+  <div class="trend-grid">
+    <div class="trend" data-r><div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,22 Q20,24 40,18 T80,6 T120,2 L120,28Z"/><path d="M0,22 Q20,24 40,18 T80,6 T120,2"/></svg></div><div class="trend-pct">+340%</div><div class="trend-name">Morpheus8</div><div class="trend-hook">The collagen reboot everyone's booking</div></div>
+    <div class="trend" data-r style="transition-delay:60ms"><div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,24 Q30,20 50,14 T90,4 T120,2 L120,28Z"/><path d="M0,24 Q30,20 50,14 T90,4 T120,2"/></svg></div><div class="trend-pct">+280%</div><div class="trend-name">Semaglutide</div><div class="trend-hook">Weight management meets med spa</div></div>
+    <div class="trend" data-r style="transition-delay:120ms"><div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,22 Q25,20 50,16 T100,6 T120,4 L120,28Z"/><path d="M0,22 Q25,20 50,16 T100,6 T120,4"/></svg></div><div class="trend-pct">+195%</div><div class="trend-name">PRF Under-Eyes</div><div class="trend-hook">The natural filler alternative</div></div>
+    <div class="trend" data-r style="transition-delay:180ms"><div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,22 Q40,18 60,14 T100,8 T120,6 L120,28Z"/><path d="M0,22 Q40,18 60,14 T100,8 T120,6"/></svg></div><div class="trend-pct">+160%</div><div class="trend-name">Lip Flip</div><div class="trend-hook">Subtle enhancement, no filler</div></div>
+    <div class="trend" data-r style="transition-delay:240ms"><div class="trend-spark"><svg viewBox="0 0 120 28"><path class="area" d="M0,28 L0,20 Q30,18 60,16 T100,10 T120,8 L120,28Z"/><path d="M0,20 Q30,18 60,16 T100,10 T120,8"/></svg></div><div class="trend-pct">+140%</div><div class="trend-name">Tattoo Removal</div><div class="trend-hook">Clean slate season</div></div>
   </div>
 </section>
-
-<!-- VERIFIED BAND -->
-<section class="verify-band">
-  <div class="verify-inner">
-    <div>
-      <div class="verify-badge-big">
-        <div class="vb-icon">ð</div>
-        <div class="vb-text">
-          <h3>GlowRanked Verifiedâ¢</h3>
-          <p>This badge means we've personally checked every credential, every license, and every review â so you don't have to.</p>
-        </div>
-      </div>
-      <div class="verify-badge-big" style="background:rgba(0,212,180,0.06);border-color:rgba(0,212,180,0.15);">
-        <div class="vb-icon">ð¤</div>
-        <div class="vb-text">
-          <h3 style="color:var(--teal)">AI-Scored Quality</h3>
-          <p>Our AI analyzes hundreds of data points per spa â from practitioner experience to patient outcomes â and generates a quality score you can trust.</p>
-        </div>
-      </div>
+<section class="spot" data-r>
+  <div class="spot-img"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=900&auto=format&fit=crop&q=80" alt="Lumiere Aesthetics" loading="lazy"></div>
+  <div class="spot-body">
+    <div class="spot-eyebrow">Editors' pick &mdash; March 2026</div>
+    <h2>Lumi&egrave;re<br>Aesthetics</h2>
+    <div class="spot-loc">Beverly Hills, CA</div>
+    <blockquote class="spot-quote">&ldquo;I'd rather do less and get it right than have someone leave wishing they'd gone somewhere else.&rdquo;</blockquote>
+    <div class="spot-score" data-score="97" data-rad="24">
+      <div class="ring"><svg viewBox="0 0 64 64"><circle class="ring-bg" cx="32" cy="32" r="24"/><circle class="ring-fill" cx="32" cy="32" r="24"/></svg><span class="ring-num">97</span></div>
+      <div><div class="spot-score-label">GlowRanked Score</div></div>
     </div>
-    <div>
-      <div class="sec-label">The GlowRanked Standard</div>
-      <h2 class="verify-tagline">We Do the Hard Work<br><span>So You Never Regret</span> Your Choice</h2>
-      <p class="verify-desc">Other directories let anyone pay to be listed. We don't. Every spa on GlowRanked passes a rigorous 12-point verification before earning a spot â and we re-verify every 90 days.</p>
-      <div class="verify-steps">
-        <div class="vstep">
-          <div class="vstep-num">1</div>
-          <div class="vstep-text"><h4>License & Credential Verification</h4><p>We cross-check every practitioner's medical license with state boards in real time.</p></div>
-        </div>
-        <div class="vstep">
-          <div class="vstep-num">2</div>
-          <div class="vstep-text"><h4>Review Authenticity Check</h4><p>Our AI detects and removes fake or incentivized reviews â every rating you see is real.</p></div>
-        </div>
-        <div class="vstep">
-          <div class="vstep-num">3</div>
-          <div class="vstep-text"><h4>Safety Record Scan</h4><p>We screen for malpractice history, complaints, and any regulatory actions before listing.</p></div>
-        </div>
-        <div class="vstep">
-          <div class="vstep-num">4</div>
-          <div class="vstep-text"><h4>Ongoing Re-Verification</h4><p>Verification isn't one-and-done. Every spa is re-checked every 90 days to stay listed.</p></div>
-        </div>
-      </div>
+    <div class="spot-metrics">
+      <div><div class="val">847</div><div class="lbl">Reviews</div></div>
+      <div><div class="val">12 yrs</div><div class="lbl">Experience</div></div>
+      <div><div class="val">98%</div><div class="lbl">Recommend</div></div>
     </div>
+    <a href="#" class="spot-cta shimmer">View full profile &rarr;</a>
   </div>
 </section>
-
-<!-- FEATURED LISTINGS -->
 <section class="listings" id="listings">
-  <div class="listings-header">
-    <div>
-      <div class="sec-label">Top Picks Near You</div>
-      <div class="sec-title" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700">Featured Verified Spas</div>
-    </div>
-    <div class="filter-pills">
-      <button class="fp active">All</button>
-      <button class="fp">Highest Rated</button>
-      <button class="fp">Nearest</button>
-      <button class="fp">New Listings</button>
-      <button class="fp">Open Now</button>
-    </div>
-  </div>
-
-  <!-- SPOTLIGHT FEATURED -->
-  <div class="spotlight">
-    <div class="spot-img">â¨</div>
-    <div>
-      <div class="spot-tag">â­ Spa of the Month</div>
-      <div class="spot-name">LumiÃ¨re Aesthetics</div>
-      <div class="spot-loc">ð Beverly Hills, CA Â· 1.2 mi away</div>
-      <p class="spot-desc">Led by board-certified physician Dr. Sarah Chen, LumiÃ¨re is renowned for natural-looking results and a deeply personalized approach to aesthetics. Specializing in advanced injectables, laser skin rejuvenation, and non-surgical facial contouring.</p>
-      <div class="spot-stats">
-        <div class="spot-stat"><div class="spot-stat-n">4.98</div><div class="spot-stat-l">Rating</div></div>
-        <div class="spot-stat"><div class="spot-stat-n">847</div><div class="spot-stat-l">Reviews</div></div>
-        <div class="spot-stat"><div class="spot-stat-n">12 yrs</div><div class="spot-stat-l">Experience</div></div>
-        <div class="spot-stat"><div class="spot-stat-n">98%</div><div class="spot-stat-l">Recommend</div></div>
-      </div>
-      <div class="spot-btns">
-        <button class="spot-primary">View Full Profile â</button>
-        <button class="spot-secondary">Request Consultation</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- GRID LISTINGS -->
-  <div class="listings-grid">
-
-    <div class="lcard featured">
-      <div class="card-img-wrap">ð<div class="card-distance">0.8 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-          <span class="badge b-top">â­ Top 10</span>
-        </div>
-        <div class="card-name">Glow & Co Medspa</div>
-        <div class="card-loc">ð Scottsdale, AZ</div>
-        <p class="card-desc">Award-winning team of RNs and NPs specializing in Botox, Juvederm, and Sculptra with a focus on natural, refreshed results.</p>
-        <div class="card-services">
-          <span class="svc">Botox</span><span class="svc">Fillers</span><span class="svc">Sculptra</span><span class="svc">Kybella</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.96</span><span class="rcnt">(312)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lcard">
-      <div class="card-img-wrap">ð¿<div class="card-distance">1.4 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-          <span class="badge b-new">â¦ New</span>
-        </div>
-        <div class="card-name">Revive Skin Studio</div>
-        <div class="card-loc">ð Miami, FL</div>
-        <p class="card-desc">A boutique medspa specializing in advanced skin treatments, microneedling, and medical-grade chemical peels by board-certified dermatologists.</p>
-        <div class="card-services">
-          <span class="svc">Microneedling</span><span class="svc">Chemical Peels</span><span class="svc">PRP</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.92</span><span class="rcnt">(178)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lcard featured">
-      <div class="card-img-wrap">â¡<div class="card-distance">2.1 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-          <span class="badge b-top">â­ Top Rated</span>
-        </div>
-        <div class="card-name">Precision Laser & Aesthetics</div>
-        <div class="card-loc">ð Austin, TX</div>
-        <p class="card-desc">Texas's most advanced laser clinic with 14 FDA-cleared devices. Specialists in pigmentation, hair removal, and complete skin rejuvenation.</p>
-        <div class="card-services">
-          <span class="svc">Laser Hair Removal</span><span class="svc">IPL</span><span class="svc">Fraxel</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.94</span><span class="rcnt">(521)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lcard">
-      <div class="card-img-wrap">ð©º<div class="card-distance">3.2 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-        </div>
-        <div class="card-name">Elite Body Contouring</div>
-        <div class="card-loc">ð Chicago, IL</div>
-        <p class="card-desc">The Midwest's leading non-surgical body sculpting center. Emsculpt, CoolSculpting, and truSculpt specialists with medically supervised programs.</p>
-        <div class="card-services">
-          <span class="svc">Emsculpt</span><span class="svc">CoolSculpting</span><span class="svc">truSculpt</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.89</span><span class="rcnt">(264)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lcard">
-      <div class="card-img-wrap">ð¸<div class="card-distance">4.0 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-        </div>
-        <div class="card-name">The Radiance Collective</div>
-        <div class="card-loc">ð New York, NY</div>
-        <p class="card-desc">NYC's premier holistic medspa blending evidence-based aesthetics with wellness. Known for their signature "glass skin" treatment protocols.</p>
-        <div class="card-services">
-          <span class="svc">HydraFacial</span><span class="svc">Botox</span><span class="svc">IV Drips</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.91</span><span class="rcnt">(433)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lcard featured">
-      <div class="card-img-wrap">ð«<div class="card-distance">5.5 mi</div></div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge b-verified">ð Verified</span>
-          <span class="badge b-top">â­ Top 10</span>
-        </div>
-        <div class="card-name">Aurore Medical Aesthetics</div>
-        <div class="card-loc">ð Dallas, TX</div>
-        <p class="card-desc">Physician-owned and operated clinic renowned for precise, conservative aesthetics. Voted Best Medspa in Dallas three years running.</p>
-        <div class="card-services">
-          <span class="svc">Injectables</span><span class="svc">Skin Tightening</span><span class="svc">PDO Threads</span>
-        </div>
-        <div class="card-footer">
-          <div class="rating"><span class="stars">âââââ</span><span class="rnum">4.97</span><span class="rcnt">(689)</span></div>
-          <a href="#" class="card-btn">View Spa</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div style="text-align:center;margin-top:36px">
-    <button style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 36px;color:var(--text);font-weight:700;font-size:0.92rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s" onmouseover="this.style.borderColor='var(--teal)';this.style.color='var(--teal)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">Load More Results â</button>
+  <div class="listings-head"><h2 data-r>Inland Empire charter listings</h2><div class="filters" data-r><button class="on">All</button><button>Chino Hills</button><button>Rancho Cucamonga</button><button>Upland &amp; Claremont</button></div></div>
+  <div class="l-grid">
+    <article class="l-card" data-r><div class="l-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&auto=format&fit=crop&q=80" alt="Saint Savant Medical Aesthetics" loading="lazy"><span class="dist">Chino Hills</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">Saint Savant Medical Aesthetics</div><div class="l-loc">13925 City Center Dr, Chino Hills, CA</div><p class="l-desc">The #1 rated med spa in the Inland Empire. Healthcare veterans specializing in facial balancing, Sciton HALO laser, and holistic aesthetics.</p><div class="l-tags"><span class="l-tag">Botox</span><span class="l-tag">Laser</span><span class="l-tag">Microneedling</span><span class="l-tag">IV Therapy</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
+    <article class="l-card" data-r style="transition-delay:60ms"><div class="l-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80" alt="Rumi Aesthetics" loading="lazy"><span class="dist">Chino</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">Rumi Aesthetics</div><div class="l-loc">16321 Main St, Chino, CA</div><p class="l-desc">Natural-looking results near Chino Hills. Glass skin protocols, RF microneedling, Sculptra, and collagen-boosting treatments tailored to you.</p><div class="l-tags"><span class="l-tag">Botox</span><span class="l-tag">RF Microneedling</span><span class="l-tag">Sculptra</span><span class="l-tag">Fillers</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
+    <article class="l-card" data-r style="transition-delay:120ms"><div class="l-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&auto=format&fit=crop&q=80" alt="NuBella Med Spa" loading="lazy"><span class="dist">Rancho Cucamonga</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">NuBella Med Spa</div><div class="l-loc">11819 Foothill Blvd, Rancho Cucamonga, CA</div><p class="l-desc">Rancho Cucamonga&rsquo;s premier luxury medspa. Personalized treatments, attentive staff, and Morpheus8 patients keep coming back for.</p><div class="l-tags"><span class="l-tag">Morpheus8</span><span class="l-tag">DiamondGlow</span><span class="l-tag">PRP</span><span class="l-tag">Fillers</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
+    <article class="l-card" data-r style="transition-delay:180ms"><div class="l-img"><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&auto=format&fit=crop&q=80" alt="Jade MD Aesthetics Medical Spa" loading="lazy"><span class="dist">Rancho Cucamonga</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">Jade MD Aesthetics Medical Spa</div><div class="l-loc">10535 Foothill Blvd, Rancho Cucamonga, CA</div><p class="l-desc">Physician-led aesthetics with cutting-edge technology. Known for Vivace RF microneedling and PDO thread lifts done with clinical precision.</p><div class="l-tags"><span class="l-tag">PDO Threads</span><span class="l-tag">Vivace RF</span><span class="l-tag">Botox</span><span class="l-tag">Dermaplaning</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
+    <article class="l-card" data-r style="transition-delay:240ms"><div class="l-img"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&auto=format&fit=crop&q=80" alt="Face N Body" loading="lazy"><span class="dist">Upland</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">Face N Body</div><div class="l-loc">1330 San Bernardino Rd, Upland, CA</div><p class="l-desc">Board-certified plastic surgeons serving the Inland Empire for 20+ years. AAAHC-accredited surgical suite on-site. HydraFacial, Botox, and beyond.</p><div class="l-tags"><span class="l-tag">Botox</span><span class="l-tag">HydraFacial</span><span class="l-tag">Fillers</span><span class="l-tag">Plastic Surgery</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
+    <article class="l-card" data-r style="transition-delay:300ms"><div class="l-img"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&auto=format&fit=crop&q=80" alt="La Silla MedSpa" loading="lazy"><span class="dist">Claremont</span></div><div class="l-body"><div class="l-badges"><span class="l-badge muted">Invited to Verify</span></div><div class="l-name">La Silla MedSpa</div><div class="l-loc">380 W Arrow Hwy, Claremont, CA</div><p class="l-desc">A Tulum-inspired escape near the historic Claremont Village. Expert injectables, PRF fillers, chemical peels, and bespoke skincare.</p><div class="l-tags"><span class="l-tag">Fillers</span><span class="l-tag">PRF</span><span class="l-tag">Peels</span><span class="l-tag">Microneedling</span></div><div class="l-foot"><span class="l-pending">Verification in progress</span><a href="/for-spas.html" class="claim-link">Claim listing &rarr;</a></div></div></article>
   </div>
 </section>
-
-<!-- HOW VERIFICATION WORKS -->
-<section class="how-verify" id="how-it-works">
-  <div class="how-inner">
-    <div style="text-align:center;margin-bottom:0">
-      <div class="sec-label">Our Verification Process</div>
-      <div class="sec-title" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:10px">12 Checks. No Exceptions.</div>
-      <p class="sec-sub" style="max-width:560px;margin:0 auto;color:var(--soft);line-height:1.7">Every spa earns its place. Our AI-powered verification process runs 12 independent checks across four categories â before any spa appears in search results.</p>
-    </div>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-step"><div class="how-num">1</div><div class="how-icon">ð</div></div>
-        <h3>License Verification</h3>
-        <p>We confirm every practitioner's medical license directly with state licensing boards.</p>
-        <ul class="check-list">
-          <li>MD / NP / RN credentials</li>
-          <li>State board standing</li>
-          <li>DEA registration (where applicable)</li>
-        </ul>
-      </div>
-      <div class="how-card">
-        <div class="how-step"><div class="how-num">2</div><div class="how-icon">ð</div></div>
-        <h3>Review Authentication</h3>
-        <p>Our AI runs every review through a multi-signal authenticity test before it counts.</p>
-        <ul class="check-list">
-          <li>AI bot & fake review detection</li>
-          <li>Incentivized review removal</li>
-          <li>Verified-patient tagging</li>
-        </ul>
-      </div>
-      <div class="how-card">
-        <div class="how-step"><div class="how-num">3</div><div class="how-icon">ð¡ï¸</div></div>
-        <h3>Safety & Compliance</h3>
-        <p>We run background and regulatory checks to surface any red flags before they matter.</p>
-        <ul class="check-list">
-          <li>Malpractice history scan</li>
-          <li>Health dept. inspection records</li>
-          <li>Complaint & sanction check</li>
-        </ul>
-      </div>
-      <div class="how-card">
-        <div class="how-step"><div class="how-num">4</div><div class="how-icon">ð</div></div>
-        <h3>Ongoing Monitoring</h3>
-        <p>Verification isn't one-time. We re-check every 90 days and monitor in real time.</p>
-        <ul class="check-list">
-          <li>90-day re-verification cycle</li>
-          <li>Complaint alert monitoring</li>
-          <li>License expiry tracking</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BROWSE BY CITY -->
+<section class="verify" data-r><h3>We reject more spas than we list.</h3><p>Every provider passes 12 independent checks — license verification, review authentication, safety screening, and re-verification every 90 days. <a href="/for-spas.html#verification">Learn how &rarr;</a></p></section>
 <section class="cities" id="cities">
-  <div class="sec-label">Browse by Location</div>
-  <div class="sec-title">Top Cities on GlowRanked</div>
-  <p class="sec-sub">Verified med spas in every major market. New cities added weekly.</p>
-  <div class="city-grid">
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">287 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">New York City</div><div class="city-count">241 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Miami</div><div class="city-count">198 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Dallas</div><div class="city-count">176 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Houston</div><div class="city-count">163 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Scottsdale</div><div class="city-count">154 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">142 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Austin</div><div class="city-count">138 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Atlanta</div><div class="city-count">127 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Nashville</div><div class="city-count">119 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">Denver</div><div class="city-count">112 spas</div></div><span class="city-arrow">â</span></a>
-    <a href="#" class="city-card"><div class="city-info"><div class="city-name">San Diego</div><div class="city-count">108 spas</div></div><span class="city-arrow">â</span></a>
+  <h2 data-r>Inland Empire launch cities</h2><p class="cities-sub" data-r>Going deep in four cities before expanding. Quality over quantity &mdash; always.</p>
+  <div class="c-grid">
+    <a href="#listings" class="c-card" data-r><div><div class="c-name">Chino Hills</div><div class="c-count">2 listings</div><div class="c-hook">Top: Laser &amp; Injectables</div></div><span class="c-arr">&rarr;</span></a>
+    <a href="#listings" class="c-card" data-r style="transition-delay:40ms"><div><div class="c-name">Rancho Cucamonga</div><div class="c-count">2 listings</div><div class="c-hook">Top: Morpheus8 &amp; Threads</div></div><span class="c-arr">&rarr;</span></a>
+    <a href="#listings" class="c-card" data-r style="transition-delay:80ms"><div><div class="c-name">Upland</div><div class="c-count">1 listing</div><div class="c-hook">Top: HydraFacial &amp; Surgery</div></div><span class="c-arr">&rarr;</span></a>
+    <a href="#listings" class="c-card" data-r style="transition-delay:120ms"><div><div class="c-name">Claremont</div><div class="c-count">1 listing</div><div class="c-hook">Top: PRF &amp; Fillers</div></div><span class="c-arr">&rarr;</span></a>
+    <a href="/for-spas.html" class="c-card" data-r style="transition-delay:160ms"><div><div class="c-name">More cities</div><div class="c-count">Coming soon</div><div class="c-hook">Expanding across SoCal</div></div><span class="c-arr">&rarr;</span></a>
   </div>
 </section>
-
-<!-- TRUST BAR -->
-<div class="trust">
-  <div class="trust-inner">
-    <div class="ti"><span class="ti-icon">ð</span><span><strong>Zero paid placements</strong> â rankings are earned, not bought</span></div>
-    <div class="ti"><span class="ti-icon">ð</span><span><strong>12-point verification</strong> on every listing</span></div>
-    <div class="ti"><span class="ti-icon">ð¤</span><span><strong>AI-authenticated</strong> reviews only</span></div>
-    <div class="ti"><span class="ti-icon">ð</span><span><strong>Re-verified every 90 days</strong> â no stale data</span></div>
-  </div>
+<div class="trust-bar">
+  <div class="t-item" data-r><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>Rankings earned, never bought</div>
+  <div class="t-item" data-r style="transition-delay:60ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>12-point verification</div>
+  <div class="t-item" data-r style="transition-delay:120ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/><path d="M9 12l2 2 4-4"/></svg></div>AI-authenticated reviews</div>
+  <div class="t-item" data-r style="transition-delay:180ms"><div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>Re-verified every 90 days</div>
 </div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="logo"><div class="logo-mark">G</div><span class="logo-text">Glow<span>Ranked</span></span></a>
-        <p>The most trusted directory for AI-verified med spas and aesthetic clinics. Your results, your confidence, your choice.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Find Treatments</h4>
-        <a href="#">Botox & Dysport</a>
-        <a href="#">Dermal Fillers</a>
-        <a href="#">Laser Treatments</a>
-        <a href="#">Body Sculpting</a>
-        <a href="#">Skin Rejuvenation</a>
-      </div>
-      <div class="footer-col">
-        <h4>Browse Cities</h4>
-        <a href="#">Los Angeles</a>
-        <a href="#">New York</a>
-        <a href="#">Miami</a>
-        <a href="#">Dallas</a>
-        <a href="#">All Cities â</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">How It Works</a>
-        <a href="#">Verification Standards</a>
-        <a href="/for-spas">List Your Spa</a>
-        <a href="#">About GlowRanked</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Â© 2025 GlowRanked. All rights reserved. Â· <a href="/privacy">Privacy Policy</a> Â· <a href="/terms">Terms of Service</a></span>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span>Powered by</span>
-        <span class="ai-badge">AI Verification Engine</span>
-      </div>
-    </div>
+  <div class="f-grid">
+    <div><div class="f-brand">Glow<em>Ranked</em></div><p class="f-tagline">The most trusted directory for verified med spas.</p></div>
+    <div><div class="f-title">Treatments</div><nav class="f-links"><a href="#">Botox &amp; Fillers</a><a href="#">Laser</a><a href="#">Body Sculpting</a><a href="#">Skin</a><a href="#">Weight Loss</a></nav></div>
+    <div><div class="f-title">Cities</div><nav class="f-links"><a href="#">Los Angeles</a><a href="#">New York</a><a href="#">Miami</a><a href="#">Dallas</a><a href="#">All Cities</a></nav></div>
+    <div><div class="f-title">Company</div><nav class="f-links"><a href="/for-spas.html">For Med Spas</a><a href="#">About</a><a href="#">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav></div>
   </div>
+  <div class="f-bottom"><span>&copy; 2026 GlowRanked</span><span>Powered by AI Verification</span><div><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></div></div>
+  <div class="f-final"><a href="/for-spas.html">Own a med spa that belongs here? Get verified &rarr;</a></div>
+  <p class="f-disc">GlowRanked is an informational directory and does not provide medical advice. Always consult a qualified healthcare provider.</p>
 </footer>
-
-<div class="chat-widget">
-  <button class="chat-btn" title="Ask GlowRanked AI">ð¬</button>
-</div>
-
 <script>
-document.querySelectorAll('.qf').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.qf').forEach(b=>b.classList.remove('active'));
-    this.classList.add('active');
+(function(){
+  var ease=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal with stagger support
+  var els=document.querySelectorAll('[data-r]');
+  if(!ease&&'IntersectionObserver' in window){
+    var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');o.unobserve(en.target);}});},{threshold:0.06,rootMargin:'-20px'});
+    els.forEach(function(el){o.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('v');}); }
+
+  // Line reveal (headlines with .line-reveal)
+  document.querySelectorAll('.line-reveal').forEach(function(el){
+    var io=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');io.unobserve(en.target);}});},{threshold:0.2});
+    io.observe(el);
   });
-});
-document.querySelectorAll('.fp').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.fp').forEach(b=>b.classList.remove('active'));
-    this.classList.add('active');
+
+  // Score rings with glow
+  document.querySelectorAll('[data-score]').forEach(function(el){
+    var score=parseInt(el.getAttribute('data-score'));
+    var r=parseInt(el.getAttribute('data-rad')||'16');
+    var fill=el.querySelector('.ring-fill');
+    if(!fill) return;
+    var C=2*Math.PI*r;
+    fill.style.strokeDasharray=C;
+    fill.style.strokeDashoffset=C;
+    if(score>=95) fill.style.stroke='var(--mint)';
+    else if(score>=90) fill.style.stroke='var(--gold)';
+    else fill.style.stroke='var(--peach)';
+    var ro=new IntersectionObserver(function(e){e.forEach(function(en){
+      if(en.isIntersecting){
+        setTimeout(function(){
+          fill.style.strokeDashoffset=C-(score/100)*C;
+          // Add glow after ring fills
+          setTimeout(function(){fill.classList.add('glow');},1200);
+        },300);
+        ro.unobserve(en.target);
+      }
+    });},{threshold:0.3});
+    ro.observe(el);
   });
-});
+
+  // Counter animation for stat numbers
+  document.querySelectorAll('.stat-n').forEach(function(el){
+    var text=el.textContent;
+    var match=text.match(/([\d,]+)/);
+    if(!match) return;
+    var target=parseInt(match[1].replace(/,/g,''));
+    var suffix=text.replace(match[1],'');
+    var prefix=text.substring(0,text.indexOf(match[1]));
+    var co=new IntersectionObserver(function(e){e.forEach(function(en){
+      if(en.isIntersecting){
+        if(ease){return;}
+        var start=0;
+        var dur=1200;
+        var t0=null;
+        function step(ts){
+          if(!t0)t0=ts;
+          var p=Math.min((ts-t0)/dur,1);
+          // Ease out cubic
+          var ep=1-Math.pow(1-p,3);
+          var val=Math.round(start+(target-start)*ep);
+          el.textContent=prefix+val.toLocaleString()+suffix;
+          if(p<1)requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        co.unobserve(en.target);
+      }
+    });},{threshold:0.5});
+    co.observe(el);
+  });
+
+  // Parallax on hero (subtle)
+  var hero=document.querySelector('.hero');
+  if(hero&&!ease){
+    window.addEventListener('scroll',function(){
+      var s=window.scrollY;
+      if(s<window.innerHeight){
+        var p=s/window.innerHeight;
+        hero.style.setProperty('--scroll',p);
+        var h1=hero.querySelector('h1');
+        if(h1) h1.style.transform='translateY('+s*0.12+'px)';
+        var sub=hero.querySelector('.hero-sub');
+        if(sub) sub.style.transform='translateY('+s*0.08+'px)';
+        var tag=hero.querySelector('.hero-tag');
+        if(tag) tag.style.opacity=1-p*1.5;
+      }
+    },{passive:true});
+  }
+
+  // Spotlight image reveal
+  var spotImg=document.querySelector('.spot-img img');
+  if(spotImg){
+    spotImg.classList.add('img-reveal');
+    var sio=new IntersectionObserver(function(e){e.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('v');sio.unobserve(en.target);}
+    });},{threshold:0.2});
+    sio.observe(spotImg);
+  }
+
+  // Nav scroll
+  var nav=document.querySelector('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+
+  // Search focus
+  var sb=document.querySelector('.search-box');
+  if(sb) sb.querySelectorAll('input').forEach(function(i){
+    i.addEventListener('focus',function(){sb.classList.add('focused');});
+    i.addEventListener('blur',function(){setTimeout(function(){if(!sb.contains(document.activeElement))sb.classList.remove('focused');},100);});
+  });
+
+  // Pill toggles
+  document.querySelectorAll('.pills,.filters').forEach(function(g){
+    g.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){g.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');});
+    });
+  });
+
+  // Magnetic hover on CTAs (subtle cursor follow)
+  document.querySelectorAll('.spot-cta,.s-btn,.nav-cta').forEach(function(btn){
+    if(ease) return;
+    btn.addEventListener('mousemove',function(e){
+      var rect=btn.getBoundingClientRect();
+      var x=(e.clientX-rect.left-rect.width/2)*0.15;
+      var y=(e.clientY-rect.top-rect.height/2)*0.15;
+      btn.style.transform='translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){
+      btn.style.transform='';
+    });
+  });
+
+})();
 </script>
 </body>
 </html>
