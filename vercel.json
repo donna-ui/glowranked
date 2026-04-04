@@ -6,6 +6,18 @@
     {"src": "/terms", "dest": "/terms.html"},
     {"src": "/find", "dest": "/find.html"},
     {"src": "/for-spas", "dest": "/for-spas.html"},
+    {"src": "/claim", "dest": "/claim.html"},
+    {"src": "/rancho-cucamonga", "dest": "/rancho-cucamonga.html"},
+    {"src": "/chino-hills", "dest": "/chino-hills.html"},
+    {"src": "/chino", "dest": "/chino.html"},
+    {"src": "/ontario", "dest": "/ontario.html"},
+    {"src": "/upland", "dest": "/upland.html"},
+    {"src": "/claremont", "dest": "/claremont.html"},
+    {"src": "/montclair", "dest": "/montclair.html"},
+    {"src": "/fontana", "dest": "/fontana.html"},
+    {"src": "/redlands", "dest": "/redlands.html"},
+    {"src": "/corona", "dest": "/corona.html"},
+    {"src": "/riverside", "dest": "/riverside.html"},
     {"src": "/", "dest": "/index.html"}
   ]
 }

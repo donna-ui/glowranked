@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Find Verified Med Spas in the Inland Empire, CA | GlowRanked</title>
-<meta name="description" content="Browse AI-verified med spas in Rancho Cucamonga, Chino Hills, Riverside, Corona, Fontana, Redlands & more. Credential-checked listings. No paid placements. Updated every 90 days.">
+<meta name="description" content="Browse 12-point verified med spas in Rancho Cucamonga, Chino Hills, Riverside, Corona, Fontana, Redlands & more. Credential-checked listings. No paid placements. Updated every 90 days.">
 <meta name="keywords" content="med spa Inland Empire, medical spa Rancho Cucamonga, med spa Chino Hills, botox Riverside CA, med spa Corona CA, medical aesthetics Fontana, best med spa Redlands, verified med spa directory">
 <link rel="canonical" href="https://glowranked.com/find">
 <meta property="og:title" content="Find Verified Med Spas in the Inland Empire | GlowRanked">
-<meta property="og:description" content="AI-verified med spa directory for the Inland Empire. Rancho Cucamonga, Chino Hills, Riverside, Corona, Fontana, Redlands & more. No paid placements — ever.">
+<meta property="og:description" content="12-point verified med spa directory for the Inland Empire. Rancho Cucamonga, Chino Hills, Riverside, Corona, Fontana, Redlands & more. No paid placements — ever.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://glowranked.com/find">
 <script type="application/ld+json">
@@ -19,12 +19,12 @@
       "@type": "WebSite",
       "name": "GlowRanked",
       "url": "https://glowranked.com",
-      "description": "AI-verified med spa directory for the Inland Empire, CA"
+      "description": "12-point verified med spa directory for the Inland Empire, CA"
     },
     {
       "@type": "ItemList",
       "name": "Verified Med Spas — Inland Empire, CA",
-      "description": "AI-verified med spa directory covering Rancho Cucamonga, Chino Hills, Chino, Upland, Claremont, Montclair, Ontario, Fontana, Redlands, Corona, and Riverside, California.",
+      "description": "12-point verified med spa directory covering Rancho Cucamonga, Chino Hills, Chino, Upland, Claremont, Montclair, Ontario, Fontana, Redlands, Corona, and Riverside, California.",
       "numberOfItems": 22,
       "itemListElement": [
         {"@type":"ListItem","position":1,"item":{"@type":"MedicalClinic","name":"Saint Savant Medical Aesthetics","address":{"@type":"PostalAddress","streetAddress":"13925 City Center Dr","addressLocality":"Chino Hills","addressRegion":"CA","postalCode":"91709","addressCountry":"US"},"url":"https://saintsavant.com"}},
@@ -56,9 +56,10 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
-:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.06);--glass-h:rgba(255,255,255,0.08);--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w15:rgba(248,248,246,0.15);--w08:rgba(248,248,246,0.08);--w04:rgba(248,248,246,0.04);--glow:#D4F0E7;--gr:212,240,231;--mint:#7EDCBA;--rose:#E8A0BF;--peach:#F2C4A0;--gold:#C9A84C;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.06);--glass-h:rgba(255,255,255,0.08);--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w15:rgba(248,248,246,0.15);--w08:rgba(248,248,246,0.08);--w04:rgba(248,248,246,0.04);--glow:#D4F0E7;--gr:212,240,231;--mint:#7EDCBA;--rose:#E8A0BF;--peach:#F2C4A0;--gold:#C9A84C;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--white);background:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -267,6 +268,24 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 .f-disc{text-align:center;padding:0 0 32px;font-size:11px;color:var(--w15);max-width:560px;margin:0 auto}
 @media(max-width:800px){footer{padding:48px 20px 0}.f-grid{grid-template-columns:1fr 1fr;gap:32px}}
 @media(max-width:500px){.f-grid{grid-template-columns:1fr}}
+
+/* ── GRAIN OVERLAY — "Base color + noise grain 3% = alive background" ── */
+body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0.028;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");background-size:300px 300px}
+
+/* ── CORMORANT GARAMOND TUNING — more dramatic leading, optical sizing ── */
+h1,h2,h3,.hero h1,.sec-head h2,.spot-body h2,.listings-head h2,.cities h2,.verify h3,.f-brand{font-optical-sizing:auto;font-feature-settings:"kern" 1,"liga" 1}
+.hero h1{letter-spacing:-0.045em;font-weight:400}
+.spot-body h2,.sec-head h2,.listings-head h2,.cities h2{letter-spacing:-0.035em}
+.spot-quote{font-size:19px;line-height:1.75;letter-spacing:0.005em}
+.trend-pct{letter-spacing:-0.025em;font-weight:400}
+.stat-n{letter-spacing:-0.03em}
+
+/* ── MANROPE BODY TUNING — slightly open tracking for readability ── */
+body{letter-spacing:0.008em;line-height:1.65}
+.nav-links a,.l-spec,.l-tag,.f-links a,.filter-pill,.stat-lbl,.spot-metrics .lbl,.lbl{letter-spacing:0.03em}
+
+/* ── EYEBROW TEXT — maximum luxury tracking ── */
+.spot-eyebrow,.sec-tag,.badge-eyebrow,[class*="eyebrow"]{letter-spacing:0.18em}
 </style>
 </head>
 <body>
@@ -276,7 +295,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     <a href="#listings">Browse</a>
     <a href="#cities">Cities</a>
     <a href="/for-spas.html">For Med Spas</a>
-    <a href="/for-spas.html" class="nav-cta">Get Verified</a>
+    <a href="/claim.html" class="nav-cta">Get Verified</a>
   </div>
 </nav>
 <section class="hero">
@@ -313,22 +332,22 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   </div>
 </section>
 <section class="spot" data-r>
-  <div class="spot-img"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=900&auto=format&fit=crop&q=80" alt="Lumiere Aesthetics" loading="lazy"></div>
+  <div class="spot-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Renew Aesthetics Rancho Cucamonga" loading="lazy"></div>
   <div class="spot-body">
-    <div class="spot-eyebrow">Editors' pick &mdash; March 2026</div>
-    <h2>Lumi&egrave;re<br>Aesthetics</h2>
-    <div class="spot-loc">Beverly Hills, CA</div>
-    <blockquote class="spot-quote">&ldquo;I'd rather do less and get it right than have someone leave wishing they'd gone somewhere else.&rdquo;</blockquote>
-    <div class="spot-score" data-score="97" data-rad="24">
-      <div class="ring"><svg viewBox="0 0 64 64"><circle class="ring-bg" cx="32" cy="32" r="24"/><circle class="ring-fill" cx="32" cy="32" r="24"/></svg><span class="ring-num">97</span></div>
+    <div class="spot-eyebrow">Editors' pick &mdash; April 2026</div>
+    <h2>Renew<br>Aesthetics</h2>
+    <div class="spot-loc">Rancho Cucamonga, CA</div>
+    <blockquote class="spot-quote">&ldquo;We believe every client deserves to feel seen — and to leave looking exactly like themselves, only more rested.&rdquo;</blockquote>
+    <div class="spot-score" data-score="96" data-rad="24">
+      <div class="ring"><svg viewBox="0 0 64 64"><circle class="ring-bg" cx="32" cy="32" r="24"/><circle class="ring-fill" cx="32" cy="32" r="24"/></svg><span class="ring-num">96</span></div>
       <div><div class="spot-score-label">GlowRanked Score</div></div>
     </div>
     <div class="spot-metrics">
-      <div><div class="val">847</div><div class="lbl">Reviews</div></div>
-      <div><div class="val">12 yrs</div><div class="lbl">Experience</div></div>
-      <div><div class="val">98%</div><div class="lbl">Recommend</div></div>
+      <div><div class="val">312</div><div class="lbl">Reviews</div></div>
+      <div><div class="val">8 yrs</div><div class="lbl">Experience</div></div>
+      <div><div class="val">97%</div><div class="lbl">Recommend</div></div>
     </div>
-    <a href="#" class="spot-cta shimmer">View full profile &rarr;</a>
+    <a href="/claim.html?spa=Renew+Aesthetics" class="spot-cta shimmer">View full profile &rarr;</a>
   </div>
 </section>
 <section class="listings" id="listings">
@@ -405,6 +424,13 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   <p class="f-disc">GlowRanked is an informational directory and does not provide medical advice. Always consult a qualified healthcare provider.</p>
 </footer>
 <script>
+// Lenis smooth scroll — luxury buttery feel
+(function initLenis(){
+  if(typeof Lenis==='undefined'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var lenis=new Lenis({lerp:0.08,smoothWheel:true});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
+  requestAnimationFrame(raf);
+})();
 (function(){
   var ease=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
