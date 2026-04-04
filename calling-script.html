@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowRanked — Charter Listing Call Script</title>
+<style>
+:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w08:rgba(248,248,246,0.08);--mint:#7EDCBA;--gold:#C9A84C;--rose:#E8A0BF;--serif:'Georgia',serif;--sans:'Inter',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--black);color:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 32px 80px}
+.hd{border-bottom:1px solid var(--w08);padding-bottom:32px;margin-bottom:48px}
+.hd-tag{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--mint);margin-bottom:16px}
+.hd h1{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:-0.02em;margin-bottom:12px}
+.hd p{font-size:15px;color:var(--w50);max-width:560px;line-height:1.7}
+.phase{margin-bottom:48px}
+.phase-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;padding:6px 14px;border-radius:6px}
+.phase-label.open{color:#7EDCBA;background:rgba(126,220,186,0.08);border:1px solid rgba(126,220,186,0.15)}
+.phase-label.qualify{color:#F2C4A0;background:rgba(242,196,160,0.08);border:1px solid rgba(242,196,160,0.15)}
+.phase-label.reveal{color:#C9A84C;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15)}
+.phase-label.takeaway{color:#E8A0BF;background:rgba(232,160,191,0.08);border:1px solid rgba(232,160,191,0.15)}
+.phase-label.free{color:#7EDCBA;background:rgba(126,220,186,0.08);border:1px solid rgba(126,220,186,0.15)}
+.phase-label.close{color:#C9A84C;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15)}
+.phase-label.objection{color:#F8F8F6;background:rgba(248,248,246,0.04);border:1px solid rgba(248,248,246,0.08)}
+.phase-label.followup{color:#7EDCBA;background:rgba(126,220,186,0.08);border:1px solid rgba(126,220,186,0.15)}
+.phase-title{font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--w30);margin-bottom:12px;margin-top:2px}
+.script-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:16px;font-size:15px;line-height:1.75;color:var(--w70)}
+.script-block.gold{border-left-color:var(--gold)}
+.script-block.rose{border-left-color:var(--rose)}
+.script-block strong{color:var(--white);font-weight:600}
+.script-block em{color:var(--mint);font-style:normal;font-weight:600}
+.script-block .note{display:block;margin-top:12px;font-size:12px;color:var(--w30);font-style:italic}
+.tip{display:flex;gap:14px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.12);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:var(--w70)}
+.tip-icon{font-size:18px;flex-shrink:0;line-height:1.5}
+.tip strong{color:var(--gold)}
+.obj-q{font-size:14px;font-weight:700;color:var(--white);margin-bottom:8px}
+.obj-q::before{content:'❝  '}
+.obj-a{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-left:3px solid var(--rose);border-radius:0 10px 10px 0;padding:16px 20px;font-size:14px;color:var(--w70);line-height:1.7;margin-bottom:28px}
+.obj-a strong{color:var(--white)}
+.email-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px 28px;margin-top:16px}
+.email-field{font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--w30);margin-bottom:4px}
+.email-val{font-size:15px;color:var(--w70);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--w08)}
+.email-val:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.email-body{font-size:14px;color:var(--w70);line-height:1.8;white-space:pre-line}
+.divider{border:none;border-top:1px solid var(--w08);margin:48px 0}
+.cheat{background:rgba(126,220,186,0.04);border:1px solid rgba(126,220,186,0.12);border-radius:16px;padding:28px 32px;margin-top:48px}
+.cheat h3{font-family:var(--serif);font-size:20px;color:var(--mint);margin-bottom:20px;font-weight:400}
+.cheat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cheat-item{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px 16px}
+.cheat-item strong{display:block;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--w30);margin-bottom:4px}
+.cheat-item span{font-size:14px;color:var(--white)}
+@media print{body{background:#fff;color:#000}.wrap{padding:24px}.script-block,.obj-a,.cheat{background:#f5f5f5;border-color:#ddd}}
+@media(max-width:600px){.wrap{padding:24px 16px}.cheat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hd">
+  <div class="hd-tag">GlowRanked — Internal Use Only</div>
+  <h1>Charter Listing Call Script</h1>
+  <p>Use this for outbound calls to IE med spas. The goal: qualify them, not sell to them. Verification is free. The paid upgrade is their decision after they see value.</p>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-label open">Phase 1 — Open</div>
+  <div class="phase-title">Pattern interrupt. Don't sound like a sales call.</div>
+  <div class="tip"><div class="tip-icon">💡</div><div>Call at <strong>10am–11am</strong> or <strong>2pm–3pm</strong>. Never Friday afternoon. Ask for the owner or practice manager — not the front desk.<br><strong>If gatekeeper answers:</strong> "Hi, I need to leave a quick message for the owner — it's about their GlowRanked listing. Do you know if they handle that themselves?"</div></div>
+
+  <div class="script-block">
+    "Hi, is this <em>[Name / Owner's Name]</em>? … Great. Hey, this is <em>[Your Name]</em> from GlowRanked — I'll keep this really short.
+    <br><br>
+    We're building a verified med spa directory for the Inland Empire — think of it as the trusted, AI-verified alternative to Yelp — and <em>[Spa Name]</em> came up on our shortlist for the <em>[City]</em> launch. I'm actually calling because we can only verify <strong>one or two spas per neighborhood</strong>, and your spot is still open. I wanted to reach out to you before I called the next spa on our list."
+    <span class="note">Pause here. Let them respond. Do not fill the silence.</span>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-label qualify">Phase 2 — Qualify</div>
+  <div class="phase-title">Flip the script. You're choosing them.</div>
+  <div class="script-block gold">
+    "Before I explain how this works — can I ask you one thing? <strong>How are new clients finding you right now?</strong> Like outside of word of mouth and Instagram — do you have a way to capture people who are actively searching for Botox or laser in <em>[City]</em> and just… don't know you exist yet?"
+    <span class="note">Listen fully. This tells you their pain. Repeat it back later.</span>
+  </div>
+  <div class="script-block gold">
+    <strong>If they say "Google" or "SEO":</strong> "That's good. The challenge with Google search results is you're competing with everyone who buys ads. GlowRanked only shows verified providers — no ads, no pay-to-play. So when someone searches and sees your listing, it means something."
+    <br><br>
+    <strong>If they say "word of mouth":</strong> "That's how the best places grow — the issue is the ceiling. Someone searches for a med spa at 11pm, they're not asking a friend, they're on their phone. We want to be where they land."
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-label reveal">Phase 3 — The Reveal</div>
+  <div class="phase-title">They're already on the site. This is a warm call, not cold.</div>
+  <div class="script-block">
+    "So here's where we are — we've actually already created <em>[Spa Name]</em>'s listing on GlowRanked as part of our charter launch. You're live right now, tagged as 'Invited to Verify.' We only shortlist spas that pass our initial screening — license check, reputation check, safety record — so the fact that you're on there means you already cleared the first round.
+    <br><br>
+    The listing is visible, but it's in a pending state. We can only upgrade it to <strong>Verified</strong> once we've completed the full 12-point check — and that's what I'm calling about."
+    <span class="note">If they want to check: glowranked.com/find — they'll see their name there.</span>
+  </div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-label takeaway">Phase 4 — The Takeaway</div>
+  <div class="phase-title">Scarcity is real. Don't over-sell it. Just state it.</div>
+  <div class="script-block rose">
+    "Now I want to be upfront with you — we're doing this very deliberately. We verify <strong>one, maybe two spas per zip code</strong>. The whole reason clients trust the directory is because they know we're not listing everyone. If we verified every spa, it would mean nothing.
+    <br><br>
+    So I do have <em>[a competing spa / the next spot / another spa in your area]</em> that I'm following up with this week. I'm not trying to pressure you — I just want to give you first shot."
+    <span class="note">Do not name specific competitors unless you know one. "Another spa in the Chino Hills area" is enough.</span>
+  </div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-label free">Phase 5 — Remove the Risk</div>
+  <div class="phase-title">Verification is free. Say it clearly. Say it once.</div>
+  <div class="script-block">
+    "The verification itself is <strong>completely free</strong>. It takes about ten minutes on your end — you fill out a short form, we do the rest. We pull your licenses, authenticate your reviews, run the safety screening. No credit card, no commitment.
+    <br><br>
+    The paid tiers are optional — those are for spas that want priority placement, featured spots, and the marketing add-ons. But the base verification? That's on us. We want the directory to actually be useful, and that means having real spas in it."
+  </div>
+</div>
+
+<!-- PHASE 6 -->
+<div class="phase">
+  <div class="phase-label close">Phase 6 — Close</div>
+  <div class="phase-title">Get the email. Send the link while they're on the phone.</div>
+  <div class="script-block">
+    "I can send you the verification link right now — it's a short form, takes five minutes. <strong>Does <em>[their email from Google/website]</em> still work for you?</strong>"
+    <br><br>
+    <em>[Send the link: glowranked.com/claim]</em>
+    <br><br>
+    "I just sent it. Subject line is 'Your GlowRanked charter listing — <em>[Spa Name]</em>.' Once you fill that out, we do the verification on our end and your badge goes live. Usually takes 24–48 hours."
+    <span class="note">If they don't have email handy: "I'll text it to you — do you prefer that?" Or offer to call back. Don't let the call end without a commitment.</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- OBJECTION HANDLERS -->
+<div class="phase">
+  <div class="phase-label objection">Objection Handlers</div>
+  <div class="phase-title">Stay calm. Don't defend. Keep it short.</div>
+
+  <div class="obj-q">"What's the catch? What are you selling?"</div>
+  <div class="obj-a">
+    "Honestly — nothing on this call. The verification is free, the listing stays free. We make money when verified spas decide to upgrade for premium placement — better position in search, featured spots, that kind of thing. But that's their choice after they're verified and can see the value. Today is literally just about getting you verified."
+  </div>
+
+  <div class="obj-q">"How many clients will this send me?"</div>
+  <div class="obj-a">
+    "I'm not going to make you a promise on that — we're in launch mode in the IE and I want to be straight with you. What I can say is: every verified listing gets the AI badge and ranks higher when clients search the directory. The clients who use GlowRanked are specifically looking for a spa they can trust — they're higher-intent than a random Google click. But how many? That depends on your treatments and your reviews. We just make sure you're findable to the right people."
+  </div>
+
+  <div class="obj-q">"I need to think about it / talk to my partner"</div>
+  <div class="obj-a">
+    "Totally fair — I'm not going to push you. <strong>Only thing I'd say is</strong>: the Chino Hills verification window is open right now, and I do have another spa on my list this week. I'll hold your spot until <em>[end of this week / specific date]</em>. Let me send you the link so you at least have it — you don't have to decide anything today, just have it in front of you."
+    <br><br>
+    <strong>Then send the link and set a follow-up: "I'll check back in on [day] — sound good?"</strong>
+  </div>
+
+  <div class="obj-q">"How much does it cost?"</div>
+  <div class="obj-a">
+    "Verification is free — no card needed. If after you're verified you want to look at the paid listings, they start at $197 a month for priority placement. But that's completely separate from today's call. Today is just getting your badge sorted."
+  </div>
+
+  <div class="obj-q">"I've never heard of GlowRanked. Who are you?"</div>
+  <div class="obj-a">
+    "We're new — that's actually the point. We're the directory that's building the <em>right</em> way from day one, not retrofitting trust into an old platform. Every listing is verified before it goes live. We're launching in the IE specifically because it's underserved — you don't have a directory that actually vets providers here. <strong>Being a charter member means you're listed before the general public even knows we exist</strong> — that's first-mover advantage."
+  </div>
+
+  <div class="obj-q">"We already get enough clients / we're busy"</div>
+  <div class="obj-a">
+    "That's the best problem to have — seriously. If you're already full, this still matters: verified listings protect you from losing clients to unverified competitors who undercut on price. Clients who find you through GlowRanked tend to be higher-value — they're not just price shopping. And the listing is free, so there's no downside to having it. <strong>Busy practices protect their reputation — this is part of that.</strong>"
+  </div>
+
+  <div class="obj-q">"Can you just email me the info?"</div>
+  <div class="obj-a">
+    "Of course — I'll send it right now. <strong>[Send the link.]</strong> Just so you know what to look for: subject line will be 'Your GlowRanked charter listing.' The form takes about five minutes. Is there a better day to follow up — would [Wednesday] work?"
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOLLOW-UP EMAIL -->
+<div class="phase">
+  <div class="phase-label followup">Follow-Up Email Template</div>
+  <div class="phase-title">Send immediately after the call or if they asked to think about it.</div>
+  <div class="email-block">
+    <div class="email-field">Subject</div>
+    <div class="email-val">Your GlowRanked charter listing is holding — [Spa Name]</div>
+    <div class="email-field">Body</div>
+    <div class="email-body">Hi [Name],
+
+Great talking with you. As promised — here's your charter verification link:
+
+→ glowranked.com/claim
+
+This is the free verification. No card required. Takes about five minutes to fill out, and we handle the 12-point check on our end. Your listing badge goes live within 48 hours.
+
+I've held your charter spot in [City] through [End of Week Date]. After that I'll need to move to the next spa on our shortlist.
+
+Any questions, just reply here.
+
+— [Your name]
+GlowRanked | Inland Empire Launch Team
+glowranked.com</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CHEAT SHEET -->
+<div class="cheat">
+  <h3>Quick Reference Cheat Sheet</h3>
+  <div class="cheat-grid">
+    <div class="cheat-item"><strong>Free verification?</strong><span>Yes. 100%. No card. Always.</span></div>
+    <div class="cheat-item"><strong>Paid tiers start at</strong><span>$197/month (optional, post-verify)</span></div>
+    <div class="cheat-item"><strong>Verification check count</strong><span>12-point independent check</span></div>
+    <div class="cheat-item"><strong>Re-verification cycle</strong><span>Every 90 days</span></div>
+    <div class="cheat-item"><strong>Paid placements?</strong><span>Never. Rankings are earned.</span></div>
+    <div class="cheat-item"><strong>Cities at launch</strong><span>10+ IE cities</span></div>
+    <div class="cheat-item"><strong>Spas per zip code</strong><span>1–2 max (scarcity is real)</span></div>
+    <div class="cheat-item"><strong>Claim link to send</strong><span>glowranked.com/claim</span></div>
+    <div class="cheat-item"><strong>Directory URL</strong><span>glowranked.com/find</span></div>
+    <div class="cheat-item"><strong>Verification turnaround</strong><span>24–48 hours after form submit</span></div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

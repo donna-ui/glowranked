@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowRanked — Marketing Campaign Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0B0B0D;--dark:#111114;--card:#18181C;--white:#F8F8F6;--w70:rgba(248,248,246,0.7);--w50:rgba(248,248,246,0.5);--w30:rgba(248,248,246,0.3);--w15:rgba(248,248,246,0.15);--w08:rgba(248,248,246,0.08);--w04:rgba(248,248,246,0.04);--glow:#D4F0E7;--gr:212,240,231;--mint:#7EDCBA;--gold:#C9A84C;--rose:#E8A0BF;--peach:#F2C4A0;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--black);color:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:56px 40px 96px}
+/* Cover */
+.cover{min-height:80vh;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--w08);padding-bottom:72px;margin-bottom:72px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-20%;left:-10%;width:80%;height:120%;background:radial-gradient(ellipse 60% 60% at 20% 40%,rgba(126,220,186,0.07),transparent 70%);pointer-events:none}
+.cover-tag{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--mint);margin-bottom:32px}
+.cover h1{font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);font-weight:400;line-height:1.0;letter-spacing:-0.04em;max-width:720px;margin-bottom:24px}
+.cover h1 i{font-style:italic;color:var(--mint)}
+.cover-sub{font-size:18px;color:var(--w50);line-height:1.7;max-width:540px;margin-bottom:40px}
+.cover-pills{display:flex;gap:10px;flex-wrap:wrap}
+.cover-pill{padding:8px 18px;font-size:13px;font-weight:600;border:1px solid var(--w08);border-radius:100px;color:var(--w50)}
+.cover-pill.active{color:var(--mint);border-color:rgba(126,220,186,0.25);background:rgba(126,220,186,0.06)}
+.logo{font-family:var(--serif);font-size:16px;position:absolute;top:0;right:0;color:var(--w30);letter-spacing:-0.02em}
+.logo em{font-style:italic;color:var(--mint)}
+
+/* Section headers */
+.sec{margin-bottom:72px}
+.sec-num{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--w30);margin-bottom:8px}
+.sec h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;letter-spacing:-0.03em;margin-bottom:24px}
+.sec>p{font-size:16px;color:var(--w50);line-height:1.8;max-width:680px;margin-bottom:32px}
+
+/* Big number callouts */
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.num-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 20px}
+.num-card .n{font-family:var(--serif);font-size:42px;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--mint);margin-bottom:4px}
+.num-card .l{font-size:12px;color:var(--w30);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;line-height:1.4}
+
+/* Timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--mint),var(--gold),rgba(255,255,255,0.06))}
+.t-item{margin-bottom:32px;position:relative}
+.t-dot{width:10px;height:10px;border-radius:50%;position:absolute;left:-33px;top:6px;flex-shrink:0}
+.t-dot.mint{background:var(--mint);box-shadow:0 0 12px rgba(var(--gr),0.4)}
+.t-dot.gold{background:var(--gold)}
+.t-dot.rose{background:var(--rose)}
+.t-dot.muted{background:var(--w15);border:1px solid var(--w30)}
+.t-week{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--w30);margin-bottom:4px}
+.t-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.t-desc{font-size:14px;color:var(--w50);line-height:1.6}
+.t-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;margin-top:8px}
+.t-badge.rev{background:rgba(126,220,186,0.08);color:var(--mint);border:1px solid rgba(126,220,186,0.15)}
+.t-badge.brand{background:rgba(201,168,76,0.08);color:var(--gold);border:1px solid rgba(201,168,76,0.15)}
+
+/* Channel grid */
+.channels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.ch{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 22px}
+.ch-icon{font-size:22px;margin-bottom:12px}
+.ch-name{font-size:14px;font-weight:700;margin-bottom:6px}
+.ch-desc{font-size:13px;color:var(--w30);line-height:1.6;margin-bottom:14px}
+.ch-tactic{font-size:12px;color:var(--w50);line-height:1.5}
+.ch-tactic strong{color:var(--white);display:block;margin-bottom:2px}
+
+/* Messaging pillars */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.pillar{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 22px}
+.pillar-num{font-family:var(--serif);font-size:36px;font-style:italic;color:rgba(126,220,186,0.2);line-height:1;margin-bottom:10px}
+.pillar h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.pillar p{font-size:13px;color:var(--w30);line-height:1.6}
+.pillar .example{font-size:13px;color:var(--mint);font-style:italic;margin-top:10px;padding-left:12px;border-left:2px solid rgba(126,220,186,0.3)}
+
+/* Revenue model */
+.rev-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+.rev-table th{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--w30);padding:10px 16px;border-bottom:1px solid var(--w08);text-align:left}
+.rev-table td{font-size:14px;padding:14px 16px;border-bottom:1px solid var(--w04);color:var(--w70)}
+.rev-table tr:hover td{background:rgba(255,255,255,0.02)}
+.rev-table .n{color:var(--mint);font-weight:600;font-family:var(--serif);font-size:18px}
+.rev-table .highlight td{color:var(--white)}
+
+/* Objection table */
+.obj-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+.obj-table th{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--w30);padding:10px 16px;border-bottom:1px solid var(--w08);text-align:left}
+.obj-table td{font-size:13px;padding:14px 16px;border-bottom:1px solid var(--w04);vertical-align:top;line-height:1.6}
+.obj-table td:first-child{color:var(--white);font-weight:500;width:30%}
+.obj-table td:last-child{color:var(--w50)}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+.kpi{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px 16px;text-align:center}
+.kpi .target{font-family:var(--serif);font-size:28px;color:var(--mint)}
+.kpi .metric{font-size:11px;color:var(--w30);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-top:4px;line-height:1.4}
+
+/* Final CTA */
+.final{background:rgba(126,220,186,0.04);border:1px solid rgba(126,220,186,0.15);border-radius:24px;padding:48px 40px;text-align:center;margin-top:64px}
+.final h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;letter-spacing:-0.03em;margin-bottom:16px}
+.final p{font-size:16px;color:var(--w50);max-width:500px;margin:0 auto 28px}
+.final-link{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--mint);color:var(--black);font-weight:700;font-size:15px;border-radius:12px;text-decoration:none;transition:all 0.25s var(--ease)}
+.final-link:hover{background:var(--glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--gr),0.25)}
+
+/* Print */
+@media print{body{background:#fff;color:#000}.cover::before,.final{display:none}h1,h2,h3{color:#000}.n,.num-card .n,.kpi .target{color:#2A7A5E}}
+@media(max-width:700px){.wrap{padding:32px 20px 64px}.numbers,.kpis{grid-template-columns:1fr 1fr}.channels{grid-template-columns:1fr}.pillars{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="logo">Glow<em>Ranked</em></div>
+  <div class="cover-tag">GlowRanked — IE Launch Campaign 2026</div>
+  <h1>The directory<br>Inland Empire<br><i>spas want to be on.</i></h1>
+  <p class="cover-sub">A full-funnel marketing campaign to drive charter listing revenue, establish category authority, and dominate local SEO across 10+ IE cities — this week and beyond.</p>
+  <div class="cover-pills">
+    <div class="cover-pill active">Phase 1: Charter Outreach</div>
+    <div class="cover-pill active">Phase 2: SEO Authority</div>
+    <div class="cover-pill active">Phase 3: Consumer Demand</div>
+    <div class="cover-pill active">Phase 4: Scale</div>
+  </div>
+</div>
+
+<!-- SECTION 1: THE OPPORTUNITY -->
+<div class="sec">
+  <div class="sec-num">Section 01</div>
+  <h2>The Opportunity</h2>
+  <p>The Inland Empire has no trusted, third-party verified med spa directory. Yelp is pay-to-play. Google Maps is unvetted. Patients can't tell a licensed clinic from a weekend pop-up. GlowRanked fills that gap — and charges spas for the privilege of standing out in it.</p>
+  <div class="numbers">
+    <div class="num-card"><div class="n">50+</div><div class="l">Med spas in the Inland Empire (addressable market)</div></div>
+    <div class="num-card"><div class="n">10+</div><div class="l">Cities covered at launch</div></div>
+    <div class="num-card"><div class="n">$197–$597</div><div class="l">Monthly revenue per paying spa</div></div>
+    <div class="num-card"><div class="n">$0</div><div class="l">Cost to verify — removes the barrier to yes</div></div>
+  </div>
+</div>
+
+<!-- SECTION 2: CAMPAIGN TIMELINE -->
+<div class="sec">
+  <div class="sec-num">Section 02</div>
+  <h2>4-Week Launch Plan</h2>
+  <p>Revenue goal: close 3–5 paying charters in Week 1. Build consumer traffic in Weeks 2–4 to demonstrate ROI and close upsells.</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot mint"></div>
+      <div class="t-week">Week 1 — Revenue Now</div>
+      <div class="t-title">Outbound charter outreach to all 22 listed spas</div>
+      <div class="t-desc">Call every spa currently in the directory. Script: takeaway close — "we can only verify one spa per zip code, yours is on the shortlist." Verification is free. Send the claim link during the call. Goal: 5 calls per day, 3 paid upgrades by Friday.</div>
+      <div class="t-badge rev">↑ Revenue Target: $591–$2,985 MRR</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot gold"></div>
+      <div class="t-week">Week 1–2 — SEO Foundation</div>
+      <div class="t-title">Publish city landing pages + optimize for local search</div>
+      <div class="t-desc">Create individual pages for each city: /rancho-cucamonga, /chino-hills, /riverside, etc. Each page targets "med spa [city] CA" with verified listings, treatments, and FAQ schema. Submit sitemap to Google Search Console.</div>
+      <div class="t-badge brand">Target: Top 5 Google for "med spa [city] CA" in 60–90 days</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot rose"></div>
+      <div class="t-week">Week 2 — Social Proof Launch</div>
+      <div class="t-title">Instagram + TikTok: "Which IE med spas are actually verified?"</div>
+      <div class="t-desc">Create content around the trust gap: "We checked 50 IE med spas. Here's what we found." Short-form video, carousel posts, and "verified vs unverified" side-by-side content. Tag listed spas — they'll reshare, giving free reach.</div>
+      <div class="t-badge brand">Platform: Instagram Reels, TikTok, Facebook Groups</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot gold"></div>
+      <div class="t-week">Week 3 — Consumer Traffic</div>
+      <div class="t-title">Launch "Best Med Spas in [City]" content for each city</div>
+      <div class="t-desc">Blog-style city guides targeting consumer search intent. "Best med spas in Rancho Cucamonga 2026" — pulls GlowRanked to page 1 for high-intent searches. Each guide links to the directory and verified listings.</div>
+      <div class="t-badge rev">Compounding: organic traffic drives consumer trust → spa demand</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot muted"></div>
+      <div class="t-week">Week 4 — Upsell + Expand</div>
+      <div class="t-title">Follow up with verified spas — upgrade pitch</div>
+      <div class="t-desc">Once spas see their verified listing live, call back with the upgrade offer. Show them search traffic data. Offer Featured ($397) or Premier ($597) for the city lock. Expand outreach to San Bernardino, Victorville, Murrieta.</div>
+      <div class="t-badge rev">Goal: 2–3 upgrades per verified Charter spa</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: CHANNELS -->
+<div class="sec">
+  <div class="sec-num">Section 03</div>
+  <h2>Marketing Channels</h2>
+  <p>Multi-channel approach that costs almost nothing upfront and compounds over time.</p>
+  <div class="channels">
+    <div class="ch">
+      <div class="ch-icon">📞</div>
+      <div class="ch-name">Direct Outbound</div>
+      <div class="ch-desc">Call every listed spa. This is the fastest path to revenue this week. Warm call — they're already on the site.</div>
+      <div class="ch-tactic"><strong>Script:</strong> Takeaway close. Free verification. City lock scarcity. Send claim link during call.</div>
+    </div>
+    <div class="ch">
+      <div class="ch-icon">🔍</div>
+      <div class="ch-name">Local SEO</div>
+      <div class="ch-desc">Target "med spa [city]" in the IE. JSON-LD schema already added. City landing pages are the next step.</div>
+      <div class="ch-tactic"><strong>Targets:</strong> "med spa Rancho Cucamonga", "botox Chino Hills CA", "best med spa Riverside" and 30+ more.</div>
+    </div>
+    <div class="ch">
+      <div class="ch-icon">📱</div>
+      <div class="ch-name">Instagram / TikTok</div>
+      <div class="ch-desc">Trust-gap content. "We verified every IE med spa — here's what we found." Tag listed spas = free reshare reach.</div>
+      <div class="ch-tactic"><strong>Formats:</strong> Reels, carousels, before/after trust breakdowns, "how to find a real med spa."</div>
+    </div>
+    <div class="ch">
+      <div class="ch-icon">📧</div>
+      <div class="ch-name">Email to Spas</div>
+      <div class="ch-desc">Follow-up sequence after the call. Subject: "Your charter spot is holding — [Spa Name]." Urgency without pressure.</div>
+      <div class="ch-tactic"><strong>Sequence:</strong> Day 0: claim link. Day 3: reminder. Day 7: "moving to next spa" close.</div>
+    </div>
+    <div class="ch">
+      <div class="ch-icon">👥</div>
+      <div class="ch-name">Facebook Groups</div>
+      <div class="ch-desc">IE local groups, neighborhood apps, mommy groups. "Found this IE med spa directory — actually verified." Consumer side of growth.</div>
+      <div class="ch-tactic"><strong>Groups:</strong> Chino Hills Moms, Rancho Cucamonga local groups, IE Beauty Community.</div>
+    </div>
+    <div class="ch">
+      <div class="ch-icon">🤝</div>
+      <div class="ch-name">Spa Owner Referrals</div>
+      <div class="ch-desc">Every spa that verifies gets a referral code. "Refer another IE spa, get one month free." Network effect.</div>
+      <div class="ch-tactic"><strong>Incentive:</strong> 1 month free for each paid referral. Zero cost to you unless they convert.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: MESSAGING -->
+<div class="sec">
+  <div class="sec-num">Section 04</div>
+  <h2>Core Messaging Pillars</h2>
+  <p>Every piece of content — ads, calls, emails, social — maps to one of these four ideas.</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3>Trust as the product</h3>
+      <p>The directory exists because trust is broken in aesthetic medicine. Anyone can buy Google reviews. Nobody can fake a 12-point verification.</p>
+      <div class="example">"We reject more spas than we list."</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3>First-mover advantage</h3>
+      <p>Charter members get the best position, the best pricing, and the city lock. This window closes. Being second is not the same as being first.</p>
+      <div class="example">"Charter spots in [city] are limited to 1–2 spas."</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3>Free removes all friction</h3>
+      <p>The verification is free. The listing is free. There is nothing to lose by starting. The paid upgrade is their call, after they see the value.</p>
+      <div class="example">"No credit card. No commitment. Just your badge."</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <h3>IE-first, always</h3>
+      <p>This isn't a national directory that dropped into their market. It's built for the IE from day one. That matters to local business owners.</p>
+      <div class="example">"We're not LA. We're Inland Empire — and proud of it."</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: REVENUE MODEL -->
+<div class="sec">
+  <div class="sec-num">Section 05</div>
+  <h2>Revenue Projections</h2>
+  <p>Conservative scenarios based on 50+ reachable IE med spas and 3 paid tiers. The model gets stronger as the consumer side grows.</p>
+  <table class="rev-table">
+    <tr>
+      <th>Scenario</th>
+      <th>Paying Spas</th>
+      <th>Avg Tier</th>
+      <th>Monthly Revenue</th>
+      <th>Annual Run Rate</th>
+    </tr>
+    <tr>
+      <td>Week 1 (minimum)</td>
+      <td>3 spas</td>
+      <td>Charter ($197)</td>
+      <td class="n">$591</td>
+      <td>$7,092</td>
+    </tr>
+    <tr>
+      <td>Month 1 close</td>
+      <td>10 spas</td>
+      <td>Mixed ($250 avg)</td>
+      <td class="n">$2,500</td>
+      <td>$30,000</td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>Month 3 target</strong></td>
+      <td><strong>25 spas</strong></td>
+      <td><strong>Mixed ($300 avg)</strong></td>
+      <td class="n"><strong>$7,500</strong></td>
+      <td><strong>$90,000</strong></td>
+    </tr>
+    <tr>
+      <td>Steady state (Year 1)</td>
+      <td>40 spas</td>
+      <td>Mixed ($350 avg)</td>
+      <td class="n">$14,000</td>
+      <td>$168,000</td>
+    </tr>
+  </table>
+  <p style="font-size:13px;color:var(--w30)">* Does not include advertising, sponsorships, or expand-to-LA revenue. Based on IE market only.</p>
+</div>
+
+<!-- SECTION 6: OBJECTION MAP -->
+<div class="sec">
+  <div class="sec-num">Section 06</div>
+  <h2>Objection Map</h2>
+  <p>Every sales conversation has the same 5 objections. The answers are already built into the script — this is the reference.</p>
+  <table class="obj-table">
+    <tr><th>Objection</th><th>Response</th></tr>
+    <tr><td>"What's the catch?"</td><td>No catch. Verification is free forever. Revenue comes from optional paid upgrades — their choice, after they see value. Never a surprise charge.</td></tr>
+    <tr><td>"How many clients will I get?"</td><td>No promises — we're in launch. Verified spas appear above unverified in search. High-intent searchers find the directory. Volume depends on their treatments and ratings.</td></tr>
+    <tr><td>"We're already busy."</td><td>Good. This protects you. Verified listings reduce comparison shopping to price. Clients who come from GlowRanked trust you before they call.</td></tr>
+    <tr><td>"I need to think about it."</td><td>Understood. The city slot is open now — I'll hold it until [date]. Sending the link so you have it. Follow up in 3 days.</td></tr>
+    <tr><td>"I've never heard of GlowRanked."</td><td>We're new — that's the point. Charter members get first-mover advantage in a space with no competition. You can search your listing right now at glowranked.com/find.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 7: KPIs -->
+<div class="sec">
+  <div class="sec-num">Section 07</div>
+  <h2>Success Metrics — Week 1</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="target">25+</div><div class="metric">Outbound calls made</div></div>
+    <div class="kpi"><div class="target">10+</div><div class="metric">Claim links sent</div></div>
+    <div class="kpi"><div class="target">5+</div><div class="metric">Verifications started</div></div>
+    <div class="kpi"><div class="target">3+</div><div class="metric">Paid upgrades closed</div></div>
+  </div>
+  <div class="kpis" style="margin-top:0">
+    <div class="kpi"><div class="target">10+</div><div class="metric">IE cities in directory</div></div>
+    <div class="kpi"><div class="target">22+</div><div class="metric">Spa listings live</div></div>
+    <div class="kpi"><div class="target">Top 10</div><div class="metric">Google for "med spa [city]" in 90 days</div></div>
+    <div class="kpi"><div class="target">500+</div><div class="metric">Instagram followers by month end</div></div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <h2>Ready to launch?</h2>
+  <p>The calling script, the claim page, and the directory are live. The only thing left is picking up the phone.</p>
+  <a href="/calling-script.html" class="final-link">Open Calling Script &rarr;</a>
+</div>
+
+</div>
+</body>
+</html>
