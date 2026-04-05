@@ -18,6 +18,13 @@
     {"src": "/redlands", "dest": "/redlands.html"},
     {"src": "/corona", "dest": "/corona.html"},
     {"src": "/riverside", "dest": "/riverside.html"},
+    {"src": "/blog", "dest": "/blog.html"},
+    {"src": "/blog/what-is-12-point-verification", "dest": "/blog-what-is-12-point-verification.html"},
+    {"src": "/blog/how-to-choose-med-spa-california", "dest": "/blog-how-to-choose-med-spa-california.html"},
+    {"src": "/blog/botox-inland-empire", "dest": "/blog-botox-inland-empire.html"},
+    {"src": "/blog/lip-filler-inland-empire", "dest": "/blog-lip-filler-inland-empire.html"},
+    {"src": "/blog/med-spa-vs-day-spa", "dest": "/blog-med-spa-vs-day-spa.html"},
+    {"src": "/blog/hydrafacial-inland-empire", "dest": "/blog-hydrafacial-inland-empire.html"},
     {"src": "/", "dest": "/index.html"}
   ]
 }
