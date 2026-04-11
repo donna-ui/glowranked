@@ -427,7 +427,7 @@ body{letter-spacing:0.008em;line-height:1.65}
 // Lenis smooth scroll — luxury buttery feel
 (function initLenis(){
   if(typeof Lenis==='undefined'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var lenis=new Lenis({lerp:0.08,smoothWheel:true});
+  var lenis=new Lenis({lerp:0.12,smoothWheel:true});
   function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
   requestAnimationFrame(raf);
 })();
@@ -534,11 +534,37 @@ body{letter-spacing:0.008em;line-height:1.65}
   var nav=document.querySelector('nav');
   window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
 
-  // Search focus
+  // Search focus + live search
   var sb=document.querySelector('.search-box');
-  if(sb) sb.querySelectorAll('input').forEach(function(i){
+  var sInputs=sb?Array.from(sb.querySelectorAll('input')):[];
+  sInputs.forEach(function(i){
     i.addEventListener('focus',function(){sb.classList.add('focused');});
     i.addEventListener('blur',function(){setTimeout(function(){if(!sb.contains(document.activeElement))sb.classList.remove('focused');},100);});
+  });
+
+  function runSearch(){
+    var treat=(sInputs[0]?sInputs[0].value:'').toLowerCase().trim();
+    var loc=(sInputs[1]?sInputs[1].value:'').toLowerCase().trim();
+    var cards=Array.from(document.querySelectorAll('.l-card'));
+    var anyVisible=false;
+    cards.forEach(function(c){
+      var text=c.textContent.toLowerCase();
+      var city=(c.getAttribute('data-city')||'').toLowerCase();
+      var matchTreat=!treat||text.indexOf(treat)>-1;
+      var matchLoc=!loc||city.indexOf(loc)>-1||text.indexOf(loc)>-1;
+      var show=matchTreat&&matchLoc;
+      c.style.display=show?'':'none';
+      if(show)anyVisible=true;
+    });
+    var empty=document.getElementById('search-empty');
+    if(empty)empty.style.display=anyVisible?'none':'block';
+  }
+
+  var sBtn=document.querySelector('.s-btn');
+  if(sBtn)sBtn.addEventListener('click',function(e){e.preventDefault();runSearch();var lst=document.getElementById('listings');if(lst)lst.scrollIntoView({behavior:'smooth'});});
+  sInputs.forEach(function(i){
+    i.addEventListener('input',runSearch);
+    i.addEventListener('keydown',function(e){if(e.key==='Enter'){runSearch();var lst=document.getElementById('listings');if(lst)lst.scrollIntoView({behavior:'smooth'});}});
   });
 
   // Pill toggles + city filtering
